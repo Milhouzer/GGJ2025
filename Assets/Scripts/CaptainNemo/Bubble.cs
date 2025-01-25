@@ -4,70 +4,63 @@ using UnityEngine;
 
 public class Bubble : MonoBehaviour
 {
+    private const string CHANGE_DIRECTION_COROUTINE_NAME = "ChangeDirection";
+
+    public float CurrentTimeBetweenChangeTargetDirection { get; set; }
+    public float CurrentRotationSpeed { get; set; }
+    public Vector2 CurrentTargetRotationChangeRange { get; set; }
+    public float CurrentSpeed { get; set; }
+
+    private float currentDirectionAngle;
+    private float targetDirectionAngle;
+
     //For test
-    public BubbleManager bubbleManager = default;
+    [SerializeField] private float mouthSuckForce = 0.01f;
     //
 
-    private const string WAIT_COROUTINE_NAME = "WaitBeforeAddForce";
-
-    [Header("References")]
-    [SerializeField] private Rigidbody2D _rigidbody = default;
-
-    public float CurrentTimeBetweenAddForce { get; set; }
-    public float CurrentRandomSpeed { get; set; }
-    public Vector2 CurrentRandomRotationRange { get; set; }
-    public float CurrentMouthStrength { get; set; }
-    public float CurrentBubbleSize { get; set; }
-
-    //bouge en random, se fais aspirer par la bouche, se divise et se recréée, bouge plus rapidement et plus random quand ça bout)
-    //se fais aspirer par la bouche
-    //se divise et se recréee
-    //bouge plus rapidement et plus random selon la chaleur
-
-    private float speedPhase;
-
-    private float currentAngle;
-
-    public void Init(float startBubbleSize)
+    public void Init()
     {
-        CurrentBubbleSize = startBubbleSize;
+        currentDirectionAngle = Random.Range(0, 360) * Mathf.Deg2Rad;
+        targetDirectionAngle = Random.Range(0, 360) * Mathf.Deg2Rad;
 
-        currentAngle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
-        speedPhase = Random.Range(0f, 100f);
-
-        StartCoroutine(WAIT_COROUTINE_NAME);
+        StartCoroutine(CHANGE_DIRECTION_COROUTINE_NAME);
     }
 
     private void Update()
     {
+        transform.position += new Vector3(Mathf.Cos(currentDirectionAngle), Mathf.Sin(currentDirectionAngle)) * CurrentSpeed * Time.deltaTime;
+
+        currentDirectionAngle = Mathf.MoveTowards(currentDirectionAngle, targetDirectionAngle, CurrentRotationSpeed);
+
         if (transform.position.magnitude > BubbleManager.fieldRay)
         {
             transform.position = transform.position.normalized * BubbleManager.fieldRay;
-            _rigidbody.linearVelocity = -transform.position.normalized * _rigidbody.linearVelocity.magnitude / 2;
+            targetDirectionAngle = Mathf.Atan2(-transform.position.y, -transform.position.x);
+            currentDirectionAngle = targetDirectionAngle;
         }
+
+        //if (UnityEngine.Input.GetKey(KeyCode.Mouse0))
+        //{
+        //    GetSucked((Camera.main.ScreenToWorldPoint(new Vector3(UnityEngine.Input.mousePosition.x, UnityEngine.Input.mousePosition.y, -Camera.main.transform.position.z)) - transform.position).normalized * mouthSuckForce);
+        //}
     }
 
-    private IEnumerator WaitBeforeAddForce()
+    private IEnumerator ChangeDirection()
     {
-        float angleRadiant = currentAngle + Random.Range(CurrentRandomRotationRange.x, CurrentRandomRotationRange.y) * Mathf.Deg2Rad;
-        Vector2 direction = new Vector2(Mathf.Cos(angleRadiant), Mathf.Sin(angleRadiant));
+        targetDirectionAngle += Random.Range(CurrentTargetRotationChangeRange.x, CurrentTargetRotationChangeRange.y) * Mathf.Deg2Rad;
 
-        float speed = Mathf.PerlinNoise(Time.time, speedPhase) * CurrentRandomSpeed;
+        yield return new WaitForSeconds(CurrentTimeBetweenChangeTargetDirection);
 
-        _rigidbody.AddForce(direction * speed);
-
-        yield return new WaitForSeconds(CurrentTimeBetweenAddForce);
-
-        StartCoroutine(WAIT_COROUTINE_NAME);
+        StartCoroutine(CHANGE_DIRECTION_COROUTINE_NAME);
     }
 
-    public void GetSucked(Vector2 succionForce)
+    public void GetSucked(Vector3 suckForce)
     {
-        _rigidbody.AddForce(succionForce);
+        transform.position += suckForce;
     }
 
     private void OnDestroy()
     {
-        StopCoroutine(WAIT_COROUTINE_NAME);
+        StopCoroutine(CHANGE_DIRECTION_COROUTINE_NAME);
     }
 }

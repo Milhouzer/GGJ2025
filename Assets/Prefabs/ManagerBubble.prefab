@@ -44,7 +44,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7833a32f559f977449bfb78ccbb0b688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubble: {fileID: 8308414905081533342, guid: 958e1bb9f55cb764288798ddf2b73290, type: 3}
-  spawnNSeconds: 0
-  RadiusToSpawn: 0
-  origin: {x: 0, y: 0, z: 0}
+  badBubble:
+    bubble: {fileID: 8308414905081533342, guid: 958e1bb9f55cb764288798ddf2b73290, type: 3}
+    weight: 0.3
+  goodBubble:
+    bubble: {fileID: 8308414905081533342, guid: 81b551acd1e0d8041b9bd45f65131326, type: 3}
+    weight: 0.7
+  weightedIncrement: 0.1
+  radiusToSpawn: 1
+  minRadiusToSpawn: 0.1
+  rangeRandomAngle: {x: -10, y: 10}
+  defaultSpawnNSecond: 1
+  origin: {fileID: 0}
+  timeToChangeLevel:
+  - 1
+  allSpawnNSeconds:
+  - 2
