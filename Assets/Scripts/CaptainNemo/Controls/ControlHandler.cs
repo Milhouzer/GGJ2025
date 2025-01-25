@@ -64,6 +64,8 @@ namespace CaptainNemo.Controls
     /// </summary>
     public abstract class ControlHandler : MonoBehaviour, IControlHandler
     {        
+        
+        public bool isBlockingControls = false;
         /// <summary>
         /// Editor bindable event
         /// </summary>
@@ -112,6 +114,8 @@ namespace CaptainNemo.Controls
         /// </summary>
         public void Handle()
         {
+            if (isBlockingControls) return;
+            
             if (ControlsManager.ControlHandler != null)
             {
                 ControlsManager.ControlHandler.Release();
@@ -135,6 +139,8 @@ namespace CaptainNemo.Controls
         /// </summary>
         public void Release()
         {
+            if (isBlockingControls) return;
+            
             if (ControlsManager.ControlHandler != null)
             {
                 ControlsManager.ControlHandler = null;
@@ -157,6 +163,8 @@ namespace CaptainNemo.Controls
         /// <param name="value">Input control vector.</param>
         public void Control(Vector2 value)
         {
+            if (isBlockingControls) return;
+
             // Calculate new control value
             OnControl(value);
             float newValue = GetControlValue();
