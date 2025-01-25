@@ -58,6 +58,7 @@ MonoBehaviour:
       m_Calls: []
   clampValue: {x: 0, y: 100}
   eraserRotationSpeed: 25
+  eraserRotationMaxAngle: 77
 --- !u!65 &3537984319766852612
 BoxCollider:
   m_ObjectHideFlags: 0
