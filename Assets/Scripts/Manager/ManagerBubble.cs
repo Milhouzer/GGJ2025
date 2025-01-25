@@ -93,7 +93,7 @@ public class ManagerBubble : MonoBehaviour
 
 			Bubble bubble = ChoseBubble();
 
-			if(bubble.CurrentBubbleSize >= 0)
+			if(bubble.Oxygen >= 0)
 				badBubble.weight += weightedIncrement;
 			else
 				badBubble.weight = startWeightBubble;
