@@ -29,7 +29,7 @@ namespace CaptainNemo.Controls.Logic
         {
             base.OnHandle();
             Release();
-            ManagerBubble.Instance.DestroyBubble(bubble);
+            BubblesManager.Instance.DestroyBubble(bubble);
         }
 
         /// <summary>
