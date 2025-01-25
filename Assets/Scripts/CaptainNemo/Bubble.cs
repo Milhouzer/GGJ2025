@@ -1,13 +1,12 @@
 using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class Bubble : MonoBehaviour
 {
     private const string CHANGE_DIRECTION_COROUTINE_NAME = "ChangeDirection";
 
-    [SerializeField] private float oxygen = default;
-    public float Oxygen { get => oxygen; private set => oxygen = value; }
+    [SerializeField] private float oxygen;
+    public float Oxygen { get => oxygen; }
 
     public float CurrentTimeBetweenChangeTargetDirection { get; set; } = 0.5f;
     public float CurrentRotationSpeed { get; set; } = 0.03f;
@@ -18,9 +17,8 @@ public class Bubble : MonoBehaviour
     private float currentDirectionAngle;
     private float targetDirectionAngle;
 
-    //For test
-    [SerializeField] private float mouthSuckForce = 0.01f;
-    //
+    // For test
+    // [SerializeField] private float mouthSuckForce = 0.01f;
 
     public void Awake()
     {
@@ -36,9 +34,9 @@ public class Bubble : MonoBehaviour
 
         currentDirectionAngle = Mathf.MoveTowards(currentDirectionAngle, targetDirectionAngle, CurrentRotationSpeed);
 
-        if (transform.position.magnitude > ManagerBubble.FIELD_RAY)
+        if (transform.position.magnitude > ManagerBubble.Instance.BubbleMoveRadius)
         {
-            transform.position = transform.position.normalized * ManagerBubble.FIELD_RAY;
+            transform.position = transform.position.normalized * ManagerBubble.Instance.BubbleMoveRadius;
             targetDirectionAngle = Mathf.Atan2(-transform.position.y, -transform.position.x);
             currentDirectionAngle = targetDirectionAngle;
         }
@@ -54,9 +52,7 @@ public class Bubble : MonoBehaviour
     private IEnumerator ChangeDirection()
     {
         targetDirectionAngle += Random.Range(CurrentTargetRotationChangeRange.x, CurrentTargetRotationChangeRange.y) * Mathf.Deg2Rad;
-
         yield return new WaitForSeconds(CurrentTimeBetweenChangeTargetDirection);
-
         StartCoroutine(CHANGE_DIRECTION_COROUTINE_NAME);
     }
 

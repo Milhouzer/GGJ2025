@@ -11,7 +11,6 @@ namespace CaptainNemo
             if (handler == null || handler.GetGlobalControlParam() != GlobalControlParam.Oxygen) return;
             
             handler.Handle();
-            Debug.Log($"Handle {handler}");
         }
     }
 }
