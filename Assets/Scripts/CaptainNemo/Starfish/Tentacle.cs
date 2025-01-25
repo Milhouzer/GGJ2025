@@ -9,18 +9,20 @@ public class Tentacle : ControlHandler
     private int _hp = 1;
     private float _hitShakeStrength = 1;
     public event OnTentacleDeathEventHandler onTentacleDeath;
-
-    public override GlobalControlParam GetGlobalControlParam()
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
     public void Initialize(int hp, float hitShakeStrength)
     {
         _hp = hp;
         _hitShakeStrength = hitShakeStrength;
     }
-    
+
+    public override GlobalControlParam GetGlobalControlParam()
+    {
+        GlobalControlParam globalControlParam = new GlobalControlParam();
+        return globalControlParam;
+    }
+
     protected override void OnHandle()
     {
         _hp--;

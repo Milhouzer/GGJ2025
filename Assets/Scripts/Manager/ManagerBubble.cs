@@ -7,13 +7,17 @@ public class ManagerBubble : MonoBehaviour
     public const float FIELD_RAY = 4.5f;
 
     [SerializeField] private Bubble bubble;
+	[SerializeField] private WeightedBubble badBubble;
+	[SerializeField] private WeightedBubble goodBubble;
+	[SerializeField] private float weightedIncrement = default;
     [SerializeField] private float radiusToSpawn = 50;
     [SerializeField] private float minRadiusToSpawn = 10;
     [SerializeField] private Vector2 rangeRandomAngle = default;
     [SerializeField] private float defaultSpawnNSecond = default;
-    [SerializeField] private Transform origin;
+    [SerializeField] private Transform origin = default;
     [SerializeField] private List<float> timeToChangeLevel = new List<float>();
     [SerializeField] private List<float> allSpawnNSeconds = new List<float>();
+
     public static ManagerBubble Instance { get; private set; }
 
     private float counterSpawnBubble = 0;
@@ -21,8 +25,9 @@ public class ManagerBubble : MonoBehaviour
     private float counterSwitchLevels = 0;
     private float randomAngle = 0;
     private float previousRandomAngle = default;
-    private float spawnNSeconds = default;
-    private List<Bubble> allBubbles = new List<Bubble>();
+	private float spawnNSeconds = default;
+	private List<Bubble> allBubbles = new List<Bubble>();
+	private float startWeightBubble = 0;
 
 
     private void Awake()
@@ -37,10 +42,11 @@ public class ManagerBubble : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        spawnNSeconds = defaultSpawnNSecond;
-    }
+	private void Start()
+	{
+		spawnNSeconds = defaultSpawnNSecond;
+		startWeightBubble = badBubble.weight;
+	}
 
     void Update()
     {
@@ -85,21 +91,56 @@ public class ManagerBubble : MonoBehaviour
 
             Quaternion rotation = Quaternion.identity;
 
-            allBubbles.Add(Instantiate(bubble, position, rotation));
-        }
-        else
-        {
-            SpawnBubble();
-        }
-    }
+			Bubble bubble = ChoseBubble();
 
-    public void DestroyBubble(Bubble bubbleToDestroy)
-    {
-        allBubbles.Remove(bubbleToDestroy);
-        Destroy(bubbleToDestroy);
-    }
+			if(bubble.CurrentBubbleSize >= 0)
+				badBubble.weight += weightedIncrement;
+			else
+				badBubble.weight = startWeightBubble;
+				
+			allBubbles.Add(Instantiate(bubble, position, rotation));
+		}
+		else
+		{
+			SpawnBubble();
+		}
+	}
 
-    #region Test
+	private Bubble ChoseBubble()
+	{
+		float totalWeight = 0;
+
+		totalWeight += badBubble.weight;
+		totalWeight += goodBubble.weight;
+
+		float randomValue = Random.Range(0, totalWeight);
+
+		float cumulativeWeight = 0;
+
+		List<WeightedBubble> allWeightedBubble = new List<WeightedBubble>();
+		allWeightedBubble.Add(badBubble);
+		allWeightedBubble.Add(goodBubble);
+
+		foreach (var weightedBubble in allWeightedBubble)
+		{
+			cumulativeWeight += weightedBubble.weight;
+
+			if (randomValue <= cumulativeWeight)
+			{
+				return weightedBubble.bubble;
+			}
+		}
+
+		return null;
+	}
+
+	public void DestroyBubble(Bubble bubbleToDestroy)
+	{
+		allBubbles.Remove(bubbleToDestroy);
+		Destroy(bubbleToDestroy);
+	}
+
+ #region Test
     private bool currentCalm = true;
     [SerializeField] private bool newCalm = true;
 
