@@ -15,7 +15,13 @@ public class BadBubble : Bubble
         counterToDestroyBubble += Time.deltaTime;
 
         if (counterToDestroyBubble > timeToDestroy)
-            Destroy(gameObject);
+            Death();
+    }
+
+    private void Death()
+    {
+        BubblesManager.Instance.allBubbles.Remove(this);
+        Destroy(gameObject);
     }
 
 

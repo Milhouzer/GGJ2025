@@ -21,11 +21,12 @@ namespace CaptainNemo.Bubbles
 	    [SerializeField] private Transform origin;
 		public static BubblesManager Instance { get; private set; }
 
-	    private float counterSpawnBubble = 0;
+		public List<Bubble> allBubbles = new();
+
+		private float counterSpawnBubble = 0;
 	    private float randomAngle = 0;
 	    private float previousRandomAngle = default;
 		private float spawnXSeconds = default;
-		private List<Bubble> allBubbles = new();
 		
 		[SerializeField] public Vector2 spawnRange;
 		private float startWeightBubble = 0;
