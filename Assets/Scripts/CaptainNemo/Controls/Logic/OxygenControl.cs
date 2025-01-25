@@ -16,6 +16,8 @@ namespace CaptainNemo.Controls.Logic
         /// This component controls the oxygen
         /// </summary>
         [SerializeField] private GlobalControlParam globalParam = GlobalControlParam.Oxygen;
+
+        [SerializeField] private Bubble bubble = default;
         
         /// <summary>
         /// Custom logic when control is acquired.
@@ -23,11 +25,13 @@ namespace CaptainNemo.Controls.Logic
         protected override void OnHandle()
         {
             // Custom acquisition logic specific to this control type
-            
+
             // For example, the starfish leg may override this function to break and immediately release control after
             // as it shouldn't exist anymore.
-            
+
             // Implement visual effects, sounds, etc.
+
+            //ManagerBubble.Instance.DestroyBubble(bubble);
         }
 
         /// <summary>

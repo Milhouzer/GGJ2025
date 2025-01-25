@@ -20,6 +20,7 @@ public class ManagerBubble : MonoBehaviour
     private float randomAngle = 0;
     private float previousRandomAngle = default;
 	private float spawnNSeconds = default;
+	private List<Bubble> allBubbles = new List<Bubble>();
 
 	private void Awake()
 	{
@@ -79,16 +80,17 @@ public class ManagerBubble : MonoBehaviour
 
 			Quaternion rotation = Quaternion.identity;
 
-			Instantiate(bubble, position, rotation);
+			allBubbles.Add(Instantiate(bubble, position, rotation));
 		}
 		else
 		{
 			SpawnBubble();
 		}
 	}
-
-	public void Absorption()
+	
+	public void DestroyBubble(Bubble bubbleToDestroy)
 	{
-		
-	} 
+		allBubbles.Remove(bubbleToDestroy);
+		Destroy(bubbleToDestroy);
+	}
 }
