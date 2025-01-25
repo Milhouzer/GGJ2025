@@ -1,24 +1,21 @@
-using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ManagerBubble : MonoBehaviour
 {
-    public const float FIELD_RAY = 4.5f;
+	public float BubbleMoveRadius = 0.4f;
 
-    [SerializeField] private Bubble bubble;
 	[SerializeField] private WeightedBubble badBubble;
 	[SerializeField] private WeightedBubble goodBubble;
 	[SerializeField] private float weightedIncrement = default;
-    [SerializeField] private float radiusToSpawn = 50;
-    [SerializeField] private float minRadiusToSpawn = 10;
     [SerializeField] private Vector2 rangeRandomAngle = default;
     [SerializeField] private float defaultSpawnNSecond = default;
-    [SerializeField] private Transform origin = default;
+    [SerializeField] private Transform origin;
     [SerializeField] private List<float> timeToChangeLevel = new List<float>();
     [SerializeField] private List<float> allSpawnNSeconds = new List<float>();
-
-    public static ManagerBubble Instance { get; private set; }
+	public static ManagerBubble Instance { get; private set; }
 
     private float counterSpawnBubble = 0;
     private int index = 0;
@@ -27,20 +24,28 @@ public class ManagerBubble : MonoBehaviour
     private float previousRandomAngle = default;
 	private float spawnNSeconds = default;
 	private List<Bubble> allBubbles = new List<Bubble>();
+	
+	
+	[SerializeField] public Vector2 spawnRange;
 	private float startWeightBubble = 0;
 
 
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
+	private void OnDrawGizmosSelected()
+	{
+		
+	}
+	
+	private void Awake()
+	{
+		if (Instance != null && Instance != this)
+		{
+			Destroy(this);
+		}
+		else
+		{
+			Instance = this;
+		}
+	}
 
 	private void Start()
 	{
@@ -65,40 +70,37 @@ public class ManagerBubble : MonoBehaviour
         TestChangeBubbleMovement();
     }
 
-    private void SwitchLevel()
-    {
-        counterSwitchLevels += Time.deltaTime;
-
-        if (counterSwitchLevels >= timeToChangeLevel[index] && index < timeToChangeLevel.Count - 1)
-        {
-            spawnNSeconds = allSpawnNSeconds[index];
-            counterSwitchLevels = 0;
-            index++;
-        }
-    }
+	private void SwitchLevel()
+	{
+		counterSwitchLevels += Time.deltaTime;
+		if (timeToChangeLevel.Count == 0) return;
+		
+		if(counterSwitchLevels >= timeToChangeLevel[index] && index < timeToChangeLevel.Count - 1)
+		{
+			spawnNSeconds = allSpawnNSeconds[index];
+			counterSwitchLevels = 0;
+			index++;
+		}
+	}
 
     private void SpawnBubble()
     {
         randomAngle = Random.Range(0f, 360f);
 
-        if (randomAngle > previousRandomAngle + rangeRandomAngle.y || randomAngle < previousRandomAngle + rangeRandomAngle.x)
-        {
-            float randomRadius = Mathf.Clamp(Random.Range(0f, radiusToSpawn), minRadiusToSpawn, 99999999999999999999f);
+		if (randomAngle > previousRandomAngle + rangeRandomAngle.y || randomAngle < previousRandomAngle + rangeRandomAngle.x)
+		{
+			float randomRadius = Random.Range(spawnRange.x, spawnRange.y);
 
-            Vector2 pointOnCircle = new Vector2(randomRadius * Mathf.Sin(randomAngle), randomRadius * Mathf.Cos(randomAngle));
-            Vector2 originPosition = origin.position;
-            Vector2 position = originPosition + pointOnCircle;
+			Vector2 pointOnCircle = new Vector2(randomRadius * Mathf.Sin(randomAngle), randomRadius * Mathf.Cos(randomAngle));
+			Vector3 position = origin.position + new Vector3(pointOnCircle.x, pointOnCircle.y, 0);
 
-            Quaternion rotation = Quaternion.identity;
+			Quaternion rotation = Quaternion.identity;
 
-			Bubble bubble = ChoseBubble();
-
-			if(bubble.Oxygen >= 0)
-				badBubble.weight += weightedIncrement;
-			else
-				badBubble.weight = startWeightBubble;
-				
-			allBubbles.Add(Instantiate(bubble, position, rotation));
+			Bubble newBubble = Instantiate(ChoseBubble(), position, rotation, transform);
+			allBubbles.Add(newBubble);
+			badBubble.weight += newBubble.Oxygen >= 0 ? weightedIncrement : startWeightBubble;
+			Debug.Log($"Instantiated new bubble: {newBubble.transform.position}");
+			newBubble.gameObject.SetActive(true);
 		}
 		else
 		{
@@ -137,7 +139,7 @@ public class ManagerBubble : MonoBehaviour
 	public void DestroyBubble(Bubble bubbleToDestroy)
 	{
 		allBubbles.Remove(bubbleToDestroy);
-		Destroy(bubbleToDestroy);
+		Destroy(bubbleToDestroy.gameObject);
 	}
 
  #region Test
