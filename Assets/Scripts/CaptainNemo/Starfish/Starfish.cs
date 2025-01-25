@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void OnStarfishDeathEventHandler(Starfish sender);
 public class Starfish : MonoBehaviour
 {
     [SerializeField]private Transform tentaclePrefab;
@@ -11,6 +12,8 @@ public class Starfish : MonoBehaviour
     [SerializeField]private float tentacleShakeStrength;
     
     private List<Transform> _tentacles = new List<Transform>();
+    
+    public event OnStarfishDeathEventHandler onStarfishDeath;
         
     private void Start()
     {
@@ -41,7 +44,13 @@ public class Starfish : MonoBehaviour
         
         if (_tentacles.Count == 0)
         {
+            OnDeath();
             Destroy(gameObject);
         }
+    }
+
+    private void OnDeath()
+    {
+        onStarfishDeath?.Invoke(this);
     }
 }
