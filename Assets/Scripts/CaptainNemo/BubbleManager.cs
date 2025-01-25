@@ -2,32 +2,38 @@ using UnityEngine;
 
 public class BubbleManager : MonoBehaviour
 {
-    //For test
     public Bubble bubble = default;
 
-    public AnimationCurve minHeatSpeedCurve = default;
-    public AnimationCurve maxHeatSpeedCurve = default;
-
-    public AnimationCurve mouthStrengthByTime = default;
-    //
+    private bool currentCalm = true;
+    [SerializeField] private bool newCalm = true;
 
     public static float fieldRay { get; } = 4.5f;
 
     private void Awake()
     {
-        bubble.CurrentMouthStrength = mouthStrengthByTime.Evaluate(Time.time / 10f);
-        bubble.CurrentRandomSpeed = 1f;// = new Vector2(minHeatSpeedCurve.Evaluate(Time.time / 10f), maxHeatSpeedCurve.Evaluate(Time.time / 10f)) * 10;
-        bubble.CurrentRandomRotationRange = new Vector2(-30, 30);// = Random.Range(minHeatSpeedCurve.Evaluate(Time.time / 10f), maxHeatSpeedCurve.Evaluate(Time.time / 10f)) * 10;
-        bubble.CurrentTimeBetweenAddForce = 0.05f;// minHeatSpeedCurve.Evaluate(Time.time / 10f);
-        bubble.Init(5);
+        bubble.Init();
     }
 
     private void Update()
     {
-        //bubble.CurrentMouthStrength = mouthStrengthByTime.Evaluate(Time.time / 10f);
-        //bubble.CurrentRandomSpeedRange = new Vector2(minHeatSpeedCurve.Evaluate(Time.time / 10f), maxHeatSpeedCurve.Evaluate(Time.time / 10f)) * 10;
-        //bubble.CurrentRandomRotationSpeed = Random.Range(minHeatSpeedCurve.Evaluate(Time.time / 10f), maxHeatSpeedCurve.Evaluate(Time.time / 10f)) * 10;
-        //bubble.CurrentTimeBetweenAddForce = minHeatSpeedCurve.Evaluate(Time.time / 10f);
+        if (currentCalm != newCalm)
+        {
+            if (newCalm)
+            {
+                bubble.CurrentTimeBetweenChangeTargetDirection = 0.5f;
+                bubble.CurrentRotationSpeed = 0.03f;
+                bubble.CurrentTargetRotationChangeRange = new Vector2(-30, 30);
+                bubble.CurrentSpeed = 0.5f;
+            }
+            else
+            {
+                bubble.CurrentTimeBetweenChangeTargetDirection = 0.1f;
+                bubble.CurrentRotationSpeed = 1f;
+                bubble.CurrentTargetRotationChangeRange = new Vector2(-180, 180);
+                bubble.CurrentSpeed = 2f;
+            }
+
+            currentCalm = newCalm;
+        }
     }
-    //
 }
