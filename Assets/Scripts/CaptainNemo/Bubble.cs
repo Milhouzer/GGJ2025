@@ -8,9 +8,13 @@ public class Bubble : MonoBehaviour
     [SerializeField] private float oxygen;
     public float Oxygen { get => oxygen; }
 
+    [field:SerializeField]
     public float CurrentTimeBetweenChangeTargetDirection { get; set; } = 0.5f;
+    [field:SerializeField]
     public float CurrentRotationSpeed { get; set; } = 0.03f;
+    [field:SerializeField]
     public Vector2 CurrentTargetRotationChangeRange { get; set; } = new Vector2(-30, 30);
+    [field:SerializeField]
     public float CurrentSpeed { get; set; } = 0.5f;
 
 
@@ -34,9 +38,9 @@ public class Bubble : MonoBehaviour
 
         currentDirectionAngle = Mathf.MoveTowards(currentDirectionAngle, targetDirectionAngle, CurrentRotationSpeed);
 
-        if (transform.position.magnitude > ManagerBubble.Instance.BubbleMoveRadius)
+        if (transform.position.magnitude > BubblesManager.Instance.BubbleMoveRadius)
         {
-            transform.position = transform.position.normalized * ManagerBubble.Instance.BubbleMoveRadius;
+            transform.position = transform.position.normalized * BubblesManager.Instance.BubbleMoveRadius;
             targetDirectionAngle = Mathf.Atan2(-transform.position.y, -transform.position.x);
             currentDirectionAngle = targetDirectionAngle;
         }

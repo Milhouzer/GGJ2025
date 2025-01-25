@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class ManagerBubble : MonoBehaviour
+public class BubblesManager : MonoBehaviour
 {
 	public float BubbleMoveRadius = 0.4f;
 
@@ -15,7 +15,7 @@ public class ManagerBubble : MonoBehaviour
     [SerializeField] private Transform origin;
     [SerializeField] private List<float> timeToChangeLevel = new List<float>();
     [SerializeField] private List<float> allSpawnNSeconds = new List<float>();
-	public static ManagerBubble Instance { get; private set; }
+	public static BubblesManager Instance { get; private set; }
 
     private float counterSpawnBubble = 0;
     private int index = 0;
