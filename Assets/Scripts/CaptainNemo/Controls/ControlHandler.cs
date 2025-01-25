@@ -90,10 +90,10 @@ namespace CaptainNemo.Controls
         private void Start()
         {
             ControlsManager.Instance.Register(this);
-            UnStart();
+            OnStart();
         }
 
-        virtual protected void UnStart()
+        virtual protected void OnStart()
         {
 
         }
@@ -161,7 +161,7 @@ namespace CaptainNemo.Controls
         /// Override to implement custom release logic.
         /// </summary>
         protected virtual void OnRelease() { }
-
+        
         /// <summary>
         /// Processes control input.
         /// Override to implement custom control logic.

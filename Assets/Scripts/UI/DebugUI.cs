@@ -1,15 +1,10 @@
-using System;
-using CaptainNemo.Controls;
+using CaptainNemo.Player;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 public class DebugUI : MonoBehaviour
 {
-    public ControlHandler pressureControl;
-    public ControlHandler temperatureControl;
-    public ControlHandler oxygenControl;
+    public Diver Diver;
     
     public TextMeshProUGUI pressureValue;
     public TextMeshProUGUI temperatureValue;
@@ -17,8 +12,8 @@ public class DebugUI : MonoBehaviour
 
     private void Update()
     {
-        pressureValue.text = $"Pressure: {pressureControl?.GetControlValue()}";
-        oxygenValue.text = $"Oxygen: {oxygenControl?.GetControlValue()}";
-        temperatureValue.text = $"Pressure: {temperatureControl?.GetControlValue()}";
+        pressureValue.text = $"Pressure: {Diver.PressureLevel}";
+        oxygenValue.text = $"Oxygen: {Diver.OxygenLevel}";
+        temperatureValue.text = $"Temperature: {Diver.TemperatureLevel}";
     }
 }
