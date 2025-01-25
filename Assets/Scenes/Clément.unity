@@ -167,8 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d993715a3bb4e5ebc217866ce9aa06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouth: {fileID: 0}
+  mouth: {fileID: 837402083}
   moveSpeed: 0.1
+  baseValueOxygen: 100
 --- !u!1 &148706546
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,6 +271,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b03240a34d3e48a3867457892bb0bb49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBlockingControls: 0
+  onControlValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onHandle:
+    m_PersistentCalls:
+      m_Calls: []
+  onRelease:
+    m_PersistentCalls:
+      m_Calls: []
+  clampValue: {x: 0, y: 100}
+  globalParam: 1
 --- !u!65 &148706550
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -322,7 +335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputReader: {fileID: 11400000, guid: df28c68edc9da014c9457c27d550a900, type: 2}
   playerCamera: {fileID: 330585545}
-  _diver: {fileID: 0}
+  _diver: {fileID: 111870116}
 --- !u!4 &288616019
 Transform:
   m_ObjectHideFlags: 0
@@ -933,6 +946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84634db6837e4608b42e0aec17ba48d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBlockingControls: 0
   onControlValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1259,6 +1273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77892167a1b346d89c099da41d16a9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBlockingControls: 0
   onControlValueChanged:
     m_PersistentCalls:
       m_Calls:

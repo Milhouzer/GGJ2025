@@ -161,7 +161,7 @@ namespace CaptainNemo.Controls
         /// Override to implement custom release logic.
         /// </summary>
         protected virtual void OnRelease() { }
-
+        
         /// <summary>
         /// Processes control input.
         /// Override to implement custom control logic.
