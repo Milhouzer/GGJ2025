@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace CaptainNemo.SeaCreature
 {
+    public delegate void InkSplatManagerEventHandler(InkSplatManager sender);
+
     public class InkSplatManager : MonoBehaviour
     {
         [SerializeField] private int nSplats = 4;
@@ -12,7 +14,9 @@ namespace CaptainNemo.SeaCreature
         [SerializeField] private Transform eraserTransform;
         [SerializeField] private float alphaReduceRate = 0.2f;
         [SerializeField] private float splatRandomScatterStrength = 3f;
-    
+
+        public event InkSplatManagerEventHandler onFinished = default;
+
         private List<Transform> splats = new List<Transform>();
         private InkSplatEraser eraser;
         private int eraseAmountCounter = 0;
@@ -24,7 +28,7 @@ namespace CaptainNemo.SeaCreature
             eraser.OnSplatErased += OnSplatErased;
         }
 
-        private void SpawnSplats()
+        public void SpawnSplats()
         {
             for (int i = 0; i < nSplats; i++)
             {
@@ -59,6 +63,9 @@ namespace CaptainNemo.SeaCreature
                     Destroy(splats[i].gameObject);
                     splats.Remove(splats[i]);
                 }
+
+                //Event destroy 
+                onFinished?.Invoke(this);
             }
         }
     }
