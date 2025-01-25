@@ -9,6 +9,11 @@ namespace CaptainNemo.Controls.Logic
     public class PressureControl : ControlHandler
     {
         /// <summary>
+        /// Control input attenuation
+        /// </summary>
+        [SerializeField] private float attenuation = 0.5f;
+
+        /// <summary>
         /// Current pressure value.
         /// </summary>
         private float _pressure;
@@ -19,35 +24,12 @@ namespace CaptainNemo.Controls.Logic
         [SerializeField] private GlobalControlParam globalParam = GlobalControlParam.Pressure;
         
         /// <summary>
-        /// Custom logic when control is acquired.
-        /// </summary>
-        protected override void OnHandle()
-        {
-            // Custom acquisition logic specific to this control type
-            
-            // For example, the starfish leg may override this function to break and immediately release control after
-            // as it shouldn't exist anymore.
-            
-            // Implement visual effects, sounds, etc.
-        }
-
-        /// <summary>
-        /// Custom logic when control is released.
-        /// </summary>
-        protected override void OnRelease()
-        {
-            // Custom release logic specific to this control type
-            
-            // Implement on release business logic: visual effects, sounds, etc.
-        }
-
-        /// <summary>
         /// Processes control input by accumulating pressure.
         /// </summary>
         /// <param name="value">Input control vector.</param>
         protected override void OnControl(Vector2 value)
         {
-            _pressure = Mathf.Clamp(_pressure + value.y, clampValue.x, clampValue.y);
+            _pressure = value.y * attenuation;
         }
         
         /// <summary>

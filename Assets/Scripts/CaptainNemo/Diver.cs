@@ -11,41 +11,95 @@ namespace CaptainNemo
         
         [SerializeField] private float moveSpeed = 0.1f;
         [SerializeField] private float baseValueOxygen = 100f;
-        [SerializeField] private float reduceValueOxygen = 2f;
-        [SerializeField] private float timeToReduceValueOxygen = 0.25f;
- 
+
+        private bool IsDead;
+        
+        [SerializeField]
+        private ParametersVariationStrategy parametersVariation;
+        
         private float oxygen;
-        private float counterReduceValueOxygen;
-
-        public void Oxygen(ControlHandler control)
-        {
-            float valueOxygenToAdd = control.GetControlValue();
-            oxygen += valueOxygenToAdd;
-        }
-
+        private float oxygenVariationRate = 0;
+        
+        /// <summary>
+        /// Current oxygen level of the diver
+        /// </summary>
+        public float OxygenLevel => oxygen;
+        
+        private float temperature;
+        private float temperatureVariationRate = 0;
+        /// <summary>
+        /// Current temperature level of the diver
+        /// </summary>
+        public float TemperatureLevel => temperature;
+        
+        private float pressure;
+        private float pressureVariationRate = 0;
+        /// <summary>
+        /// Current pressure level of the diver
+        /// </summary>
+        public float PressureLevel => pressure;
+        
         private void Start()
         {
             _mouthStartPosition = mouth.position;
             oxygen = baseValueOxygen;
+            parametersVariation = Instantiate(parametersVariation);
         }
-
+        
 		private void Update()
-		{
-			counterReduceValueOxygen += Time.deltaTime;
-
-            if(counterReduceValueOxygen >= timeToReduceValueOxygen)
-            {
-                oxygen -= reduceValueOxygen;
-                counterReduceValueOxygen = 0;
-
-                if (oxygen <= 0)
-                    Death();
-            }
+        {
+            if (IsDead) return;
+            
+            UpdateParameters(parametersVariation, Time.realtimeSinceStartup, out temperatureVariationRate, out pressureVariationRate, out oxygenVariationRate);
+			TickParameters(Time.deltaTime);
+            Death();
 		}
 
+        private void UpdateParameters(ParametersVariationStrategy parameters, float realtimeSinceStartup, out float tempVar, out float pressureVar, out float oxygenVar)
+        {
+            tempVar = parameters.GetTemperatureIncreaseRate(realtimeSinceStartup);
+            pressureVar = parameters.GetTemperatureIncreaseRate(realtimeSinceStartup);
+            oxygenVar = -parameters.GetTemperatureIncreaseRate(realtimeSinceStartup);
+        }
+
+        private void TickParameters(float deltaTime)
+        {
+            temperature += temperatureVariationRate * deltaTime;
+            pressure += pressureVariationRate * deltaTime;
+            oxygen += oxygenVariationRate * deltaTime;
+        }
+        
 		public void ParameterCallback(IControlHandler handler)
         {
             Debug.Log($"Parameter {handler.GetGlobalControlParam()} called with value {handler.GetControlValue()} on {this}");
+            var handlerType = handler.GetGlobalControlParam();
+            switch (handlerType)
+            {
+                case GlobalControlParam.Oxygen:
+                    Oxygen(handler.GetControlValue());
+                    break;
+                case GlobalControlParam.Temperature:
+                    Temparature(handler.GetControlValue());
+                    break;
+                case GlobalControlParam.Pressure:
+                    Pressure(handler.GetControlValue());
+                    break;
+            }
+        }
+        
+        private void Oxygen(float value)
+        {
+            oxygen += value;
+        }
+
+        private void Temparature(float value)
+        {
+            temperature -= value;
+        }
+
+        private void Pressure(float value)
+        {
+            pressure -= value;
         }
 
         public void MoveMouth(Vector2 move)
@@ -61,7 +115,11 @@ namespace CaptainNemo
 
         private void Death()
         {
-            Debug.Log("T'es mort gros naze");
+            IsDead = oxygen <= 0 || temperature >= 100f || pressure >= 100f;
+            if (IsDead)
+            {
+                Debug.Log("T'es mort gros naze");
+            }
         }
     }
 }
