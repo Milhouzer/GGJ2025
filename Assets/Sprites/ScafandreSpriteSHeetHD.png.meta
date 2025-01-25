@@ -1,0 +1,577 @@
+fileFormatVersion: 2
+guid: aa086066a5a1db54eb1e5958c2d7c7ea
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_0
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 850
+        width: 1647
+        height: 1665
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 9, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffbaa4129a74d3948abbbbd166edd37e
+      internalID: 1112485396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_1
+      rect:
+        serializedVersion: 2
+        x: 1873
+        y: 968
+        width: 326
+        height: 352
+      alignment: 9
+      pivot: {x: 0.46141043, y: 0.5450051}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 410ed0ded3c4cae419b9e66043e59070
+      internalID: -2031517616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_2
+      rect:
+        serializedVersion: 2
+        x: 1784
+        y: 1505
+        width: 940
+        height: 991
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74905faece80bfa469520063ef1e5478
+      internalID: 676438919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_3
+      rect:
+        serializedVersion: 2
+        x: 2797
+        y: 1505
+        width: 940
+        height: 991
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b30e3752e674ab4abf7362431d259c4
+      internalID: 1126416089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_4
+      rect:
+        serializedVersion: 2
+        x: 2356
+        y: 988
+        width: 392
+        height: 432
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d448d2681c1843e49a06b0ae0375415d
+      internalID: 1400641053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_5
+      rect:
+        serializedVersion: 2
+        x: 2830
+        y: 921
+        width: 279
+        height: 230
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4cbe9c7b6b33f34980aad27a1cb8946
+      internalID: -645131741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_6
+      rect:
+        serializedVersion: 2
+        x: 2799
+        y: 1230
+        width: 202
+        height: 211
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ddfc551a655a27479fb9ea369c7a1ee
+      internalID: -660768767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_7
+      rect:
+        serializedVersion: 2
+        x: 3202
+        y: 1199
+        width: 322
+        height: 274
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ab4b1b5563ecf54781cf0d4508f963c
+      internalID: 591271432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_8
+      rect:
+        serializedVersion: 2
+        x: 3616
+        y: 1199
+        width: 321
+        height: 275
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a801c10aaf34e148af0b271582993ca
+      internalID: -402712622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_9
+      rect:
+        serializedVersion: 2
+        x: 3207
+        y: 956
+        width: 153
+        height: 154
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67dfa8a282080354b8d5ddb8ca1caf7b
+      internalID: -774702211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_10
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 15
+        width: 916
+        height: 808
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01e31609317e66e428b108291d81115c
+      internalID: -1005259792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_11
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 572
+        width: 83
+        height: 231
+      alignment: 9
+      pivot: {x: 0.51537055, y: 0.7844085}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ebf291c1b0ea7746ae32bec5e1ad23d
+      internalID: -922957264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_12
+      rect:
+        serializedVersion: 2
+        x: 1142
+        y: 629
+        width: 91
+        height: 163
+      alignment: 9
+      pivot: {x: 0.5223805, y: 0.72412634}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81b503a165c92f64f90f14412905e40d
+      internalID: -1107794073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_13
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 74
+        width: 96
+        height: 381
+      alignment: 9
+      pivot: {x: 0.49787012, y: 0.8874977}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ff9185b5fb244c41813ca1749d7bae0
+      internalID: -91266359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_18
+      rect:
+        serializedVersion: 2
+        x: 3444
+        y: 91
+        width: 464
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc0e48e77ace8c64c9a6467df4c6d553
+      internalID: -1851382904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_14
+      rect:
+        serializedVersion: 2
+        x: 2926
+        y: 75
+        width: 464
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 832b9b4e17fbd024eb98ff1c8e33ef39
+      internalID: 431237831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_15
+      rect:
+        serializedVersion: 2
+        x: 2405
+        y: 75
+        width: 464
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84044101ab8dfb04f987d36dd35dd3ec
+      internalID: 1044131404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_16
+      rect:
+        serializedVersion: 2
+        x: 1908
+        y: 70
+        width: 464
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 460187482cac63c47ba99f03efcd36d7
+      internalID: 1219969067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_17
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 70
+        width: 464
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66ac91108d57eed45a8147d09155366e
+      internalID: -1306090362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_19
+      rect:
+        serializedVersion: 2
+        x: 1435
+        y: 465
+        width: 464
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ec2af118dc3d06429c055fd1ac9f381
+      internalID: 890634854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1577fbd398165bc49a5bd971d1ccde09
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ScafandreSpriteSHeetHD_0: 1112485396
+      ScafandreSpriteSHeetHD_1: -2031517616
+      ScafandreSpriteSHeetHD_10: -1005259792
+      ScafandreSpriteSHeetHD_11: -922957264
+      ScafandreSpriteSHeetHD_12: -1107794073
+      ScafandreSpriteSHeetHD_13: -91266359
+      ScafandreSpriteSHeetHD_14: 431237831
+      ScafandreSpriteSHeetHD_15: 1044131404
+      ScafandreSpriteSHeetHD_16: 1219969067
+      ScafandreSpriteSHeetHD_17: -1306090362
+      ScafandreSpriteSHeetHD_18: -1851382904
+      ScafandreSpriteSHeetHD_19: 890634854
+      ScafandreSpriteSHeetHD_2: 676438919
+      ScafandreSpriteSHeetHD_3: 1126416089
+      ScafandreSpriteSHeetHD_4: 1400641053
+      ScafandreSpriteSHeetHD_5: -645131741
+      ScafandreSpriteSHeetHD_6: -660768767
+      ScafandreSpriteSHeetHD_7: 591271432
+      ScafandreSpriteSHeetHD_8: -402712622
+      ScafandreSpriteSHeetHD_9: -774702211
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
