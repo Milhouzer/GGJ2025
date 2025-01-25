@@ -90,10 +90,10 @@ namespace CaptainNemo.Controls
         private void Start()
         {
             ControlsManager.Instance.Register(this);
-            UnStart();
+            OnStart();
         }
 
-        virtual protected void UnStart()
+        virtual protected void OnStart()
         {
 
         }

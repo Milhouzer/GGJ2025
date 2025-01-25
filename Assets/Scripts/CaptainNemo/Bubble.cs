@@ -6,11 +6,15 @@ public class Bubble : MonoBehaviour
 {
     private const string CHANGE_DIRECTION_COROUTINE_NAME = "ChangeDirection";
 
-    public float CurrentTimeBetweenChangeTargetDirection { get; set; }
-    public float CurrentRotationSpeed { get; set; }
-    public Vector2 CurrentTargetRotationChangeRange { get; set; }
-    public float CurrentSpeed { get; set; }
+    [SerializeField] private float oxygen = default;
+    public float Oxygen { get => oxygen; private set => oxygen = value; }
 
+    public float CurrentTimeBetweenChangeTargetDirection { get; set; } = 0.5f;
+    public float CurrentRotationSpeed { get; set; } = 0.03f;
+    public Vector2 CurrentTargetRotationChangeRange { get; set; } = new Vector2(-30, 30);
+    public float CurrentSpeed { get; set; } = 0.5f;
+
+    
     private float currentDirectionAngle;
     private float targetDirectionAngle;
 
@@ -18,7 +22,7 @@ public class Bubble : MonoBehaviour
     [SerializeField] private float mouthSuckForce = 0.01f;
     //
 
-    public void Init()
+    public void Awake()
     {
         currentDirectionAngle = Random.Range(0, 360) * Mathf.Deg2Rad;
         targetDirectionAngle = Random.Range(0, 360) * Mathf.Deg2Rad;
@@ -32,12 +36,14 @@ public class Bubble : MonoBehaviour
 
         currentDirectionAngle = Mathf.MoveTowards(currentDirectionAngle, targetDirectionAngle, CurrentRotationSpeed);
 
-        if (transform.position.magnitude > BubbleManager.fieldRay)
+        if (transform.position.magnitude > ManagerBubble.FIELD_RAY)
         {
-            transform.position = transform.position.normalized * BubbleManager.fieldRay;
+            transform.position = transform.position.normalized * ManagerBubble.FIELD_RAY;
             targetDirectionAngle = Mathf.Atan2(-transform.position.y, -transform.position.x);
             currentDirectionAngle = targetDirectionAngle;
         }
+
+        //////////Test//////////
 
         //if (UnityEngine.Input.GetKey(KeyCode.Mouse0))
         //{
