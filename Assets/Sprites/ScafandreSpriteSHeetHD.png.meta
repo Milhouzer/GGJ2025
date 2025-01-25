@@ -404,6 +404,138 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_18
+      rect:
+        serializedVersion: 2
+        x: 3444
+        y: 91
+        width: 464
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc0e48e77ace8c64c9a6467df4c6d553
+      internalID: -1851382904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_14
+      rect:
+        serializedVersion: 2
+        x: 2926
+        y: 75
+        width: 464
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 832b9b4e17fbd024eb98ff1c8e33ef39
+      internalID: 431237831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_15
+      rect:
+        serializedVersion: 2
+        x: 2405
+        y: 75
+        width: 464
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84044101ab8dfb04f987d36dd35dd3ec
+      internalID: 1044131404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_16
+      rect:
+        serializedVersion: 2
+        x: 1908
+        y: 70
+        width: 464
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 460187482cac63c47ba99f03efcd36d7
+      internalID: 1219969067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_17
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 70
+        width: 464
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66ac91108d57eed45a8147d09155366e
+      internalID: -1306090362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScafandreSpriteSHeetHD_19
+      rect:
+        serializedVersion: 2
+        x: 1435
+        y: 465
+        width: 464
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ec2af118dc3d06429c055fd1ac9f381
+      internalID: 890634854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -424,6 +556,12 @@ TextureImporter:
       ScafandreSpriteSHeetHD_11: -922957264
       ScafandreSpriteSHeetHD_12: -1107794073
       ScafandreSpriteSHeetHD_13: -91266359
+      ScafandreSpriteSHeetHD_14: 431237831
+      ScafandreSpriteSHeetHD_15: 1044131404
+      ScafandreSpriteSHeetHD_16: 1219969067
+      ScafandreSpriteSHeetHD_17: -1306090362
+      ScafandreSpriteSHeetHD_18: -1851382904
+      ScafandreSpriteSHeetHD_19: 890634854
       ScafandreSpriteSHeetHD_2: 676438919
       ScafandreSpriteSHeetHD_3: 1126416089
       ScafandreSpriteSHeetHD_4: 1400641053
