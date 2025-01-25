@@ -10,12 +10,15 @@ namespace Input {
         public event Action Interact;
         public event Action CancelInteract;
         public event Action<Vector2> Look;
+        public event Action<Vector2> Move;
     }
 
     [CreateAssetMenu(fileName = "InputReader", menuName = "Inputs")]
     public class InputReader : ScriptableObject, IGameInput, IGameInputEventSender
     {
         PlayerAction _inputActions;
+
+        public Vector2 MoveInput => _inputActions.Player.Move.ReadValue<Vector2>();
 
         public void Enable()
         {
@@ -43,7 +46,7 @@ namespace Input {
 
         public void OnMove(InputAction.CallbackContext context)
         {
-            Debug.Log("Move");
+            // Move?.Invoke(context.ReadValue<Vector2>());
         }
 
         public void OnLook(InputAction.CallbackContext context)
@@ -67,5 +70,6 @@ namespace Input {
         public event Action Interact;
         public event Action CancelInteract;
         public event Action<Vector2> Look;
+        public event Action<Vector2> Move;
     }
 }

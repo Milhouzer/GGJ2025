@@ -36,7 +36,7 @@ namespace CaptainNemo
         /// <summary>
         /// Player's diver instance for game interactions.
         /// </summary>
-        private Diver _diver;
+        [SerializeField] private Diver _diver;
         
         /// <summary>
         /// Initializes game state, input handling, and diver.
@@ -44,8 +44,6 @@ namespace CaptainNemo
         /// </summary>
         private void Start()
         {
-            _diver = new Diver();
-
             if (inputReader == null)
             {
                 Debug.LogError("Can not start game without input reader");
@@ -56,6 +54,7 @@ namespace CaptainNemo
             inputReader.Interact += Interact;
             inputReader.CancelInteract += CancelInteract;
             inputReader.Look += Look;
+            inputReader.Move += Move;
             inputReader.Enable();
         }
         
@@ -65,6 +64,7 @@ namespace CaptainNemo
         /// </summary>
         private void Update()
         {
+            Move(inputReader.MoveInput);
             if(!playerCamera) return;
     
             Ray ray = playerCamera.ScreenPointToRay(UnityEngine.Input.mousePosition);
@@ -103,7 +103,9 @@ namespace CaptainNemo
             if (TargetObject == null) return;
             
             IControlHandler handler = TargetObject.GetComponent<IControlHandler>();
-            handler?.Handle();
+            if (handler == null || handler.GetGlobalControlParam() == GlobalControlParam.Oxygen) return;
+            
+            handler.Handle();
         }
 
         /// <summary>
@@ -113,6 +115,15 @@ namespace CaptainNemo
         private void Look(Vector2 value)
         {
             ControlsManager.ControlHandler?.Control(value);
+        }
+
+        /// <summary>
+        /// Processes move input by passing control vector to current control handler.
+        /// </summary>
+        /// <param name="value">2D input vector representing move direction/intensity</param>
+        private void Move(Vector2 value)
+        {
+            _diver.MoveMouth(value);
         }
         
         /// <summary>
