@@ -10,6 +10,13 @@ namespace CaptainNemo
         private Vector3 _mouthStartPosition;
         
         [SerializeField] private float moveSpeed = 0.1f;
+        private float oxygen;
+
+        public void Oxygen(ControlHandler control)
+        {
+            float valueOxygenToAdd = control.GetControlValue();
+            oxygen += valueOxygenToAdd;
+        }
 
         private void Start()
         {

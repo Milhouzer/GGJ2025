@@ -18,11 +18,17 @@ namespace CaptainNemo.Controls.Logic
         [SerializeField] private GlobalControlParam globalParam = GlobalControlParam.Oxygen;
 
         [SerializeField] private Bubble bubble = default;
-        
-        /// <summary>
-        /// Custom logic when control is acquired.
-        /// </summary>
-        protected override void OnHandle()
+
+		protected override void UnStart()
+		{
+			base.UnStart();
+            _oxygen = bubble.CurrentBubbleSize;
+		}
+
+		/// <summary>
+		/// Custom logic when control is acquired.
+		/// </summary>
+		protected override void OnHandle()
         {
             // Custom acquisition logic specific to this control type
 
@@ -31,8 +37,8 @@ namespace CaptainNemo.Controls.Logic
 
             // Implement visual effects, sounds, etc.
 
-            //ManagerBubble.Instance.DestroyBubble(bubble);
-        }
+            ManagerBubble.Instance.DestroyBubble(bubble);
+		}
 
         /// <summary>
         /// Custom logic when control is released.
