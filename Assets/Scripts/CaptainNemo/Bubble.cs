@@ -14,7 +14,7 @@ public class Bubble : MonoBehaviour
     public Vector2 CurrentTargetRotationChangeRange { get; set; } = new Vector2(-30, 30);
     public float CurrentSpeed { get; set; } = 0.5f;
 
-    
+
     private float currentDirectionAngle;
     private float targetDirectionAngle;
 
@@ -64,6 +64,14 @@ public class Bubble : MonoBehaviour
     {
         transform.position += suckForce;
     }
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    Vector3 toTransform = (collision.attachedRigidbody.transform.position - transform.position).normalized;
+
+    //    targetDirectionAngle = Mathf.Atan2(-toTransform.y, -toTransform.x);
+    //    currentDirectionAngle = targetDirectionAngle;
+    //}
 
     private void OnDestroy()
     {
