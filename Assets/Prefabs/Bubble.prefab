@@ -102,8 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6874a08ca66c443864c789d40deacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oxygen: 0
-  mouthSuckForce: 0.01
+  oxygen: 1
 --- !u!50 &8695111358024385061
 Rigidbody2D:
   serializedVersion: 5

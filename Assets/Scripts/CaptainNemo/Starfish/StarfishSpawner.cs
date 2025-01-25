@@ -6,7 +6,6 @@ using UnityEngine;
 public class StarfishSpawner : MonoBehaviour
 {
     [SerializeField]private Transform starfishPrefab;
-    [SerializeField]private Transform ToBlock;
     private Dictionary<Transform, ControlHandler> starfishToBlockedInteractible = new Dictionary<Transform, ControlHandler>();
 
 	public static StarfishSpawner Instance { get; private set; }
@@ -22,11 +21,6 @@ public class StarfishSpawner : MonoBehaviour
 			Instance = this;
 		}
 	}
-
-	private void Start()
-    {
-        SpawnStarfish(ToBlock.GetComponent<ControlHandler>());
-    }
 
     public Starfish SpawnStarfish(ControlHandler toBlock)
     {

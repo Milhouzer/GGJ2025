@@ -11,24 +11,17 @@ public class BubblesManager : MonoBehaviour
 	[SerializeField] private WeightedBubble goodBubble;
 	[SerializeField] private float weightedIncrement = default;
     [SerializeField] private Vector2 rangeRandomAngle = default;
-    [SerializeField] private float defaultSpawnNSecond = default;
     [SerializeField] private Transform origin;
-    [SerializeField] private List<float> timeToChangeLevel = new List<float>();
-    [SerializeField] private List<float> allSpawnNSeconds = new List<float>();
 	public static BubblesManager Instance { get; private set; }
 
     private float counterSpawnBubble = 0;
-    private int index = 0;
-    private float counterSwitchLevels = 0;
     private float randomAngle = 0;
     private float previousRandomAngle = default;
-	private float spawnNSeconds = default;
+	private float spawnXSeconds = default;
 	private List<Bubble> allBubbles = new List<Bubble>();
-	
 	
 	[SerializeField] public Vector2 spawnRange;
 	private float startWeightBubble = 0;
-
 
 	private void OnDrawGizmosSelected()
 	{
@@ -47,20 +40,22 @@ public class BubblesManager : MonoBehaviour
 		}
 	}
 
-	private void Start()
+	public void IncreaseDificulty(float newWeightBadBubble, float newSpawnXSeconds, float newWeightIncrement)
 	{
-		spawnNSeconds = defaultSpawnNSecond;
-		startWeightBubble = badBubble.weight;
+		if(startWeightBubble != badBubble.weight)
+			badBubble.weight = newWeightBadBubble + (badBubble.weight - startWeightBubble);
+		else
+			badBubble.weight = newWeightBadBubble;
+
+		spawnXSeconds = newSpawnXSeconds;
+		weightedIncrement = newWeightIncrement;
 	}
 
     void Update()
     {
         counterSpawnBubble += Time.deltaTime;
-        counterSwitchLevels += Time.deltaTime;
 
-        SwitchLevel();
-
-        if (counterSpawnBubble >= spawnNSeconds)
+        if (counterSpawnBubble >= spawnXSeconds)
         {
             SpawnBubble();
             counterSpawnBubble = 0;
@@ -69,19 +64,6 @@ public class BubblesManager : MonoBehaviour
 
         TestChangeBubbleMovement();
     }
-
-	private void SwitchLevel()
-	{
-		counterSwitchLevels += Time.deltaTime;
-		if (timeToChangeLevel.Count == 0) return;
-		
-		if(counterSwitchLevels >= timeToChangeLevel[index] && index < timeToChangeLevel.Count - 1)
-		{
-			spawnNSeconds = allSpawnNSeconds[index];
-			counterSwitchLevels = 0;
-			index++;
-		}
-	}
 
     private void SpawnBubble()
     {

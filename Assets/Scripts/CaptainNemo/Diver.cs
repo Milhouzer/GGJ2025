@@ -55,6 +55,11 @@ namespace CaptainNemo
             Death();
 		}
 
+        public void IncreaseDificulty(float newDificultyVariationParameter)
+        {
+            parametersVariation.dificultyVariationParameter = newDificultyVariationParameter;
+        }
+
         private void UpdateParameters(ParametersVariationStrategy parameters, float realtimeSinceStartup, out float tempVar, out float pressureVar, out float oxygenVar)
         {
             tempVar = parameters.GetTemperatureIncreaseRate(realtimeSinceStartup);
@@ -79,7 +84,7 @@ namespace CaptainNemo
                     Oxygen(handler.GetControlValue());
                     break;
                 case GlobalControlParam.Temperature:
-                    Temparature(handler.GetControlValue());
+                    Temperature(handler.GetControlValue());
                     break;
                 case GlobalControlParam.Pressure:
                     Pressure(handler.GetControlValue());
@@ -92,9 +97,14 @@ namespace CaptainNemo
             oxygen = Mathf.Clamp(oxygen + value, parametersVariation.OxygenRange.x, parametersVariation.OxygenRange.y);
         }
 
-        private void Temparature(float value)
+        private void Temperature(float value)
         {
             temperature = Mathf.Clamp(temperature + value, parametersVariation.TemperatureRange.x, parametersVariation.TemperatureRange.y);
+        }
+
+        public void SetTemperature(float value)
+        {
+            Temperature(value);
         }
 
         private void Pressure(float value)
@@ -115,7 +125,7 @@ namespace CaptainNemo
 
         private void Death()
         {
-            IsDead = oxygen <= 0 || temperature >= 100f || pressure >= 100f;
+            IsDead = oxygen <= 0;
             if (IsDead)
             {
                 Debug.Log("T'es mort gros naze");
