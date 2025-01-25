@@ -8,7 +8,6 @@ namespace CaptainNemo.SeaCreature
         [SerializeField] private int nSplats = 4;
         [SerializeField] private int nEraseAmountToClean = 4;
         [SerializeField] private Transform inkSplatPrefab;
-        [SerializeField] private Transform inkContainer;
         [SerializeField] private Transform eraserTransform;
         [SerializeField] private float alphaReduceRate = 0.2f;
         [SerializeField] private float splatRandomScatterStrength = 3f;
@@ -19,16 +18,16 @@ namespace CaptainNemo.SeaCreature
 
         private void Start()
         {
-            SpawnSplats();
             eraser = eraserTransform.GetComponent<InkSplatEraser>();
             eraser.OnSplatErased += OnSplatErased;
+            SpawnSplats();
         }
 
         private void SpawnSplats()
         {
             for (int i = 0; i < nSplats; i++)
             {
-                Transform spawnedInkSplat = Instantiate(inkSplatPrefab, inkContainer.position, inkContainer.rotation, inkContainer);
+                Transform spawnedInkSplat = Instantiate(inkSplatPrefab, eraserTransform.position + eraser.referenceAxis, Quaternion.identity);
                 spawnedInkSplat.position += (Vector3)UnityEngine.Random.insideUnitCircle * splatRandomScatterStrength;
                 splats.Add(spawnedInkSplat);
             }
