@@ -90,6 +90,12 @@ namespace CaptainNemo.Controls
         private void Start()
         {
             ControlsManager.Instance.Register(this);
+            UnStart();
+        }
+
+        virtual protected void UnStart()
+        {
+
         }
 
         /// <summary>
@@ -155,7 +161,7 @@ namespace CaptainNemo.Controls
         /// Override to implement custom release logic.
         /// </summary>
         protected virtual void OnRelease() { }
-        
+
         /// <summary>
         /// Processes control input.
         /// Override to implement custom control logic.
@@ -169,11 +175,6 @@ namespace CaptainNemo.Controls
             OnControl(value);
             float newValue = GetControlValue();
             onControlValueChanged?.Invoke(this);
-        }
-
-        public void DebugTest()
-        {
-            Debug.LogWarning("Test Debug Handler");
         }
 
 		/// <summary>
