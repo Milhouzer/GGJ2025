@@ -1,20 +1,19 @@
 using System;
-using CaptainNemo.Controls;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Random = Unity.Mathematics.Random;
 
 public class Starfish : MonoBehaviour
 {
     [SerializeField]private Transform tentaclePrefab;
     [SerializeField]private int nTentacle;
     [SerializeField]private float tentacleRadius;
-    private Transform[] _tentacles;
+    [SerializeField]private int tentacleHp;
+    [SerializeField]private float tentacleShakeStrength;
+    
+    private List<Transform> _tentacles = new List<Transform>();
         
     private void Start()
     {
-        _tentacles = new Transform[nTentacle];
-        
         for (int i = 0; i < nTentacle; i++)
         {
             float angle = 2 * MathF.PI / nTentacle * i;
@@ -25,8 +24,25 @@ public class Starfish : MonoBehaviour
             Vector3 pos = transform.position;
             Vector3 spawnPos = pos + spawnDir * tentacleRadius;
             
-            _tentacles[i] = Instantiate (tentaclePrefab, spawnPos, Quaternion.identity, transform);
+            Transform spawnedTentacleTransform = Instantiate(tentaclePrefab, spawnPos, Quaternion.identity);
+            _tentacles.Add(spawnedTentacleTransform);
+            Tentacle spawnedTentacle = spawnedTentacleTransform.GetComponent<Tentacle>();
+            spawnedTentacle.Initialize(tentacleHp, tentacleShakeStrength);
+            spawnedTentacle.onTentacleDeath += OnTentacleDeath;
             _tentacles[i].LookAt(pos);
+        }
+    }
+    
+    
+
+    private void OnTentacleDeath(Tentacle sender)
+    {
+        sender.onTentacleDeath -= OnTentacleDeath;
+        _tentacles.Remove(sender.transform);
+        
+        if (_tentacles.Count == 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
