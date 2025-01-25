@@ -10,6 +10,7 @@ namespace CaptainNemo.SeaCreature
         [SerializeField] private float eraserRotationSpeed = 25f;
         [SerializeField] private float eraserRotationMaxAngle = 77f;
         [SerializeField] private Transform eraserBody;
+        public Vector3 referenceAxis = Vector3.down;
         
         private Quaternion eraserMaxRotation;
         private bool isGoingLeft = true;
@@ -27,8 +28,8 @@ namespace CaptainNemo.SeaCreature
                 Vector3 toMouse = toLookAt - transform.position;
                 Vector3 computedPos = mainCam.ScreenToWorldPoint(toMouse);
 
-                float mouseAngle = Vector3.SignedAngle(Vector3.down, computedPos - transform.position, Vector3.forward);
-                float eraserAngle = Vector3.SignedAngle(Vector3.down, eraserBody.up, Vector3.forward);
+                float mouseAngle = Vector3.SignedAngle(referenceAxis, computedPos - transform.position, Vector3.forward);
+                float eraserAngle = Vector3.SignedAngle(referenceAxis, eraserBody.up, Vector3.forward);
 
                 if (Mathf.Abs(mouseAngle) - Mathf.Abs(eraserAngle) > 90)
                 {
