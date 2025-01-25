@@ -73,7 +73,7 @@ namespace CaptainNemo
             { 
                 Debug.DrawRay(ray.origin, Vector3.forward * hit.distance, Color.yellow); 
                 GameManager.TargetObject = hit.transform.gameObject;
-                Debug.Log($"New target: {GameManager.TargetObject.name}");
+                //Debug.Log($"New target: {GameManager.TargetObject.name}");
             }
             else
             {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace CaptainNemo.Controls
@@ -62,24 +63,20 @@ namespace CaptainNemo.Controls
     /// Base implementation of a control handler that manages control state.
     /// </summary>
     public abstract class ControlHandler : MonoBehaviour, IControlHandler
-    {
-        /// <summary>
-        /// Delegate for handling control value changes.
-        /// </summary>
-        /// <param name="value">The new control value.</param>
-        /// <returns>The result of the control value change.</returns>
-        public delegate void ControlValueChangeDelegate(IControlHandler handler);
+    {        
         
-        /// <summary>
-        /// Scripting API bindable event
-        /// </summary>
-        public static event ControlValueChangeDelegate OnControlValueChange;
-        
+        public bool isBlockingControls = false;
         /// <summary>
         /// Editor bindable event
         /// </summary>
         [SerializeField] 
-        private UnityEvent<ControlHandler> onControlValueChanged;
+        private UnityEvent<ControlHandler> onControlValueChanged; 
+        
+        [SerializeField] 
+        private UnityEvent<ControlHandler> onHandle;
+        
+        [SerializeField] 
+        private UnityEvent<ControlHandler> onRelease;
         
         /// <summary>
         /// Clamp the value of the control between
@@ -93,6 +90,12 @@ namespace CaptainNemo.Controls
         private void Start()
         {
             ControlsManager.Instance.Register(this);
+            UnStart();
+        }
+
+        virtual protected void UnStart()
+        {
+
         }
 
         /// <summary>
@@ -117,6 +120,8 @@ namespace CaptainNemo.Controls
         /// </summary>
         public void Handle()
         {
+            if (isBlockingControls) return;
+            
             if (ControlsManager.ControlHandler != null)
             {
                 ControlsManager.ControlHandler.Release();
@@ -125,7 +130,8 @@ namespace CaptainNemo.Controls
             ControlsManager.ControlHandler = this;
             Debug.Log($"Handle control: {this.name}");
             OnHandle();
-        }
+            onHandle?.Invoke(this);
+		}
         
         /// <summary>
         /// Virtual method called when control is acquired.
@@ -139,13 +145,16 @@ namespace CaptainNemo.Controls
         /// </summary>
         public void Release()
         {
+            if (isBlockingControls) return;
+            
             if (ControlsManager.ControlHandler != null)
             {
                 ControlsManager.ControlHandler = null;
             }
             Debug.Log($"Release control: {this.name}");
             OnRelease();
-        }
+            onRelease?.Invoke(this);
+		}
 
         /// <summary>
         /// Virtual method called when control is released.
@@ -160,19 +169,20 @@ namespace CaptainNemo.Controls
         /// <param name="value">Input control vector.</param>
         public void Control(Vector2 value)
         {
+            if (isBlockingControls) return;
+
             // Calculate new control value
             OnControl(value);
             float newValue = GetControlValue();
-            OnControlValueChange?.Invoke(this);
             onControlValueChanged?.Invoke(this);
         }
-        
-        /// <summary>
-        /// Virtual method called when control value is updated.
-        /// Override to implement custom release logic.
-        /// </summary>
-        /// <param name="value">Input to calculate new control value from</param>
-        protected virtual void OnControl(Vector2 value) { }
+
+		/// <summary>
+		/// Virtual method called when control value is updated.
+		/// Override to implement custom release logic.
+		/// </summary>
+		/// <param name="value">Input to calculate new control value from</param>
+		protected virtual void OnControl(Vector2 value) { }
     }
 
 }
