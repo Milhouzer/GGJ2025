@@ -3,8 +3,9 @@ using Input;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Utils;
+using CaptainNemo.Player;
 
-namespace CaptainNemo
+namespace CaptainNemo.Game
 {
     /// <summary>
     /// Manages core game logic, input handling, and game state.

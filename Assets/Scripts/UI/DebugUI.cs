@@ -1,4 +1,4 @@
-using CaptainNemo;
+using CaptainNemo.Player;
 using TMPro;
 using UnityEngine;
 

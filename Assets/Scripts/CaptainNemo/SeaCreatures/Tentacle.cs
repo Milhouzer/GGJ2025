@@ -1,6 +1,6 @@
 using CaptainNemo.Controls;
 
-namespace CaptainNemo.Starfish
+namespace CaptainNemo.SeaCreature
 {
     public delegate void OnTentacleDeathEventHandler(Tentacle sender);
 

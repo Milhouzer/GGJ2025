@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CaptainNemo.Octopus
+namespace CaptainNemo.SeaCreature
 {
     public class InkSplatManager : MonoBehaviour
     {

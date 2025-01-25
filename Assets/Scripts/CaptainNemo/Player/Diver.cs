@@ -1,8 +1,7 @@
-﻿using System;
-using CaptainNemo.Controls;
+﻿using CaptainNemo.Controls;
 using UnityEngine;
 
-namespace CaptainNemo
+namespace CaptainNemo.Player
 {
     public class Diver: MonoBehaviour
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CaptainNemo.Starfish
+namespace CaptainNemo.SeaCreature
 {
     public delegate void OnStarfishDeathEventHandler(Starfish sender);
     public class Starfish : MonoBehaviour
