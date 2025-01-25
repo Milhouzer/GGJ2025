@@ -59,7 +59,7 @@ MonoBehaviour:
   clampValue: {x: 0, y: 100}
   eraserRotationSpeed: 25
   eraserRotationMaxAngle: 77
-  eraserBody: {fileID: 3103323202376103966}
+  eraserBody: {fileID: 8463095448062189218}
   referenceAxis: {x: 1, y: 0, z: 0}
 --- !u!65 &3537984319766852612
 BoxCollider:
