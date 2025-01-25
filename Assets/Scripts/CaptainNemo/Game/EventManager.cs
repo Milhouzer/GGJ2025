@@ -13,20 +13,27 @@ namespace CaptainNemo.Game
 
 	public class EventManager : MonoBehaviour
 	 {
-	     [SerializeField] private StarfishSpawner starfishSpawner = default;
-	     [SerializeField] private float timeToTriggeredEvent;
-	     [SerializeField] private List<NameEvent> allEvent = new List<NameEvent>();
-	     [SerializeField] private List<ControlHandler> controlHandlers = new List<ControlHandler>();
+	    [SerializeField] private StarfishSpawner starfishSpawner = default;
+		[SerializeField] private InkSplatManager octupusSpawner = default;
+	    [SerializeField] private float timeToTriggeredEvent;
+	    [SerializeField] private List<NameEvent> allEvent = new List<NameEvent>();
+		[SerializeField] private List<ControlHandler> controlHandlers = new List<ControlHandler>();
 	 
-	     private float counterTimerEvent = 0f;
-	     private List<NameEvent> disponibleEvent = new List<NameEvent>();
+	    private float counterTimerEvent = 0f;
+	    private List<NameEvent> disponibleEvent = new List<NameEvent>();
 	 
  		private void Start()
  		{
 	         disponibleEvent = allEvent;
+			 octupusSpawner.onFinished += OctupusSpawner_onFinished;
  		}
-	 
- 		private void Update()
+
+		private void OctupusSpawner_onFinished(InkSplatManager sender)
+		{
+			disponibleEvent.Add(NameEvent.Octopus);
+		}
+
+		private void Update()
 	     {
 	         UpdateTriggerEvent();
 	     }
@@ -52,6 +59,7 @@ namespace CaptainNemo.Game
  				}
  				else if (actualEvent == NameEvent.Octopus)
  				{
+					octupusSpawner.SpawnSplats();
  					disponibleEvent.Remove(actualEvent);
  				}
 	 
