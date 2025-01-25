@@ -82,7 +82,6 @@ namespace CaptainNemo.Bubbles
 				Bubble newBubble = Instantiate(ChoseBubble(), position, rotation, transform);
 				allBubbles.Add(newBubble);
 				badBubble.weight += newBubble.Oxygen >= 0 ? weightedIncrement : startWeightBubble;
-				Debug.Log($"Instantiated new bubble: {newBubble.transform.position}");
 				newBubble.gameObject.SetActive(true);
 			}
 			else
