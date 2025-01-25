@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 
-namespace CaptainNemo.Controls
+namespace CaptainNemo.Controls.Logic
 {
     /// <summary>
-    /// Example implementation of a control handler that tracks pressure.
+    /// Temperature control handler. This component is attached to the temperature valve
     /// </summary>
-    public class PressureControl : ControlHandler
+    public class TemperatureControl : ControlHandler
     {
         /// <summary>
         /// Current pressure value.
         /// </summary>
-        [SerializeField] private float _pressure;
+        private float _temperature;
+
+        /// <summary>
+        /// This component controls the temperature
+        /// </summary>
+        [SerializeField] private GlobalControlParam globalParam = GlobalControlParam.Temperature;
 
         /// <summary>
         /// Custom logic when control is acquired.
@@ -39,9 +44,9 @@ namespace CaptainNemo.Controls
         /// Processes control input by accumulating pressure.
         /// </summary>
         /// <param name="value">Input control vector.</param>
-        public override void Control(Vector2 value)
+        protected override void OnControl(Vector2 value)
         {
-            _pressure += value.y;
+            _temperature = Mathf.Clamp(_temperature + value.y, clampValue.x, clampValue.y);
         }
         
         /// <summary>
@@ -50,7 +55,16 @@ namespace CaptainNemo.Controls
         /// <returns></returns>
         public override float GetControlValue()
         {
-            return _pressure;
+            return _temperature;
+        }
+        
+        /// <summary>
+        /// Controls the oxygen level
+        /// </summary>
+        /// <returns></returns>
+        public override GlobalControlParam GetGlobalControlParam()
+        {
+            return globalParam;
         }
     }
 }
