@@ -1,7 +1,29 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace CaptainNemo.Controls
 {
+    /// <summary>
+    /// Vital parameters definition
+    /// </summary>
+    public enum GlobalControlParam : byte
+    {
+        /// <summary>
+        /// Temperature global parameter
+        /// </summary>
+        Temperature,
+        
+        /// <summary>
+        /// Pressure global parameter
+        /// </summary>
+        Pressure,
+        
+        /// <summary>
+        /// Oxygen global parameter
+        /// </summary>
+        Oxygen
+    }
+    
     /// <summary>
     /// Defines the contract for control handling in the game.
     /// </summary>
@@ -23,14 +45,48 @@ namespace CaptainNemo.Controls
         /// <param name="value">Input control vector with x and y components.</param>
         public void Control(Vector2 value);
 
+        /// <summary>
+        /// Get the value of the control
+        /// </summary>
+        /// <returns></returns>
         public float GetControlValue();
+        
+        /// <summary>
+        /// Global parameter related by this controller
+        /// </summary>
+        /// <returns></returns>
+        public GlobalControlParam GetGlobalControlParam();
     }
     
     /// <summary>
     /// Base implementation of a control handler that manages control state.
     /// </summary>
-    public class ControlHandler : MonoBehaviour, IControlHandler
+    public abstract class ControlHandler : MonoBehaviour, IControlHandler
     {
+        /// <summary>
+        /// Delegate for handling control value changes.
+        /// </summary>
+        /// <param name="value">The new control value.</param>
+        /// <returns>The result of the control value change.</returns>
+        public delegate void ControlValueChangeDelegate(IControlHandler handler);
+        
+        /// <summary>
+        /// Scripting API bindable event
+        /// </summary>
+        public static event ControlValueChangeDelegate OnControlValueChange;
+        
+        /// <summary>
+        /// Editor bindable event
+        /// </summary>
+        [SerializeField] 
+        private UnityEvent<ControlHandler> onControlValueChanged;
+        
+        /// <summary>
+        /// Clamp the value of the control between
+        /// </summary>
+        [SerializeField]
+        protected Vector2 clampValue = new Vector2(0, 100);
+        
         /// <summary>
         /// Register control in controls manager
         /// </summary>
@@ -47,27 +103,15 @@ namespace CaptainNemo.Controls
             ControlsManager.Instance.UnRegister(this);
         }
 
-        /// <summary>
-        /// Virtual method called when control is acquired.
-        /// Override to implement custom acquisition logic.
-        /// </summary>
-        protected virtual void OnHandle() { }
-        
-        /// <summary>
-        /// Virtual method called when control is released.
-        /// Override to implement custom release logic.
-        /// </summary>
-        protected virtual void OnRelease() { }
-
-        /// <summary>
-        /// Get the control of this value (i.e. temperature, pressure, starfish leg life state)
-        /// </summary>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public virtual float GetControlValue()
         {
             return 0; 
         }
-        
+
+        /// <inheritdoc/>
+        public abstract GlobalControlParam GetGlobalControlParam();
+
         /// <summary>
         /// Handles acquiring control, releasing previous handler if exists.
         /// </summary>
@@ -82,6 +126,13 @@ namespace CaptainNemo.Controls
             Debug.Log($"Handle control: {this.name}");
             OnHandle();
         }
+        
+        /// <summary>
+        /// Virtual method called when control is acquired.
+        /// Override to implement custom acquisition logic.
+        /// </summary>
+        protected virtual void OnHandle() { }
+
 
         /// <summary>
         /// Releases the current control handler.
@@ -97,12 +148,31 @@ namespace CaptainNemo.Controls
         }
 
         /// <summary>
+        /// Virtual method called when control is released.
+        /// Override to implement custom release logic.
+        /// </summary>
+        protected virtual void OnRelease() { }
+        
+        /// <summary>
         /// Processes control input.
         /// Override to implement custom control logic.
         /// </summary>
         /// <param name="value">Input control vector.</param>
-        public virtual void Control(Vector2 value) { }
-
+        public void Control(Vector2 value)
+        {
+            // Calculate new control value
+            OnControl(value);
+            float newValue = GetControlValue();
+            OnControlValueChange?.Invoke(this);
+            onControlValueChanged?.Invoke(this);
+        }
+        
+        /// <summary>
+        /// Virtual method called when control value is updated.
+        /// Override to implement custom release logic.
+        /// </summary>
+        /// <param name="value">Input to calculate new control value from</param>
+        protected virtual void OnControl(Vector2 value) { }
     }
 
 }
