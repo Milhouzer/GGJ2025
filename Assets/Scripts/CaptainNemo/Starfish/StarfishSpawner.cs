@@ -8,8 +8,7 @@ public class StarfishSpawner : MonoBehaviour
     [SerializeField]private Transform starfishPrefab;
     [SerializeField]private Transform ToBlock;
     private Dictionary<Transform, ControlHandler> starfishToBlockedInteractible = new Dictionary<Transform, ControlHandler>();
-
-
+    
     private void Start()
     {
         SpawnStarfish(ToBlock.GetComponent<ControlHandler>());
