@@ -114,6 +114,7 @@ namespace CaptainNemo
         /// <param name="value">2D input vector representing look direction/intensity</param>
         private void Look(Vector2 value)
         {
+            if (ControlsManager.ControlHandler == null || ControlsManager.ControlHandler.GetGlobalControlParam() == GlobalControlParam.Oxygen) return;
             ControlsManager.ControlHandler?.Control(value);
         }
 
