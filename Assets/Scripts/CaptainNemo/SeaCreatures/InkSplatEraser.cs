@@ -2,7 +2,7 @@ using CaptainNemo.Controls;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 
-namespace CaptainNemo.Octopus
+namespace CaptainNemo.SeaCreature
 {
     public delegate void OnSplatErasedEventHandler();
     public class InkSplatEraser : ControlHandler

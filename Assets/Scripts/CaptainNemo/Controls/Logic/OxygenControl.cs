@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CaptainNemo.Bubbles;
+using UnityEngine;
 
 namespace CaptainNemo.Controls.Logic
 {

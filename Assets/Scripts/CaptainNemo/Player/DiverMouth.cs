@@ -1,7 +1,7 @@
 using CaptainNemo.Controls;
 using UnityEngine;
 
-namespace CaptainNemo
+namespace CaptainNemo.Player
 {
     public class DiverMouth : MonoBehaviour
     {

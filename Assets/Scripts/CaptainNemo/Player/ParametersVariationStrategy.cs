@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CaptainNemo
+namespace CaptainNemo.Player
 {
     [CreateAssetMenu(fileName = "ParametersVariationStrategy", menuName = "Game/ParametersVariationStrategy")]
     public class ParametersVariationStrategy : ScriptableObject
