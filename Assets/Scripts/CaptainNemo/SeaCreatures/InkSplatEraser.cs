@@ -20,7 +20,6 @@ namespace CaptainNemo.SeaCreature
         protected override void OnControl(Vector2 value)
         {
             Camera mainCam = Camera.main;
-            Debug.LogWarning("Cool");
         
             if (mainCam != null)
             {

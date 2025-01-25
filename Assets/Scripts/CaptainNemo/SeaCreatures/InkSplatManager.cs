@@ -24,7 +24,6 @@ namespace CaptainNemo.SeaCreature
         {
             eraser = eraserTransform.GetComponent<InkSplatEraser>();
             eraser.OnSplatErased += OnSplatErased;
-            SpawnSplats();
         }
 
         public void SpawnSplats()
