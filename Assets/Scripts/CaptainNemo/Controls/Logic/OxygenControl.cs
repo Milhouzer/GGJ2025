@@ -19,10 +19,10 @@ namespace CaptainNemo.Controls.Logic
 
         [SerializeField] private Bubble bubble = default;
 
-		protected override void UnStart()
+		protected override void OnStart()
 		{
-			base.UnStart();
-            _oxygen = bubble.CurrentBubbleSize;
+			base.OnStart();
+            _oxygen = bubble.Oxygen;
 		}
 
 		/// <summary>
