@@ -22,10 +22,11 @@ public class Starfish : MonoBehaviour
             
             Vector3 spawnDir = new Vector3 (horizontal, vertical, 0);
             Vector3 pos = transform.position;
-            Vector3 spawnPos = pos + spawnDir * tentacleRadius;
+            Vector3 spawnPos = pos + spawnDir * tentacleRadius * transform.localScale.x;
             
             Transform spawnedTentacleTransform = Instantiate(tentaclePrefab, spawnPos, Quaternion.identity);
             _tentacles.Add(spawnedTentacleTransform);
+            spawnedTentacleTransform.localScale *= transform.localScale.x;
             Tentacle spawnedTentacle = spawnedTentacleTransform.GetComponent<Tentacle>();
             spawnedTentacle.Initialize(tentacleHp, tentacleShakeStrength);
             spawnedTentacle.onTentacleDeath += OnTentacleDeath;
@@ -33,8 +34,6 @@ public class Starfish : MonoBehaviour
         }
     }
     
-    
-
     private void OnTentacleDeath(Tentacle sender)
     {
         sender.onTentacleDeath -= OnTentacleDeath;
