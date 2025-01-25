@@ -1875,8 +1875,8 @@ GameObject:
   - component: {fileID: 1696313875}
   - component: {fileID: 1696313879}
   - component: {fileID: 1696313878}
-  - component: {fileID: 1696313877}
   - component: {fileID: 1696313876}
+  - component: {fileID: 1696313880}
   m_Layer: 0
   m_Name: BadBubble
   m_TagString: Untagged
@@ -1921,18 +1921,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1696313877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696313874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c6874a08ca66c443864c789d40deacc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1696313878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1969,7 +1957,7 @@ MonoBehaviour:
       m_Calls: []
   clampValue: {x: 0, y: 100}
   globalParam: 2
-  bubble: {fileID: 1696313877}
+  bubble: {fileID: 1696313880}
 --- !u!54 &1696313879
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1997,6 +1985,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1696313880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696313874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e66649c81c68547a1627fbc4655678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToDestroy: 0.1
 --- !u!1 &1707674724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2462,11 +2463,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   badBubble:
-    bubble: {fileID: 1696313877}
-    weight: 0.8
+    bubble: {fileID: 1696313880}
+    weight: 0.2
   goodBubble:
     bubble: {fileID: 7769143289043198215}
-    weight: 0.2
+    weight: 0.8
   weightedIncrement: 0
   rangeRandomAngle: {x: -10, y: 10}
   origin: {fileID: 1707674725}

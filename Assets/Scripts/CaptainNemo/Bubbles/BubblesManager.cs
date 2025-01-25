@@ -19,7 +19,6 @@ namespace CaptainNemo.Bubbles
 	    private float randomAngle = 0;
 	    private float previousRandomAngle = default;
 		private float spawnXSeconds = default;
-		private List<Bubble> allBubbles = new List<Bubble>();
 		
 		[SerializeField] public Vector2 spawnRange;
 		private float startWeightBubble = 0;
@@ -50,6 +49,7 @@ namespace CaptainNemo.Bubbles
 
 			spawnXSeconds = newSpawnXSeconds;
 			weightedIncrement = newWeightIncrement;
+			startWeightBubble = newWeightBadBubble;
 		}
 
 	    void Update()
@@ -80,8 +80,15 @@ namespace CaptainNemo.Bubbles
 				Quaternion rotation = Quaternion.identity;
 
 				Bubble newBubble = Instantiate(ChoseBubble(), position, rotation, transform);
-				allBubbles.Add(newBubble);
-				badBubble.weight += newBubble.Oxygen >= 0 ? weightedIncrement : startWeightBubble;
+
+				if (newBubble is BadBubble)
+				{
+					newBubble.Oxygen = newBubble.Oxygen * -1;
+					badBubble.weight = weightedIncrement;
+				}
+				else
+					badBubble.weight += weightedIncrement;
+
 				newBubble.gameObject.SetActive(true);
 			}
 			else
@@ -120,7 +127,6 @@ namespace CaptainNemo.Bubbles
 
 		public void DestroyBubble(Bubble bubbleToDestroy)
 		{
-			allBubbles.Remove(bubbleToDestroy);
 			Destroy(bubbleToDestroy.gameObject);
 		}
 

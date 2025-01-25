@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace CaptainNemo.Bubbles
@@ -43,7 +44,7 @@ namespace CaptainNemo.Bubbles
             StartCoroutine(CHANGE_DIRECTION_COROUTINE_NAME);
         }
 
-        private void Update()
+		virtual protected void Update()
         {
             transform.position += new Vector3(Mathf.Cos(currentDirectionAngle), Mathf.Sin(currentDirectionAngle)) * CurrentAmplitude * Time.deltaTime;
 
