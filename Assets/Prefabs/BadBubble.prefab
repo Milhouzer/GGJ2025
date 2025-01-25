@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8695111358024385061}
   m_Layer: 0
   m_Name: BadBubble
-  m_TagString: Untagged
+  m_TagString: Bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6874a08ca66c443864c789d40deacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oxygen: -1
+  oxygen: 0
   mouthSuckForce: 0.01
 --- !u!50 &8695111358024385061
 Rigidbody2D:

@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class BubblesManager : MonoBehaviour
 {
-	public float BubbleMoveRadius = 0.4f;
+	public const float BUBBLE_MOVE_RADIUS = 4.5f;
 
 	[SerializeField] private WeightedBubble badBubble;
 	[SerializeField] private WeightedBubble goodBubble;
@@ -130,31 +130,31 @@ public class BubblesManager : MonoBehaviour
 
     private void TestChangeBubbleMovement()
     {
-        if (currentCalm != newCalm)
-        {
-            if (newCalm)
-            {
-                foreach (var bubble in allBubbles)
-                {
-                    bubble.CurrentTimeBetweenChangeTargetDirection = 0.5f;
-                    bubble.CurrentRotationSpeed = 0.03f;
-                    bubble.CurrentTargetRotationChangeRange = new Vector2(-30, 30);
-                    bubble.CurrentSpeed = 0.5f;
-                }
-            }
-            else
-            {
-                foreach (var bubble in allBubbles)
-                {
-                    bubble.CurrentTimeBetweenChangeTargetDirection = 0.1f;
-                    bubble.CurrentRotationSpeed = 1f;
-                    bubble.CurrentTargetRotationChangeRange = new Vector2(-180, 180);
-                    bubble.CurrentSpeed = 2f;
-                }
-            }
+        //if (currentCalm != newCalm)
+        //{
+        //    if (newCalm)
+        //    {
+        //        foreach (var bubble in allBubbles)
+        //        {
+        //            bubble.CurrentTimeBetweenChangeTargetDirection = 0.5f;
+        //            bubble.CurrentRotationSpeed = 0.03f;
+        //            bubble.CurrentTargetRotationChangeRange = new Vector2(-30, 30);
+        //            bubble.CurrentSpeed = 0.5f;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        foreach (var bubble in allBubbles)
+        //        {
+        //            bubble.CurrentTimeBetweenChangeTargetDirection = 0.1f;
+        //            bubble.CurrentRotationSpeed = 1f;
+        //            bubble.CurrentTargetRotationChangeRange = new Vector2(-180, 180);
+        //            bubble.CurrentSpeed = 2f;
+        //        }
+        //    }
 
-            currentCalm = newCalm;
-        }
+        //    currentCalm = newCalm;
+        //}
     }
     #endregion
 }
