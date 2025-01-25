@@ -170,6 +170,8 @@ MonoBehaviour:
   mouth: {fileID: 837402083}
   moveSpeed: 0.1
   baseValueOxygen: 100
+  reduceValueOxygen: 2
+  timeToReduceValueOxygen: 0.25
 --- !u!1 &148706546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,50 +1853,6 @@ PrefabInstance:
       propertyPath: origin
       value: 
       objectReference: {fileID: 1314999837}
-    - target: {fileID: 5845325491509663619, guid: 1f479a15549064d48b09144107fadea3, type: 3}
-      propertyPath: radiusToSpawn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845325491509663619, guid: 1f479a15549064d48b09144107fadea3, type: 3}
-      propertyPath: minRadiusToSpawn
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845325491509663619, guid: 1f479a15549064d48b09144107fadea3, type: 3}
-      propertyPath: rangeRandomAngle.x
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845325491509663619, guid: 1f479a15549064d48b09144107fadea3, type: 3}
-      propertyPath: rangeRandomAngle.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845325491509663619, guid: 1f479a15549064d48b09144107fadea3, type: 3}
-      propertyPath: defaultSpawnNSecond
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845325491509663619, guid: 1f479a15549064d48b09144107fadea3, type: 3}
-      propertyPath: allSpawnNSeconds.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845325491509663619, guid: 1f479a15549064d48b09144107fadea3, type: 3}
-      propertyPath: timeToChangeLevel.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845325491509663619, guid: 1f479a15549064d48b09144107fadea3, type: 3}
-      propertyPath: 'allSpawnNSeconds.Array.data[0]'
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845325491509663619, guid: 1f479a15549064d48b09144107fadea3, type: 3}
-      propertyPath: 'allSpawnNSeconds.Array.data[1]'
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845325491509663619, guid: 1f479a15549064d48b09144107fadea3, type: 3}
-      propertyPath: 'timeToChangeLevel.Array.data[0]'
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845325491509663619, guid: 1f479a15549064d48b09144107fadea3, type: 3}
-      propertyPath: 'timeToChangeLevel.Array.data[1]'
-      value: 15
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
