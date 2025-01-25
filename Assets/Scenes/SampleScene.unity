@@ -152,7 +152,6 @@ Transform:
   - {fileID: 148706548}
   - {fileID: 766919282}
   - {fileID: 4325196401411448380}
-  - {fileID: 1707674725}
   - {fileID: 1687510868}
   - {fileID: 837402083}
   m_Father: {fileID: 0}
@@ -297,7 +296,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   clampValue: {x: 0, y: 100}
-  attenuation: 0.03
+  attenuation: 0.5
   globalParam: 1
 --- !u!65 &148706550
 BoxCollider:
@@ -985,7 +984,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   clampValue: {x: 0, y: 100}
-  attenuation: 0.03
+  attenuation: 0.5
   globalParam: 0
 --- !u!1 &832575517
 GameObject:
@@ -1607,7 +1606,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 111870115}
+  m_Father: {fileID: 422323752289402717}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1728356417
 GameObject:
@@ -1757,7 +1756,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1707674725}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1611449167767737702
@@ -1950,7 +1950,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6874a08ca66c443864c789d40deacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oxygen: 0
+  oxygen: 10
+  <CurrentTimeBetweenChangeTargetDirection>k__BackingField: 0.5
+  <CurrentRotationSpeed>k__BackingField: 0.03
+  <CurrentTargetRotationChangeRange>k__BackingField: {x: -30, y: 30}
+  <CurrentSpeed>k__BackingField: 0.05
 --- !u!1 &8168332584383213411
 GameObject:
   m_ObjectHideFlags: 0

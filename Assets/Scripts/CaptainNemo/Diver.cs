@@ -89,17 +89,17 @@ namespace CaptainNemo
         
         private void Oxygen(float value)
         {
-            oxygen += value;
+            oxygen = Mathf.Clamp(oxygen + value, parametersVariation.OxygenRange.x, parametersVariation.OxygenRange.y);
         }
 
         private void Temparature(float value)
         {
-            temperature -= value;
+            temperature = Mathf.Clamp(temperature + value, parametersVariation.TemperatureRange.x, parametersVariation.TemperatureRange.y);
         }
 
         private void Pressure(float value)
         {
-            pressure -= value;
+            pressure = Mathf.Clamp(pressure + value, parametersVariation.PressureRange.x, parametersVariation.PressureRange.y);
         }
 
         public void MoveMouth(Vector2 move)
