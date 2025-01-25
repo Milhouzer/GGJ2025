@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class ManagerBubble : MonoBehaviour
 {
-    [SerializeField] private Bubble bubble;
+	[SerializeField] private WeightedBubble badBubble;
+	[SerializeField] private WeightedBubble goodBubble;
+	[SerializeField] private float weightedIncrement = default;
     [SerializeField] private float radiusToSpawn = 50;
     [SerializeField] private float minRadiusToSpawn = 10;
     [SerializeField] private Vector2 rangeRandomAngle = default;
     [SerializeField] private float defaultSpawnNSecond = default;
-    [SerializeField] private Transform origin;
+    [SerializeField] private Transform origin = default;
     [SerializeField] private List<float> timeToChangeLevel = new List<float>();
     [SerializeField] private List<float> allSpawnNSeconds = new List<float>();
+
 	public static ManagerBubble Instance { get; private set; }
 
 	private float counterSpawnBubble = 0;
@@ -21,6 +24,7 @@ public class ManagerBubble : MonoBehaviour
     private float previousRandomAngle = default;
 	private float spawnNSeconds = default;
 	private List<Bubble> allBubbles = new List<Bubble>();
+	private float startWeightBubble = 0;
 
 	private void Awake()
 	{
@@ -37,6 +41,7 @@ public class ManagerBubble : MonoBehaviour
 	private void Start()
 	{
 		spawnNSeconds = defaultSpawnNSecond;
+		startWeightBubble = badBubble.weight;
 	}
 
 	void Update()
@@ -80,6 +85,13 @@ public class ManagerBubble : MonoBehaviour
 
 			Quaternion rotation = Quaternion.identity;
 
+			Bubble bubble = ChoseBubble();
+
+			if(bubble.CurrentBubbleSize >= 0)
+				badBubble.weight += weightedIncrement;
+			else
+				badBubble.weight = startWeightBubble;
+				
 			allBubbles.Add(Instantiate(bubble, position, rotation));
 		}
 		else
@@ -87,7 +99,35 @@ public class ManagerBubble : MonoBehaviour
 			SpawnBubble();
 		}
 	}
-	
+
+	private Bubble ChoseBubble()
+	{
+		float totalWeight = 0;
+
+		totalWeight += badBubble.weight;
+		totalWeight += goodBubble.weight;
+
+		float randomValue = Random.Range(0, totalWeight);
+
+		float cumulativeWeight = 0;
+
+		List<WeightedBubble> allWeightedBubble = new List<WeightedBubble>();
+		allWeightedBubble.Add(badBubble);
+		allWeightedBubble.Add(goodBubble);
+
+		foreach (var weightedBubble in allWeightedBubble)
+		{
+			cumulativeWeight += weightedBubble.weight;
+
+			if (randomValue <= cumulativeWeight)
+			{
+				return weightedBubble.bubble;
+			}
+		}
+
+		return null;
+	}
+
 	public void DestroyBubble(Bubble bubbleToDestroy)
 	{
 		allBubbles.Remove(bubbleToDestroy);
