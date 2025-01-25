@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class TestManager : MonoBehaviour
 {
-    private bool currentCalm = true;
-    [SerializeField] private bool newCalm = true;
     [SerializeField] private List<Bubble> bubbles = default;
     [SerializeField] private Diver diver = default;
 
-    [SerializeField] private AnimationCurve oxygenByPressure = default;
     [SerializeField] private AnimationCurve temperatureByTime = default;
 
     [SerializeField] private Bubble.BubbleMovementRanges bubbleMovementRanges = default;
@@ -33,8 +30,6 @@ public class TestManager : MonoBehaviour
 
         if (UnityEngine.Input.GetKeyDown(KeyCode.Mouse1))
             pressure = 0f;
-
-        //TestDivideBubble();
     }
 
     private void Temperature()
@@ -103,7 +98,7 @@ public class TestManager : MonoBehaviour
         Bubble childBubble2 = Instantiate(bubble, position - direction * spawnChildrenDistanceFromCenter, Quaternion.identity, transform);
 
         float newOxygenLevel = bubble.Oxygen / 2;
-        Vector3 scale = Vector3.one * newOxygenLevel * 0.01f;
+        Vector3 scale = Vector3.one * Mathf.Abs(newOxygenLevel) * 0.01f;
 
         childBubble1.Oxygen = newOxygenLevel;
         childBubble2.Oxygen = newOxygenLevel;

@@ -4,9 +4,12 @@ using UnityEngine;
 
 namespace CaptainNemo
 {
+    public delegate void DiverEventHandler();
+
     public class Diver: MonoBehaviour
     {
         [SerializeField] private Transform mouth;
+        [SerializeField] private BubblesManager bubblesManager;
         private Vector3 _mouthStartPosition;
         
         [SerializeField] private float moveSpeed = 0.1f;
@@ -38,7 +41,9 @@ namespace CaptainNemo
         /// Current pressure level of the diver
         /// </summary>
         public float PressureLevel => pressure;
-        
+
+        public event DiverEventHandler OnUpdateParameters;
+
         private void Start()
         {
             _mouthStartPosition = mouth.position;
@@ -60,6 +65,8 @@ namespace CaptainNemo
             tempVar = parameters.GetTemperatureIncreaseRate(realtimeSinceStartup);
             pressureVar = parameters.GetTemperatureIncreaseRate(realtimeSinceStartup);
             oxygenVar = -parameters.GetTemperatureIncreaseRate(realtimeSinceStartup);
+
+            bubblesManager.UpdateParameters();
         }
 
         private void TickParameters(float deltaTime)
