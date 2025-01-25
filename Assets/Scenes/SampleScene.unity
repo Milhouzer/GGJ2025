@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d993715a3bb4e5ebc217866ce9aa06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bubblesManager: {fileID: 0}
   mouth: {fileID: 1687510868}
   moveSpeed: 0.4
   baseValueOxygen: 100
@@ -2462,6 +2463,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7833a32f559f977449bfb78ccbb0b688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  diver: {fileID: 111870116}
+  bubbleMovementRanges:
+    timeBetweenChangeTargetDirection: {x: 0.1, y: 0.1}
+    rotationSpeed: {x: 0.03, y: 1}
+    amplitude: {x: 0.5, y: 2}
+    minTargetRotationChangeRange: {x: -30, y: -180}
+    maxTargetRotationChangeRange: {x: 30, y: 180}
+  spawnChildrenDistanceFromCenter: 0.5
   badBubble:
     bubble: {fileID: 1696313880}
     weight: 0.2

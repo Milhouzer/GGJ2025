@@ -1,4 +1,5 @@
-﻿using CaptainNemo.Controls;
+﻿using CaptainNemo.Bubbles;
+using CaptainNemo.Controls;
 using UnityEngine;
 
 namespace CaptainNemo.Player
@@ -7,8 +8,8 @@ namespace CaptainNemo.Player
 
     public class Diver: MonoBehaviour
     {
+        [SerializeField] private BubblesManager bubblesManager = default;
         [SerializeField] private Transform mouth;
-        [SerializeField] private BubblesManager bubblesManager;
         private Vector3 _mouthStartPosition;
         
         [SerializeField] private float moveSpeed = 0.1f;
