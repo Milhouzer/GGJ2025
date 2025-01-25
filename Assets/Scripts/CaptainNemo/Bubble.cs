@@ -1,21 +1,29 @@
 using System.Collections;
 using UnityEngine;
 
+public delegate void BubbleEventHandler(Bubble sender, Bubble collidedBubble);
+
 public class Bubble : MonoBehaviour
 {
+    [System.Serializable]
+    public struct BubbleMovementRanges
+    {
+        public Vector2 timeBetweenChangeTargetDirection;
+        public Vector2 rotationSpeed;
+        public Vector2 amplitude;
+        [Space(5)]
+        public Vector2 minTargetRotationChangeRange;
+        public Vector2 maxTargetRotationChangeRange;
+    }
+
     private const string CHANGE_DIRECTION_COROUTINE_NAME = "ChangeDirection";
+    private const string TAG = "Bubble";
 
-    [SerializeField] private float oxygen;
-    public float Oxygen { get => oxygen; }
-
-    [field:SerializeField]
-    public float CurrentTimeBetweenChangeTargetDirection { get; set; } = 0.5f;
-    [field:SerializeField]
-    public float CurrentRotationSpeed { get; set; } = 0.03f;
-    [field:SerializeField]
-    public Vector2 CurrentTargetRotationChangeRange { get; set; } = new Vector2(-30, 30);
-    [field:SerializeField]
-    public float CurrentSpeed { get; set; } = 0.5f;
+    public float Oxygen { get; set; } = 100f;
+    public static float CurrentTimeBetweenChangeTargetDirection { get; set; }
+    public static float CurrentRotationSpeed { get; set; }
+    public static Vector2 CurrentTargetRotationChangeRange { get; set; }
+    public static float CurrentAmplitude { get; set; }
 
 
     private float currentDirectionAngle;
@@ -23,6 +31,8 @@ public class Bubble : MonoBehaviour
 
     // For test
     // [SerializeField] private float mouthSuckForce = 0.01f;
+
+    public event BubbleEventHandler OnTryMerge;
 
     public void Awake()
     {
@@ -34,13 +44,13 @@ public class Bubble : MonoBehaviour
 
     private void Update()
     {
-        transform.position += new Vector3(Mathf.Cos(currentDirectionAngle), Mathf.Sin(currentDirectionAngle)) * CurrentSpeed * Time.deltaTime;
+        transform.position += new Vector3(Mathf.Cos(currentDirectionAngle), Mathf.Sin(currentDirectionAngle)) * CurrentAmplitude * Time.deltaTime;
 
         currentDirectionAngle = Mathf.MoveTowards(currentDirectionAngle, targetDirectionAngle, CurrentRotationSpeed);
 
-        if (transform.position.magnitude > BubblesManager.Instance.BubbleMoveRadius)
+        if (transform.position.magnitude > BubblesManager.BUBBLE_MOVE_RADIUS)
         {
-            transform.position = transform.position.normalized * BubblesManager.Instance.BubbleMoveRadius;
+            transform.position = transform.position.normalized * BubblesManager.BUBBLE_MOVE_RADIUS;
             targetDirectionAngle = Mathf.Atan2(-transform.position.y, -transform.position.x);
             currentDirectionAngle = targetDirectionAngle;
         }
@@ -65,13 +75,21 @@ public class Bubble : MonoBehaviour
         transform.position += suckForce;
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    Vector3 toTransform = (collision.attachedRigidbody.transform.position - transform.position).normalized;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.attachedRigidbody.tag == TAG)
+        {
+            Vector3 toTransform = (collision.attachedRigidbody.transform.position - transform.position).normalized;
 
-    //    targetDirectionAngle = Mathf.Atan2(-toTransform.y, -toTransform.x);
-    //    currentDirectionAngle = targetDirectionAngle;
-    //}
+            targetDirectionAngle = Mathf.Atan2(-toTransform.y, -toTransform.x);
+            currentDirectionAngle = targetDirectionAngle;
+
+            Bubble otherBubble = collision.GetComponent<Bubble>();
+
+            if (Oxygen == otherBubble.Oxygen && 100 - (Oxygen * 2) >= TestManager.pressure)
+                OnTryMerge?.Invoke(this, otherBubble);
+        }
+    }
 
     private void OnDestroy()
     {
