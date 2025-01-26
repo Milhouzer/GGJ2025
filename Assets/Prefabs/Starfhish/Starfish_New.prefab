@@ -5400,6 +5400,7 @@ MonoBehaviour:
   tentacleHp: 1
   visual: {fileID: 1333915185731940988}
   deadVisual: {fileID: 4079545198304813028}
+  collider: {fileID: 6131611862718920345}
   _hitShakeStrength: 0.5
 --- !u!65 &6131611862718920345
 BoxCollider:
@@ -10488,6 +10489,7 @@ MonoBehaviour:
   tentacleHp: 1
   visual: {fileID: 3335158165952048282}
   deadVisual: {fileID: 3103261090904783888}
+  collider: {fileID: 1844529734770719945}
   _hitShakeStrength: 0.5
 --- !u!65 &1844529734770719945
 BoxCollider:
@@ -10670,6 +10672,7 @@ MonoBehaviour:
   tentacleHp: 1
   visual: {fileID: 6052393847429783849}
   deadVisual: {fileID: 7658359183108063667}
+  collider: {fileID: 947170517214519732}
   _hitShakeStrength: 0.5
 --- !u!65 &947170517214519732
 BoxCollider:
@@ -10765,6 +10768,7 @@ MonoBehaviour:
   tentacleHp: 1
   visual: {fileID: 3569855328863075097}
   deadVisual: {fileID: 4672583633978827997}
+  collider: {fileID: 5591607663745313152}
   _hitShakeStrength: 0.5
 --- !u!65 &5591607663745313152
 BoxCollider:
@@ -11264,6 +11268,7 @@ MonoBehaviour:
   tentacleHp: 1
   visual: {fileID: 3492648264234423459}
   deadVisual: {fileID: 3380933520158807170}
+  collider: {fileID: 9036060301386662712}
   _hitShakeStrength: 0.5
 --- !u!65 &9036060301386662712
 BoxCollider:

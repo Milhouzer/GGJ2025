@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9daf328cce3e7343954c44af81f3428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBlockingControls: 0
+  lockTransform: {fileID: 0}
   onControlValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -158,6 +158,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   clampValue: {x: 0, y: 100}
+  tentacleHp: 0
+  visual: {fileID: 0}
+  deadVisual: {fileID: 0}
+  collider: {fileID: 8401608084848900497}
+  _hitShakeStrength: 0.5
 --- !u!65 &8401608084848900497
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -194,5 +199,6 @@ MonoBehaviour:
   shakeStrength: 0.1
   duration: 0.3
   vibrato: 15
-  sprite: {fileID: 7744734647321735531}
+  _transform: {fileID: 0}
   easeCurve: 24
+  loop: 0

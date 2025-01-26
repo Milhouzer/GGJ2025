@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -95,12 +95,254 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: SpriteSheetMenuLowRes-export_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 440
+        width: 552
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e7fd9b340241564ba82bad936769ded
+      internalID: -1011505014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetMenuLowRes-export_1
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 476
+        width: 368
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 173d20d777a234b488bba0c592fae34e
+      internalID: -1363194645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetMenuLowRes-export_2
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 376
+        width: 244
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67ca73c90c3af784b9d80e836c0eab58
+      internalID: -1906264609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetMenuLowRes-export_3
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 343
+        width: 174
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4e34c438400bb54882add826fbe8082
+      internalID: -1500050111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetMenuLowRes-export_7
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 325
+        width: 185
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f947301471232934d95e89bb279929a7
+      internalID: 1835197927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetMenuLowRes-export_10
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 336
+        width: 304
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf7c3c6abfbaddd489b0c7300766c791
+      internalID: -1101971956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetMenuLowRes-export_11
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 28
+        width: 336
+        height: 328
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f849c7b8e8737e844a4a9f25cc7ab699
+      internalID: 1090051365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetMenuLowRes-export_13
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 124
+        width: 418
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 453b70e3f2df0fe4f81907d9d9cfb18a
+      internalID: -1752964995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetMenuLowRes-export_14
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 0
+        width: 276
+        height: 304
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2920659d5c059c448afc788db935be9
+      internalID: -1510355658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetMenuLowRes-export_15
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 16
+        width: 184
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35988cc065d8b444681a4e1698761fdb
+      internalID: -2051698330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheetMenuLowRes-export_16
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 0
+        width: 212
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b4cf6953899fc943b4af4973fb6e079
+      internalID: -672180948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0eb6ce92a99ba1045ad6caf146f92b06
     internalID: 0
     vertices: []
     indices: 
@@ -109,7 +351,24 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SpriteSheetMenuLowRes-export_0: -1011505014
+      SpriteSheetMenuLowRes-export_1: -1363194645
+      SpriteSheetMenuLowRes-export_10: -1101971956
+      SpriteSheetMenuLowRes-export_11: 1090051365
+      SpriteSheetMenuLowRes-export_12: -1726779623
+      SpriteSheetMenuLowRes-export_13: -1752964995
+      SpriteSheetMenuLowRes-export_14: -1510355658
+      SpriteSheetMenuLowRes-export_15: -2051698330
+      SpriteSheetMenuLowRes-export_16: -672180948
+      SpriteSheetMenuLowRes-export_2: -1906264609
+      SpriteSheetMenuLowRes-export_3: -1500050111
+      SpriteSheetMenuLowRes-export_4: -852792490
+      SpriteSheetMenuLowRes-export_5: 1874968412
+      SpriteSheetMenuLowRes-export_6: 418743452
+      SpriteSheetMenuLowRes-export_7: 1835197927
+      SpriteSheetMenuLowRes-export_8: 1604763040
+      SpriteSheetMenuLowRes-export_9: 1041757357
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
