@@ -79,7 +79,8 @@ namespace CaptainNemo.Bubbles
             deathParticle.Play();
         }
 
-		private void OnDestroy()
+
+        private void OnDestroy()
         {
             Destroy();
             StopCoroutine(CHANGE_DIRECTION_COROUTINE_NAME);
