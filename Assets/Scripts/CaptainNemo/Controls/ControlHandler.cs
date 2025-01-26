@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace CaptainNemo.Controls
 {
@@ -51,6 +52,11 @@ namespace CaptainNemo.Controls
         /// </summary>
         /// <returns></returns>
         public float GetControlValue();
+
+        public bool IsLocked();
+        public void Lock();
+        public void Unlock();
+        public Transform LockTransform();
         
         /// <summary>
         /// Global parameter related by this controller
@@ -63,9 +69,27 @@ namespace CaptainNemo.Controls
     /// Base implementation of a control handler that manages control state.
     /// </summary>
     public abstract class ControlHandler : MonoBehaviour, IControlHandler
-    {        
+    {
+        [SerializeField] private Transform lockTransform;
         
-        public bool isBlockingControls = false;
+        private bool _isBlockingControls;
+
+        public bool IsLocked() => _isBlockingControls;
+
+        public void Lock()
+        {
+            Debug.Log($"[ControlHandler] Lock {this}");
+            _isBlockingControls = true;
+        }
+
+        public void Unlock()
+        {
+            Debug.Log($"[ControlHandler] Unlock {this}");
+            _isBlockingControls = false;
+        }
+
+        public Transform LockTransform() => lockTransform;
+        
         /// <summary>
         /// Editor bindable event
         /// </summary>
@@ -93,10 +117,7 @@ namespace CaptainNemo.Controls
             OnStart();
         }
 
-        virtual protected void OnStart()
-        {
-
-        }
+        protected virtual void OnStart() { }
 
         /// <summary>
         /// UnRegister control in controls manager
@@ -120,7 +141,11 @@ namespace CaptainNemo.Controls
         /// </summary>
         public void Handle()
         {
-            if (isBlockingControls) return;
+            if (_isBlockingControls)
+            {
+                Debug.Log($"[ControlHandler] Can't handle {this}, locked");
+                return;
+            }
             
             if (ControlsManager.ControlHandler != null)
             {
@@ -145,7 +170,11 @@ namespace CaptainNemo.Controls
         /// </summary>
         public void Release()
         {
-            if (isBlockingControls) return;
+            if (_isBlockingControls)
+            {
+                Debug.Log($"[ControlHandler] Can't release {this}, locked");
+                return;
+            }
             
             if (ControlsManager.ControlHandler != null)
             {
@@ -169,11 +198,10 @@ namespace CaptainNemo.Controls
         /// <param name="value">Input control vector.</param>
         public void Control(Vector2 value)
         {
-            if (isBlockingControls) return;
+            if (_isBlockingControls) return;
 
             // Calculate new control value
             OnControl(value);
-            float newValue = GetControlValue();
             onControlValueChanged?.Invoke(this);
         }
 

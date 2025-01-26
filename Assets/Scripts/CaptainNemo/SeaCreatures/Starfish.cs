@@ -7,53 +7,34 @@ namespace CaptainNemo.SeaCreature
     public delegate void OnStarfishDeathEventHandler(Starfish sender);
     public class Starfish : MonoBehaviour
     {
-        [SerializeField]private Transform tentaclePrefab;
-        [SerializeField]private int nTentacle;
-        [SerializeField]private float tentacleRadius;
-        [SerializeField]private int tentacleHp;
-        [SerializeField]private float tentacleShakeStrength;
+        public event OnStarfishDeathEventHandler OnStarfishDeath;
     
-        private List<Transform> _tentacles = new List<Transform>();
-    
-        public event OnStarfishDeathEventHandler onStarfishDeath;
+        [SerializeField] private List<Tentacle> tentacles;
+        [SerializeField] private float tentacleShakeStrength;
+
+        private int _tentaclesCount;
         
-        private void Start()
+        private void OnValidate()
         {
-            for (int i = 0; i < nTentacle; i++)
-            {
-                float angle = 2 * MathF.PI / nTentacle * i;
-                float vertical = MathF.Sin(angle);
-                float horizontal = MathF.Cos(angle); 
-            
-                Vector3 spawnDir = new Vector3 (horizontal, vertical, 0);
-                Vector3 pos = transform.position;
-                Vector3 spawnPos = pos + spawnDir * tentacleRadius * transform.localScale.x;
-            
-                Transform spawnedTentacleTransform = Instantiate(tentaclePrefab, spawnPos, Quaternion.identity);
-                _tentacles.Add(spawnedTentacleTransform);
-                spawnedTentacleTransform.localScale *= transform.localScale.x;
-                Tentacle spawnedTentacle = spawnedTentacleTransform.GetComponent<Tentacle>();
-                spawnedTentacle.Initialize(tentacleHp, tentacleShakeStrength);
-                spawnedTentacle.OnTentacleDeath += OnTentacleDeath;
-                _tentacles[i].LookAt(pos);
-            }
-        }
-    
-        private void OnTentacleDeath(Tentacle sender)
-        {
-            sender.OnTentacleDeath -= OnTentacleDeath;
-            _tentacles.Remove(sender.transform);
-        
-            if (_tentacles.Count == 0)
-            {
-                OnDeath();
-                Destroy(gameObject);
-            }
+            _tentaclesCount = tentacles.Count;
         }
 
-        private void OnDeath()
+        private void Start()
         {
-            onStarfishDeath?.Invoke(this);
+            tentacles.ForEach(t => t.OnDie += sender =>
+            {
+                this._tentaclesCount--;
+                if (this._tentaclesCount <= 0)
+                {
+                    Die();
+                }
+            });
+        }
+
+        private void Die()
+        {
+            OnStarfishDeath?.Invoke(this);
+            Destroy(gameObject);
         }
     }
 }

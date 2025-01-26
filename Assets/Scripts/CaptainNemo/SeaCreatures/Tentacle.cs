@@ -1,4 +1,5 @@
 using CaptainNemo.Controls;
+using UnityEngine;
 
 namespace CaptainNemo.SeaCreature
 {
@@ -6,30 +7,22 @@ namespace CaptainNemo.SeaCreature
 
     public class Tentacle : ControlHandler
     {
-        private int _hp = 1;
+        [SerializeField] private int tentacleHp;
         private float _hitShakeStrength = 1;
-        public event OnTentacleDeathEventHandler OnTentacleDeath;
-    
-
-        public void Initialize(int hp, float hitShakeStrength)
-        {
-            _hp = hp;
-            _hitShakeStrength = hitShakeStrength;
-        }
+        public event OnTentacleDeathEventHandler OnDie;
 
         public override GlobalControlParam GetGlobalControlParam()
         {
-            GlobalControlParam globalControlParam = new GlobalControlParam();
-            return globalControlParam;
+            return 0;
         }
 
         protected override void OnHandle()
         {
-            _hp--;
+            tentacleHp--;
         
-            if (_hp <= 0)
+            if (tentacleHp <= 0)
             {
-                OnTentacleDeath?.Invoke(this);
+                OnDie?.Invoke(this);
                 Release();
                 Destroy(gameObject);
             }

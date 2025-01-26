@@ -12,8 +12,8 @@ public class DebugUI : MonoBehaviour
 
     private void Update()
     {
-        pressureValue.text = $"Pressure: {Diver.PressureLevel}";
-        oxygenValue.text = $"Oxygen: {Diver.OxygenLevel}";
-        temperatureValue.text = $"Temperature: {Diver.TemperatureLevel}";
+        pressureValue.text = $"Pressure: {Diver.PressureParam.Value}";
+        oxygenValue.text = $"Oxygen: {Diver.OxygenParam.Value}";
+        temperatureValue.text = $"Temperature: {Diver.TemperatureParam.Value}";
     }
 }

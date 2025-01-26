@@ -22,11 +22,6 @@ namespace CaptainNemo.Bubbles
         private const string TAG = "Bubble";
 
         public float Oxygen { get; set; } = 100f;
-        public static float CurrentTimeBetweenChangeTargetDirection { get; set; }
-        public static float CurrentRotationSpeed { get; set; }
-        public static Vector2 CurrentTargetRotationChangeRange { get; set; }
-        public static float CurrentAmplitude { get; set; }
-
 
         private float currentDirectionAngle;
         private float targetDirectionAngle;
@@ -46,9 +41,9 @@ namespace CaptainNemo.Bubbles
 
 		virtual protected void Update()
         {
-            transform.position += new Vector3(Mathf.Cos(currentDirectionAngle), Mathf.Sin(currentDirectionAngle)) * CurrentAmplitude * Time.deltaTime;
+            transform.position += new Vector3(Mathf.Cos(currentDirectionAngle), Mathf.Sin(currentDirectionAngle)) * BubblesManager.Instance.CurrentAmplitude * Time.deltaTime;
 
-            currentDirectionAngle = Mathf.MoveTowards(currentDirectionAngle, targetDirectionAngle, CurrentRotationSpeed);
+            currentDirectionAngle = Mathf.MoveTowards(currentDirectionAngle, targetDirectionAngle, BubblesManager.Instance.CurrentRotationSpeed);
 
             if (transform.position.magnitude > BubblesManager.BUBBLE_MOVE_RADIUS)
             {
@@ -67,8 +62,8 @@ namespace CaptainNemo.Bubbles
 
         private IEnumerator ChangeDirection()
         {
-            targetDirectionAngle += Random.Range(CurrentTargetRotationChangeRange.x, CurrentTargetRotationChangeRange.y) * Mathf.Deg2Rad;
-            yield return new WaitForSeconds(CurrentTimeBetweenChangeTargetDirection);
+            targetDirectionAngle += Random.Range(BubblesManager.Instance.CurrentTargetRotationChangeRange.x, BubblesManager.Instance.CurrentTargetRotationChangeRange.y) * Mathf.Deg2Rad;
+            yield return new WaitForSeconds(BubblesManager.Instance.CurrentTimeBetweenChangeTargetDirection);
             StartCoroutine(CHANGE_DIRECTION_COROUTINE_NAME);
         }
 
@@ -88,7 +83,7 @@ namespace CaptainNemo.Bubbles
 
                 Bubble otherBubble = collision.GetComponent<Bubble>();
 
-                if (Oxygen == otherBubble.Oxygen && 100 - (Oxygen * 2) >= TestManager.pressure)
+                if (Oxygen == otherBubble.Oxygen && 100 - (Oxygen * 2) >= 0f)
                     OnTryMerge?.Invoke(this, otherBubble);
             }
         }

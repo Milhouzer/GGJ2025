@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65cf8c4bae53574f97172d1ed8fe421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starfishPrefab: {fileID: 1622154180145267257, guid: ba13e3380ddebb2408c48ee2cab555b9, type: 3}
+  starfishPrefab: {fileID: 2887387966809030739, guid: 8ae621ba8e5f3474e98c1748af7bdf41, type: 3}
+  spawnRate: 5
