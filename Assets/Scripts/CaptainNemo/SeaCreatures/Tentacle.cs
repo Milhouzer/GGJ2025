@@ -8,6 +8,8 @@ namespace CaptainNemo.SeaCreature
     public class Tentacle : ControlHandler
     {
         [SerializeField] private int tentacleHp;
+        [SerializeField] private Sprite deadTentacleSprite;
+        [SerializeField] private SpriteRenderer tentacleSpriteRenderer;
         private float _hitShakeStrength = 1;
         public event OnTentacleDeathEventHandler OnDie;
 
@@ -24,9 +26,8 @@ namespace CaptainNemo.SeaCreature
             {
                 OnDie?.Invoke(this);
                 Release();
-                Destroy(gameObject);
+                tentacleSpriteRenderer.sprite = deadTentacleSprite;
             }
-        
         }
     }
 }

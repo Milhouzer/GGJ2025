@@ -21,15 +21,18 @@ namespace CaptainNemo.SeaCreature
 
         private void Start()
         {
+            _tentaclesCount = tentacles.Count;
             tentacles.ForEach(t => t.OnDie += sender =>
             {
                 this._tentaclesCount--;
+
                 if (this._tentaclesCount <= 0)
                 {
                     Die();
                 }
             });
         }
+        
 
         private void Die()
         {
