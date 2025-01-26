@@ -15,6 +15,7 @@ public enum E_Sound
     BubbleDivide,
     BubbleMerge,
     PlayButton,
+    OctopusSquirt,
 }
 
 public class SoundManager : MonoBehaviour
@@ -34,6 +35,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource characterEffects = default;
     [SerializeField] private AudioSource bubbleEffects = default;
     [SerializeField] private AudioSource uiEffects = default;
+    [SerializeField] private AudioSource eventEffects = default;
     [Space(5)]
     [SerializeField] private List<EnumToSound> sounds = default;
 
@@ -145,6 +147,9 @@ public class SoundManager : MonoBehaviour
                 break;
             case E_Sound.PlayButton:
                 audioSource = Instance.uiEffects;
+                break;
+            case E_Sound.OctopusSquirt:
+                audioSource = Instance.eventEffects;
                 break;
         }
 
