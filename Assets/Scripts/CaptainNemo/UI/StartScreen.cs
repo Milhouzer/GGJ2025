@@ -1,22 +1,22 @@
-using System;
-using CaptainNemo.Game;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StartScreen: MonoBehaviour
+namespace CaptainNemo.UI
 {
-    [SerializeField]private Button StartButton;
-
-    private void OnEnable()
+    public class StartScreen: MonoBehaviour
     {
-        StartButton.onClick.AddListener(StartGame);
-    }
+        [SerializeField]private Button StartButton;
 
-    private void StartGame()
-    {
-        //GameManager.Instance.StartGame();
-        StartButton.onClick.RemoveListener(StartGame);
-        gameObject.SetActive(false);
+        private void OnEnable()
+        {
+            StartButton.onClick.AddListener(StartGame);
+        }
+
+        private void StartGame()
+        {
+            //GameManager.Instance.StartGame();
+            StartButton.onClick.RemoveListener(StartGame);
+            gameObject.SetActive(false);
+        }
     }
 }
