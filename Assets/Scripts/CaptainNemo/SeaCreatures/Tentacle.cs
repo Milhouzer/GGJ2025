@@ -10,6 +10,7 @@ namespace CaptainNemo.SeaCreatures
         [SerializeField] private int tentacleHp;
         [SerializeField] private Transform visual;
         [SerializeField] private Transform deadVisual;
+        [SerializeField] private Collider collider;
         [SerializeField] private float _hitShakeStrength = .5f;
         public event OnTentacleDeathEventHandler OnDie;
 
@@ -26,6 +27,7 @@ namespace CaptainNemo.SeaCreatures
             {
                 OnDie?.Invoke(this);
                 Release();
+                collider.enabled = false;
                 visual.gameObject.SetActive(false);
                 deadVisual.gameObject.SetActive(true);
             }
