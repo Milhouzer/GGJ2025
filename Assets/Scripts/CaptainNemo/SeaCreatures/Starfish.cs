@@ -12,6 +12,8 @@ namespace CaptainNemo.SeaCreature
     
         [SerializeField] private List<Tentacle> tentacles;
         [SerializeField] private float tentacleShakeStrength;
+        [SerializeField] private ParticleSystem hitParticle;
+        [SerializeField] private ParticleSystem bloodParticle;
 
         private int _tentaclesCount;
         
@@ -28,6 +30,8 @@ namespace CaptainNemo.SeaCreature
                 this._tentaclesCount--;
 
                 transform.DOShakePosition(0.3f, 0.5f, 30, 70f, false);
+                hitParticle.Play();
+                bloodParticle.Play();
                 
                 if (this._tentaclesCount <= 0)
                 {
