@@ -9,8 +9,8 @@ namespace CaptainNemo.SeaCreatures
     public class InkSplatSpawner : MonoBehaviour
     {
         [SerializeField] private InkSplat inkSplatPrefab;
-        [SerializeField] private float spawnRate = 5f;
-        private float _spawnTimer = 0f;
+        [SerializeField] private Vector2 randomSpawn;
+        private float _spawnTimer;
 
         private IControlHandler _wiperControl;
         public static InkSplat CurrentInkSplat;
@@ -23,7 +23,7 @@ namespace CaptainNemo.SeaCreatures
                 _wiperControl = wiperControl;
             };
 			
-            _spawnTimer = spawnRate;
+            _spawnTimer = Random.Range(randomSpawn.x, randomSpawn.y);
         }
         
 
@@ -32,15 +32,8 @@ namespace CaptainNemo.SeaCreatures
             _spawnTimer -= Time.deltaTime;
             if (_spawnTimer <= 0)
             {
-                _spawnTimer = spawnRate;
-                if (TrySpawnInkSplat())
-                {
-                    // CurrentInkSplat.OnInkSplatErased += sender =>
-                    // {
-                    //     Destroy(CurrentInkSplat);
-                    //     CurrentInkSplat = null;
-                    // };
-                }
+                _spawnTimer = Random.Range(randomSpawn.x, randomSpawn.y);
+                TrySpawnInkSplat();
             }
         }
 

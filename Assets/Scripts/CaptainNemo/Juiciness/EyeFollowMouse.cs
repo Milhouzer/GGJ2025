@@ -19,8 +19,6 @@ public class EyeFollowMouse : MonoBehaviour
 			Camera.main.transform.position.z * -1);
 		Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(screenMousePosition);
 
-		Debug.Log("mouse Position world " + worldMousePosition);
-
 		Vector3 direction = worldMousePosition - startPosition;
 		float distance =  Mathf.Clamp(direction.magnitude,clampDistance.x,clampDistance.y);
 		direction = direction.normalized;

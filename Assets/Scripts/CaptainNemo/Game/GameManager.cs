@@ -221,9 +221,10 @@ namespace CaptainNemo.Game
 
         public void EndGame()
         {
+            SoundManager.PlaySound(E_Sound.Death);
+            EndScreen.SetActive(true);
             Destroy(currentGame);
             inputReader.Disable();
-            EndScreen.SetActive(true);
             currentGame = null;
             _diver = null;
             started = false;

@@ -18,4 +18,4 @@ MonoBehaviour:
   InitTemperature: 0
   InitPressure: 0
   InitOxygen: 100
-  difficultyVariationParameter: 0
+  difficultyVariationParameter: -0.1

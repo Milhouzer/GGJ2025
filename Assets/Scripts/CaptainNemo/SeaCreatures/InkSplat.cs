@@ -1,23 +1,21 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace CaptainNemo.SeaCreatures
 {
-    public delegate void InkSplatErased(InkSplat sender);
-    
     public class InkSplat : MonoBehaviour
     {
-        public event InkSplatErased OnInkSplatErased;
-
+        [SerializeField] private SpriteRenderer splat;
         [SerializeField] private float wipeAmountRequired = 50f;
-        
+        private float _currentWipeAmount;
+
         public void Wipe(float amount)
         {
-            wipeAmountRequired -= amount;
-            
-            if (wipeAmountRequired <= 0)
+            _currentWipeAmount += amount;
+            splat.color = Color.Lerp(splat.color, Color.clear, 1f - _currentWipeAmount/wipeAmountRequired);
+            if (_currentWipeAmount >= wipeAmountRequired)
             {
                 Destroy(gameObject);
-                OnInkSplatErased?.Invoke(this);
             }
         }
     }

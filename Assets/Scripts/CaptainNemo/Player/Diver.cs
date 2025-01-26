@@ -1,6 +1,7 @@
 using System;
 using CaptainNemo.Controls;
 using CaptainNemo.Controls.Logic;
+using CaptainNemo.Game;
 using UnityEngine;
 
 namespace CaptainNemo.Player
@@ -113,9 +114,7 @@ namespace CaptainNemo.Player
             IsDead = OxygenParam.Value <= 0;
             if (IsDead)
             {
-                SoundManager.PlaySound(E_Sound.Death);
-
-                Debug.Log("T'es mort gros naze");
+                GameManager.Instance.EndGame();
             }
         }
     }
