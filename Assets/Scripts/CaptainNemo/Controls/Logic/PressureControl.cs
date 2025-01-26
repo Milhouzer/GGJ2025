@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CaptainNemo.Game;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace CaptainNemo.Controls.Logic
@@ -29,6 +30,8 @@ namespace CaptainNemo.Controls.Logic
         /// <param name="value">Input control vector.</param>
         protected override void OnControl(Vector2 value)
         {
+            Debug.Log($"PressureControl {value.y * attenuation}");
+            GameManager.AddPressure(value.y * attenuation);
             _pressure = value.y * attenuation;
         }
         

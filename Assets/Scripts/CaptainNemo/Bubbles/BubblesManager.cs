@@ -83,6 +83,7 @@ namespace CaptainNemo.Bubbles
 				allBubbles.Add(newBubble);
 				badBubble.weight += newBubble.Oxygen >= 0 ? weightedIncrement : startWeightBubble;
 				newBubble.gameObject.SetActive(true);
+				allBubbles.Add(newBubble);
 			}
 			else
 			{

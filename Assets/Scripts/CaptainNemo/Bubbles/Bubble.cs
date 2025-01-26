@@ -21,11 +21,10 @@ namespace CaptainNemo.Bubbles
         private const string TAG = "Bubble";
 
         public float Oxygen { get; set; } = 100f;
-        public static float CurrentTimeBetweenChangeTargetDirection { get; set; }
-        public static float CurrentRotationSpeed { get; set; }
-        public static Vector2 CurrentTargetRotationChangeRange { get; set; }
-        public static float CurrentAmplitude { get; set; }
-
+        [field: SerializeField] private float CurrentTimeBetweenChangeTargetDirection { get; set; } = 0.5f;
+        [field: SerializeField] private float CurrentRotationSpeed { get; set; } = 0.03f;
+        [field: SerializeField] Vector2 CurrentTargetRotationChangeRange { get; set; } = new Vector2(-30f, 30f);
+        [field: SerializeField] private float CurrentAmplitude { get; set; } = 0.5f;
 
         private float currentDirectionAngle;
         private float targetDirectionAngle;
@@ -87,7 +86,7 @@ namespace CaptainNemo.Bubbles
 
                 Bubble otherBubble = collision.GetComponent<Bubble>();
 
-                if (Oxygen == otherBubble.Oxygen && 100 - (Oxygen * 2) >= TestManager.pressure)
+                if (Oxygen == otherBubble.Oxygen && 100 - (Oxygen * 2) >= 0f)
                     OnTryMerge?.Invoke(this, otherBubble);
             }
         }

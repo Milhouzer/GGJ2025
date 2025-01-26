@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Utils
 {
@@ -13,7 +15,6 @@ namespace Utils
                 if (_instance == null)
                 {
                     _instance = Object.FindFirstObjectByType<T>();
-                    Debug.Log("Found instance of " + typeof(T) + " " + _instance);
                     if (_instance != null) return _instance;
                     
                     GameObject singletonObject = new GameObject();
@@ -24,6 +25,11 @@ namespace Utils
 
                 return _instance;
             }
+        }
+
+        private void OnDestroy()
+        {
+            Destroy(gameObject);
         }
     }
 }

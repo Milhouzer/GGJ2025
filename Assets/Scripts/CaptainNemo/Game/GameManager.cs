@@ -1,4 +1,5 @@
 ﻿using CaptainNemo.Controls;
+using CaptainNemo.Controls.Logic;
 using Input;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -74,25 +75,71 @@ namespace CaptainNemo.Game
             { 
                 Debug.DrawRay(ray.origin, Vector3.forward * hit.distance, Color.yellow); 
                 GameManager.TargetObject = hit.transform.gameObject;
-                Debug.Log($"New target: {GameManager.TargetObject.name}");
+                // Debug.Log($"New target: {GameManager.TargetObject.name}");
             }
             else
             {
                 if (GameManager.TargetObject)
                 {
                     GameManager.TargetObject = null;
-                    Debug.Log("New null target");
+                    // Debug.Log("New null target");
                 }
             }
         }
 
-        /// <summary>
-        /// Retrieves the current diver instance.
-        /// </summary>
-        /// <returns>Current Diver object</returns>
-        public static Diver GetDiver()
+        public static void AddOxygen(float value)
         {
-            return GameManager.Instance._diver;
+            GameManager.Instance._diver.Oxygen(value);
+        }
+        
+        public static void AddTemperature(float value)
+        {
+            GameManager.Instance._diver.Temperature(value);
+        }
+
+        public static void AddPressure(float value)
+        {
+            GameManager.Instance._diver.Pressure(value);
+        }
+
+        public static PressureControl GetPressureControl()
+        {
+            return GameManager.Instance._diver.PressureControl;
+        }
+
+        public static TemperatureControl GetTemperatureControl()
+        {
+            return GameManager.Instance._diver.TemperatureControl;
+        }
+
+        public static float GetMaxOxygenValue()
+        {
+            return GameManager.Instance._diver.OxygenParam.Range.y;
+        }
+
+        public static float GetMinOxygenValue()
+        {
+            return GameManager.Instance._diver.OxygenParam.Range.x;
+        }
+
+        public static float GetMaxTemperatureValue()
+        {
+            return GameManager.Instance._diver.TemperatureParam.Range.y;
+        }
+
+        public static float GetMinTemperatureValue()
+        {
+            return GameManager.Instance._diver.TemperatureParam.Range.x;
+        }
+        
+        public static float GetMaxPressureValue()
+        {
+            return GameManager.Instance._diver.PressureParam.Range.y;
+        }
+        
+        public static float GetMinPressureValue()
+        {
+            return GameManager.Instance._diver.PressureParam.Range.x;
         }
 
         /// <summary>
@@ -116,6 +163,7 @@ namespace CaptainNemo.Game
         private void Look(Vector2 value)
         {
             if (ControlsManager.ControlHandler == null || ControlsManager.ControlHandler.GetGlobalControlParam() == GlobalControlParam.Oxygen) return;
+            // Debug.Log($"OnLook {value}");
             ControlsManager.ControlHandler?.Control(value);
         }
 
@@ -125,7 +173,7 @@ namespace CaptainNemo.Game
         /// <param name="value">2D input vector representing move direction/intensity</param>
         private void Move(Vector2 value)
         {
-            _diver.MoveMouth(value);
+            _diver.Mouth?.Move(value);
         }
         
         /// <summary>

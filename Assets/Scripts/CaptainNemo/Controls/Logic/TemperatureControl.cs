@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CaptainNemo.Game;
+using UnityEngine;
 
 namespace CaptainNemo.Controls.Logic
 {
@@ -28,6 +29,7 @@ namespace CaptainNemo.Controls.Logic
         /// <param name="value">Input control vector.</param>
         protected override void OnControl(Vector2 value)
         {
+            GameManager.AddTemperature(value.y * attenuation);
             _temperature = value.y * attenuation;
         }
         
