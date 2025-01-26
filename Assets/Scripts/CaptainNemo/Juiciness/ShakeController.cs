@@ -1,5 +1,6 @@
 using CaptainNemo.Controls;
 using CaptainNemo.DotTweenTentacules;
+using CaptainNemo.Game;
 using DG.Tweening;
 using UnityEngine;
 
@@ -15,10 +16,23 @@ public class ShakeController : ShakeComponent
 
 	public override void Shake()
 	{
-		shakeStrength = controlerHandler.GetControlValue() / attenuation;
-		base.Shake();
+		float controlValue = 0;
 
-		Debug.LogWarning("Shake strength" + shakeStrength);
+		switch (controlerHandler.GetGlobalControlParam())
+		{
+			case GlobalControlParam.Pressure:
+				controlValue = GameManager.GetPressure();
+				break;
+			case GlobalControlParam.Temperature: 
+				controlValue = GameManager.GetTemperature();
+				break;
+			case GlobalControlParam.Oxygen:
+				controlValue = GameManager.GetOxygen();
+				break;
+		}
+		
+		shakeStrength = controlValue / attenuation;
+		base.Shake();
 	}
 
 	protected override void OnCompleteTween()

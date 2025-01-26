@@ -169,10 +169,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d993715a3bb4e5ebc217866ce9aa06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubblesManager: {fileID: 5845325493140665060}
-  mouth: {fileID: 1687510868}
-  moveSpeed: 0.4
-  baseValueOxygen: 100
+  <PressureControl>k__BackingField: {fileID: 0}
+  <TemperatureControl>k__BackingField: {fileID: 0}
+  <OxygenControl>k__BackingField: {fileID: 0}
+  <Mouth>k__BackingField: {fileID: 0}
   parametersVariation: {fileID: 11400000, guid: 41566abda5469b64aa0394c9bf923d19, type: 2}
 --- !u!1 &148706546
 GameObject:
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b03240a34d3e48a3867457892bb0bb49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBlockingControls: 0
+  lockTransform: {fileID: 0}
   onControlValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -283,19 +283,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: CaptainNemo.Diver, Assembly-CSharp
         m_MethodName: ParameterCallback
         m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CaptainNemo.DotTweenTentacules.ShakeComponent,
-          Assembly-CSharp
-        m_MethodName: Shake
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -312,6 +299,8 @@ MonoBehaviour:
       m_Calls: []
   clampValue: {x: 0, y: 100}
   attenuation: 0.5
+  radiusThreshold: 10
+  angleThreshold: 15
   globalParam: 1
 --- !u!65 &148706550
 BoxCollider:
@@ -399,17 +388,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4e23b32c809b7149ad6a409122362bb, type: 3}
---- !u!114 &279900909 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3878976434799022965, guid: d4e23b32c809b7149ad6a409122362bb, type: 3}
-  m_PrefabInstance: {fileID: 279900908}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3cf2a093b9e58d488abc6e844edf655, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &288616017
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,13 +464,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8390e15ca94bd3e4d8588b6d29e075a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starfishSpawner: {fileID: 1171234698}
-  octupusSpawner: {fileID: 279900909}
-  timeToTriggeredEvent: 10
-  allEvent: 0001
-  controlHandlers:
-  - {fileID: 148706549}
-  - {fileID: 766919286}
 --- !u!4 &324100503
 Transform:
   m_ObjectHideFlags: 0
@@ -1190,7 +1161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84634db6837e4608b42e0aec17ba48d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBlockingControls: 0
+  lockTransform: {fileID: 0}
   onControlValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1198,18 +1169,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: CaptainNemo.Diver, Assembly-CSharp
         m_MethodName: ParameterCallback
         m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 766919287}
-        m_TargetAssemblyTypeName: ShakeValve, Assembly-CSharp
-        m_MethodName: Shake
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1484,17 +1443,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac41d3a6123cbb64a982ed1364892a2a, type: 3}
---- !u!114 &1171234698 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7372327557963889309, guid: ac41d3a6123cbb64a982ed1364892a2a, type: 3}
-  m_PrefabInstance: {fileID: 1171234697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a65cf8c4bae53574f97172d1ed8fe421, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1295088201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,6 +1859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737930c7830feae4e8a65bdd69c2e1e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 1
 --- !u!1 &1696313874
 GameObject:
   m_ObjectHideFlags: 0
@@ -1980,7 +1929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77892167a1b346d89c099da41d16a9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBlockingControls: 0
+  lockTransform: {fileID: 0}
   onControlValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2528,6 +2477,10 @@ MonoBehaviour:
   origin: {fileID: 1707674725}
   allBubbles: []
   spawnRange: {x: 0.1, y: 0.4}
+  <CurrentTimeBetweenChangeTargetDirection>k__BackingField: 0.5
+  <CurrentRotationSpeed>k__BackingField: 0.03
+  <CurrentTargetRotationChangeRange>k__BackingField: {x: -30, y: 30}
+  <CurrentAmplitude>k__BackingField: 0.5
   newCalm: 1
 --- !u!114 &7610397984728107422
 MonoBehaviour:
@@ -2541,7 +2494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77892167a1b346d89c099da41d16a9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBlockingControls: 0
+  lockTransform: {fileID: 0}
   onControlValueChanged:
     m_PersistentCalls:
       m_Calls: []
