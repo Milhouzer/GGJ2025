@@ -1,4 +1,5 @@
-﻿using CaptainNemo.Game;
+﻿using System;
+using CaptainNemo.Game;
 using UnityEngine;
 
 namespace CaptainNemo.Controls.Logic
@@ -27,6 +28,12 @@ namespace CaptainNemo.Controls.Logic
         [SerializeField] private SpriteRenderer handleRenderer;
         [SerializeField] private Sprite handleA;
         [SerializeField] private Sprite handleB;
+        [SerializeField] private GameObject actionRequired;
+
+        private void Update()
+        {
+            actionRequired.SetActive(GameManager.GetTemperature() >= GameManager.GetMaxTemperatureValue() * 0.8f);
+        }
 
         /// <summary>
         /// Processes control input by accumulating pressure.

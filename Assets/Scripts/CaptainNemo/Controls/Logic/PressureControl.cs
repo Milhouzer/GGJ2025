@@ -41,6 +41,13 @@ namespace CaptainNemo.Controls.Logic
             pivotPoint = UnityEngine.Input.mousePosition;
             SoundManager.PlaySound(E_Sound.Valve, true);
         }
+        
+        [SerializeField] private GameObject actionRequired;
+
+        private void Update()
+        {
+            actionRequired.SetActive(GameManager.GetPressure() >= GameManager.GetMaxPressureValue() * 0.8f);
+        }
 
         protected override void OnRelease()
         {
