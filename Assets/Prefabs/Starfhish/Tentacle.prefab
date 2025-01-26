@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 6184515109823277309}
   - component: {fileID: 8475024320919358219}
   - component: {fileID: 8401608084848900497}
+  - component: {fileID: 5183656270525221420}
   m_Layer: 0
   m_Name: Tentacle
   m_TagString: Untagged
@@ -139,7 +140,20 @@ MonoBehaviour:
       m_Calls: []
   onHandle:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5183656270525221420}
+        m_TargetAssemblyTypeName: CaptainNemo.DotTweenTentacules.ShakeTentacules,
+          Assembly-CSharp
+        m_MethodName: Shake
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onRelease:
     m_PersistentCalls:
       m_Calls: []
@@ -165,3 +179,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.2, y: 1, z: 2}
   m_Center: {x: 0, y: 0, z: -0.35}
+--- !u!114 &5183656270525221420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7740523477962610339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be906d36b753c24c82f13b5a06c11eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeStrength: 0.1
+  duration: 0.3
+  vibrato: 15
+  sprite: {fileID: 7744734647321735531}
+  easeCurve: 24
