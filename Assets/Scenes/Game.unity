@@ -288,6 +288,10 @@ MonoBehaviour:
   StartScreen: {fileID: 5395163347036566864}
   EndScreen: {fileID: 8199761135675536537}
   texture: {fileID: 0}
+  idle: {fileID: 21300000, guid: db8d7901198b9af418c8db9d3cbc5ec3, type: 3}
+  hover: {fileID: 21300000, guid: da843284f592bbb4ea80fff35f4a0d52, type: 3}
+  grab: {fileID: 21300000, guid: 346d7a7d6366a91479c9387da828c975, type: 3}
+  clickIdle: {fileID: 21300000, guid: 1dc7f85034e1d2048be1a350d0e8d7bc, type: 3}
   playerCamera: {fileID: 945966881}
   IgnoreLayerMask:
     serializedVersion: 2
