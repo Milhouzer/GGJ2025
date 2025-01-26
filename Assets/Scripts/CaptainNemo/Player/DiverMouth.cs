@@ -6,13 +6,14 @@ namespace CaptainNemo.Player
 {
     public class DiverMouth : MonoBehaviour
     {
+        [SerializeField] private Transform _mouthStartTransform;
         private Vector3 _mouthStartPosition;
-        
         [SerializeField] private float moveSpeed = 1f;
 
-        private void Start()
+        private void Awake()
         {
-            _mouthStartPosition = this.transform.position;
+            if (_mouthStartTransform == null) return;
+            _mouthStartPosition = _mouthStartTransform.position;
         }
 
         private void OnTriggerEnter(Collider other)

@@ -25,19 +25,6 @@ namespace CaptainNemo.Game
         [SerializeField] private GameObject EndScreen;
         [SerializeField] private Texture2D texture;
 
-        [SerializeField] private GameObject StartScreen;
-        [SerializeField] private GameObject EndScreen;
-
-        [SerializeField] private Sprite idle;
-        [SerializeField] private Sprite hover;
-        [SerializeField] private Sprite grab;
-        [SerializeField] private Sprite clickIdle;
-
-        private Sprite currentCursorTexture;
-
-        [SerializeField] private GameObject StartScreen;
-        [SerializeField] private GameObject EndScreen;
-
         [SerializeField] private Sprite idle;
         [SerializeField] private Sprite hover;
         [SerializeField] private Sprite grab;

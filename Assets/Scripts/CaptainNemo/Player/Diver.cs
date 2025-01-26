@@ -74,11 +74,11 @@ namespace CaptainNemo.Player
         
         private void UpdateGlobalParameters(ParametersVariationStrategy parameters, float elapsedTime, float deltaTime)
         {
-            OxygenParam.VariationRate = parameters.GetOxygenIncreaseRate(elapsedTime) + OxygenParam.InputVariationRate;
+            OxygenParam.VariationRate = parameters.GetOxygenIncreaseRate(elapsedTime);
             TemperatureParam.VariationRate = parameters.GetTemperatureIncreaseRate(elapsedTime) + TemperatureParam.InputVariationRate;
             PressureParam.VariationRate = parameters.GetPressureIncreaseRate(elapsedTime) + PressureParam.InputVariationRate;
             
-            OxygenParam.Value = Mathf.Clamp(OxygenParam.Value + OxygenParam.VariationRate * deltaTime, OxygenParam.Range.x, OxygenParam.Range.y);
+            OxygenParam.Value = Mathf.Clamp(OxygenParam.Value + OxygenParam.VariationRate * deltaTime - OxygenParam.InputVariationRate, OxygenParam.Range.x, OxygenParam.Range.y);
             TemperatureParam.Value = Mathf.Clamp(TemperatureParam.Value + TemperatureParam.VariationRate * deltaTime, TemperatureParam.Range.x, TemperatureParam.Range.y);
             PressureParam.Value = Mathf.Clamp(PressureParam.Value + PressureParam.VariationRate * deltaTime, PressureParam.Range.x, PressureParam.Range.y);
 
