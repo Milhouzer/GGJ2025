@@ -15,7 +15,7 @@ public class DoColorDiver : MonoBehaviour
 
 	void Update()
     {
-        float ratio = GameManager.GetOxygen() / GameManager.GetMaxOxygenValue();
+        float ratio = (GameManager.GetMaxOxygenValue() - GameManager.GetOxygen()) / GameManager.GetMaxOxygenValue();
         spriteRenderer.color = Color.Lerp(startColor, colorToAchieve,ratio);       
     }
 }
