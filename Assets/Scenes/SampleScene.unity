@@ -291,6 +291,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CaptainNemo.DotTweenTentacules.ShakeComponent,
+          Assembly-CSharp
+        m_MethodName: Shake
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onHandle:
     m_PersistentCalls:
       m_Calls: []
@@ -1066,6 +1079,7 @@ GameObject:
   - component: {fileID: 766919285}
   - component: {fileID: 766919283}
   - component: {fileID: 766919286}
+  - component: {fileID: 766919287}
   m_Layer: 0
   m_Name: TemperatureControl
   m_TagString: Untagged
@@ -1192,6 +1206,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 766919287}
+        m_TargetAssemblyTypeName: ShakeValve, Assembly-CSharp
+        m_MethodName: Shake
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onHandle:
     m_PersistentCalls:
       m_Calls: []
@@ -1201,6 +1227,26 @@ MonoBehaviour:
   clampValue: {x: 0, y: 100}
   attenuation: 0.5
   globalParam: 0
+--- !u!114 &766919287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766919281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa568144cebd82147939db0a4b38b469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeStrength: 1
+  duration: 0.2
+  vibrato: 1
+  sprite: {fileID: 766919285}
+  easeCurve: 1
+  loop: 0
+  controlerHandler: {fileID: 766919286}
+  attenuation: 1
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
