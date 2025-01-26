@@ -113,6 +113,8 @@ namespace CaptainNemo.Player
             IsDead = OxygenParam.Value <= 0;
             if (IsDead)
             {
+                SoundManager.PlaySound(E_Sound.Death);
+
                 Debug.Log("T'es mort gros naze");
             }
         }

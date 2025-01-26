@@ -30,6 +30,12 @@ namespace CaptainNemo.Controls.Logic
         protected override void OnHandle()
         {
             base.OnHandle();
+
+            if (_oxygen > 0)
+                SoundManager.PlaySound(E_Sound.GoodBubble);
+            else
+                SoundManager.PlayRandomSound(new() { E_Sound.WrongBubble, E_Sound.WrongBubble2 });
+
             GameManager.AddOxygen(_oxygen);
             Release();
             BubblesManager.Instance.DestroyBubble(bubble);
