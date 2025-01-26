@@ -44,7 +44,8 @@ namespace CaptainNemo.SeaCreatures
                 Debug.Log("[InkSplat spawner] Trying to spawn an inksplat that is locked.");
                 return false;
             }
-            
+
+            SoundManager.PlaySound(E_Sound.OctopusSquirt);
             CurrentInkSplat = Instantiate(inkSplatPrefab, _wiperControl.LockTransform());
             
             return true;
