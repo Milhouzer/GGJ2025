@@ -23,6 +23,7 @@ namespace CaptainNemo.Game
         
         [SerializeField] private GameObject StartScreen;
         [SerializeField] private GameObject EndScreen;
+        [SerializeField] private Texture2D texture;
 
         /// <summary>
         /// Provides access to the current input reader.
