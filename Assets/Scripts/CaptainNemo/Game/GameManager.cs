@@ -35,6 +35,16 @@ namespace CaptainNemo.Game
 
         private Sprite currentCursorTexture;
 
+        [SerializeField] private GameObject StartScreen;
+        [SerializeField] private GameObject EndScreen;
+
+        [SerializeField] private Sprite idle;
+        [SerializeField] private Sprite hover;
+        [SerializeField] private Sprite grab;
+        [SerializeField] private Sprite clickIdle;
+
+        private Sprite currentCursorTexture;
+
         /// <summary>
         /// Provides access to the current input reader.
         /// </summary>
