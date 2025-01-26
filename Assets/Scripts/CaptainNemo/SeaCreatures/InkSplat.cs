@@ -12,7 +12,9 @@ namespace CaptainNemo.SeaCreatures
         public void Wipe(float amount)
         {
             _currentWipeAmount += amount;
-            splat.color = Color.Lerp(splat.color, Color.clear, 1f - _currentWipeAmount/wipeAmountRequired);
+            Color c = splat.color;
+            c.a = 1f - _currentWipeAmount/wipeAmountRequired;
+            splat.color = c;
             if (_currentWipeAmount >= wipeAmountRequired)
             {
                 Destroy(gameObject);

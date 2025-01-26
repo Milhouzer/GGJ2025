@@ -36,7 +36,7 @@ namespace CaptainNemo.Controls.Logic
             else
                 SoundManager.PlayRandomSound(new() { E_Sound.WrongBubble, E_Sound.WrongBubble2 });
 
-            GameManager.AddOxygen(_oxygen);
+            GameManager.AddOxygen(-_oxygen);
             Release();
             BubblesManager.Instance.DestroyBubble(bubble);
         }

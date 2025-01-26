@@ -16,5 +16,5 @@ MonoBehaviour:
   timeToTriggerEvent: 0.1
   dificultyVariationParameter: 1
   weightBadBubble: 0.1
-  bubbleSpawnXSeoncds: 5
+  bubbleSpawnXSeoncds: 2.2
   weightedIncrementBadBubble: 0.1
