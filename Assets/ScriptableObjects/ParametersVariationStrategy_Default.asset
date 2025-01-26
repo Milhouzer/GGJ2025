@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dffa7682e9541a7ab001e0f7c6ea672, type: 3}
   m_Name: ParametersVariationStrategy_Default
   m_EditorClassIdentifier: 
+  TemperatureRange: {x: 0, y: 100}
+  PressureRange: {x: 0, y: 100}
+  OxygenRange: {x: 0, y: 100}
+  InitTemperature: 0
+  InitPressure: 0
+  InitOxygen: 100
+  difficultyVariationParameter: 0

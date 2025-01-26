@@ -31,11 +31,21 @@ namespace Input {
             EnablePlayerCallbacks();
         }
 
+        public void Disable()
+        {
+            DisablePlayerCallbacks();
+        }
+
         #region TOGGLE CALLBACKS
         private void EnablePlayerCallbacks()
         {
             _inputActions.Player.Enable();
             Debug.Log("Register player callbacks");
+        }
+        private void DisablePlayerCallbacks()
+        {
+            _inputActions.Player.Disable();
+            Debug.Log("Unregister player callbacks");
         }
 
         #endregion
