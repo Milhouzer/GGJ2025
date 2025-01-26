@@ -37,6 +37,11 @@ public class ShakeController : ShakeComponent
 		base.Shake();
 	}
 
+	public void StopShaking()
+	{
+		tweenShake.Kill();
+	}
+
 	protected override void OnCompleteTween()
 	{
 		base.OnCompleteTween();
