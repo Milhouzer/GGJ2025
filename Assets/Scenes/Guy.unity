@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b03240a34d3e48a3867457892bb0bb49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBlockingControls: 0
+  lockTransform: {fileID: 0}
   onControlValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -263,6 +263,8 @@ MonoBehaviour:
       m_Calls: []
   clampValue: {x: 0, y: 100}
   attenuation: 0.5
+  radiusThreshold: 10
+  angleThreshold: 15
   globalParam: 1
 --- !u!1 &90880060
 GameObject:
@@ -486,7 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84634db6837e4608b42e0aec17ba48d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBlockingControls: 0
+  lockTransform: {fileID: 0}
   onControlValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -831,9 +833,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d993715a3bb4e5ebc217866ce9aa06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouth: {fileID: 1917209751}
-  moveSpeed: 0.1
-  baseValueOxygen: 100
+  <PressureControl>k__BackingField: {fileID: 0}
+  <TemperatureControl>k__BackingField: {fileID: 0}
+  <OxygenControl>k__BackingField: {fileID: 0}
+  <Mouth>k__BackingField: {fileID: 0}
   parametersVariation: {fileID: 11400000, guid: 41566abda5469b64aa0394c9bf923d19, type: 2}
 --- !u!1 &864006009
 GameObject:
@@ -1448,7 +1451,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 15
   m_Sprite: {fileID: 1126416089, guid: aa086066a5a1db54eb1e5958c2d7c7ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1731,6 +1734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737930c7830feae4e8a65bdd69c2e1e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 1
 --- !u!1 &2115224606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1815,7 +1819,7 @@ SpriteRenderer:
   m_Size: {x: 4.6400003, y: 3.3904295}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2133101547

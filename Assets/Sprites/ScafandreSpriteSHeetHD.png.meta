@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,10 +122,10 @@ TextureImporter:
       name: ScafandreSpriteSHeetHD_1
       rect:
         serializedVersion: 2
-        x: 1873
-        y: 968
-        width: 326
-        height: 352
+        x: 1868
+        y: 940
+        width: 327
+        height: 364
       alignment: 9
       pivot: {x: 0.46141043, y: 0.5450051}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,10 +188,10 @@ TextureImporter:
       name: ScafandreSpriteSHeetHD_4
       rect:
         serializedVersion: 2
-        x: 2356
-        y: 988
-        width: 392
-        height: 432
+        x: 2337
+        y: 980
+        width: 410
+        height: 424
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,10 +210,10 @@ TextureImporter:
       name: ScafandreSpriteSHeetHD_5
       rect:
         serializedVersion: 2
-        x: 2830
-        y: 921
-        width: 279
-        height: 230
+        x: 2823
+        y: 916
+        width: 260
+        height: 217
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -232,10 +232,10 @@ TextureImporter:
       name: ScafandreSpriteSHeetHD_6
       rect:
         serializedVersion: 2
-        x: 2799
-        y: 1230
-        width: 202
-        height: 211
+        x: 3559
+        y: 882
+        width: 176
+        height: 184
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -298,10 +298,10 @@ TextureImporter:
       name: ScafandreSpriteSHeetHD_9
       rect:
         serializedVersion: 2
-        x: 3207
-        y: 956
-        width: 153
-        height: 154
+        x: 3193
+        y: 942
+        width: 170
+        height: 169
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,9 +321,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 17
-        y: 15
+        y: 5
         width: 916
-        height: 808
+        height: 818
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -405,37 +405,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ScafandreSpriteSHeetHD_18
-      rect:
-        serializedVersion: 2
-        x: 3444
-        y: 91
-        width: 464
-        height: 339
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cc0e48e77ace8c64c9a6467df4c6d553
-      internalID: -1851382904
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: ScafandreSpriteSHeetHD_14
       rect:
         serializedVersion: 2
-        x: 2926
-        y: 75
-        width: 464
-        height: 339
+        x: 2823
+        y: 1191
+        width: 260
+        height: 217
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -444,94 +422,6 @@ TextureImporter:
       bones: []
       spriteID: 832b9b4e17fbd024eb98ff1c8e33ef39
       internalID: 431237831
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ScafandreSpriteSHeetHD_15
-      rect:
-        serializedVersion: 2
-        x: 2405
-        y: 75
-        width: 464
-        height: 339
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 84044101ab8dfb04f987d36dd35dd3ec
-      internalID: 1044131404
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ScafandreSpriteSHeetHD_16
-      rect:
-        serializedVersion: 2
-        x: 1908
-        y: 70
-        width: 464
-        height: 339
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 460187482cac63c47ba99f03efcd36d7
-      internalID: 1219969067
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ScafandreSpriteSHeetHD_17
-      rect:
-        serializedVersion: 2
-        x: 1405
-        y: 70
-        width: 464
-        height: 339
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 66ac91108d57eed45a8147d09155366e
-      internalID: -1306090362
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ScafandreSpriteSHeetHD_19
-      rect:
-        serializedVersion: 2
-        x: 1435
-        y: 465
-        width: 464
-        height: 339
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1ec2af118dc3d06429c055fd1ac9f381
-      internalID: 890634854
       vertices: []
       indices: 
       edges: []
