@@ -29,6 +29,7 @@ public class RotateThermostat : MonoBehaviour
 		if(ratio >= 1 && !startShaking)
 		{
 			startShaking = true;
+			shakeController.StopShaking();
 			shakeController.Shake();
 		}else if(ratio < 1)
 			startShaking=false;
