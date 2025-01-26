@@ -79,7 +79,6 @@ namespace CaptainNemo.Bubbles
             deathParticle.Play();
         }
 
-
         private void OnDestroy()
         {
             Destroy();
