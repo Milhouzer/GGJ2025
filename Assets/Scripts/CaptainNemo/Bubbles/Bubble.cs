@@ -37,7 +37,7 @@ namespace CaptainNemo.Bubbles
 
         public void Awake()
         {
-            transform.localScale = Vector3.one * Mathf.Abs(Oxygen/MaxBubbleOxygen);
+            transform.localScale = Vector3.one * Mathf.Clamp(Mathf.Abs(Oxygen/MaxBubbleOxygen), 0.4f, 1f);
             
             currentDirectionAngle = Random.Range(0, 360) * Mathf.Deg2Rad;
             targetDirectionAngle = Random.Range(0, 360) * Mathf.Deg2Rad;
