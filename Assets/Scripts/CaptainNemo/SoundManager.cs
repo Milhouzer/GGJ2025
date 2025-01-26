@@ -27,11 +27,9 @@ public class SoundManager : MonoBehaviour
     }
 
     [Header("References")]
-    [SerializeField] private AudioSource ambientLoop = default;
     [SerializeField] private AudioSource ambientLoop2 = default;
     [SerializeField] private AudioSource ambientSudden = default;
     [Space(5)]
-    [SerializeField] private AudioSource temperatureEffects = default;
     [SerializeField] private AudioSource featureEffects = default;
     [SerializeField] private AudioSource characterEffects = default;
     [SerializeField] private AudioSource bubbleEffects = default;
@@ -151,16 +149,6 @@ public class SoundManager : MonoBehaviour
         }
 
         return audioSource;
-    }
-
-    private void Update()
-    {
-        if (UnityEngine.Input.GetKeyDown(KeyCode.A))
-            PlaySound(E_Sound.BubbleDivide);
-        else if (UnityEngine.Input.GetKeyDown(KeyCode.Z))
-            PlaySound(E_Sound.BubbleMerge);
-        else if (UnityEngine.Input.GetKeyDown(KeyCode.T))
-            PlaySound(E_Sound.PlayButton);
     }
 
     private static AudioResource GetSoundFromEnum(E_Sound soundToPlay)

@@ -137,7 +137,7 @@ namespace CaptainNemo.Controls
         /// <summary>
         /// Handles acquiring control, releasing previous handler if exists.
         /// </summary>
-        public void Handle()
+        public virtual void Handle()
         {
             if (_isBlockingControls)
             {

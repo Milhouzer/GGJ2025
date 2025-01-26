@@ -568,10 +568,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5c4beeb7d251144b827b0639cc5a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ambientLoop: {fileID: 5618763164446999586}
   ambientLoop2: {fileID: 3640844360161656162}
   ambientSudden: {fileID: 5496725286502426581}
-  temperatureEffects: {fileID: 9133102614966698428}
   featureEffects: {fileID: 5719297687851092923}
   characterEffects: {fileID: 701173335804780172}
   bubbleEffects: {fileID: 3503541175809239371}
@@ -910,7 +908,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

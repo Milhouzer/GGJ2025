@@ -38,6 +38,13 @@ namespace CaptainNemo.Controls.Logic
         {
             base.OnHandle();
             pivotPoint = UnityEngine.Input.mousePosition;
+            SoundManager.PlaySound(E_Sound.Valve, true);
+        }
+
+        protected override void OnRelease()
+        {
+            base.OnRelease();
+            SoundManager.StopSound(E_Sound.Valve);
         }
 
         /// <summary>

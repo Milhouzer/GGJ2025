@@ -25,6 +25,8 @@ namespace CaptainNemo.SeaCreatures
         
             if (tentacleHp <= 0)
             {
+                SoundManager.PlaySound(E_Sound.StarfishLegPop);
+
                 OnDie?.Invoke(this);
                 Release();
                 collider.enabled = false;

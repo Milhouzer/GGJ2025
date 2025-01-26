@@ -225,6 +225,8 @@ namespace CaptainNemo.Bubbles
 		private void DivideBubble(Bubble bubble)
 		{
             return;
+			SoundManager.PlaySound(E_Sound.BubbleDivide);
+
 			Vector3 position = bubble.transform.position;
 
 			float random = Random.Range(0, 1);
@@ -256,6 +258,8 @@ namespace CaptainNemo.Bubbles
 		{
 			if (sender.Oxygen >= Bubble.MaxBubbleOxygen)
 				return;
+
+			SoundManager.PlaySound(E_Sound.BubbleMerge);
 
 			Bubble parentBubble = Instantiate(sender, (sender.transform.position + collidedBubble.transform.position) / 2, Quaternion.identity, transform);
 
