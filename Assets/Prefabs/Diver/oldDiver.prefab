@@ -810,11 +810,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   clampValue: {x: 0, y: 100}
-  eraserRotationSpeed: 25
-  eraserRotationMaxAngle: 77
-  eraserBody: {fileID: 5482248706646823051}
-  aimBuggedCompensation: 225
-  referenceAxis: {x: 0, y: -1, z: 0}
+  returnToInitPosMoveSpeed: 0.1
 --- !u!135 &861432377276837075
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1003,6 +999,9 @@ MonoBehaviour:
   clampValue: {x: 0, y: 100}
   attenuation: 0.5
   globalParam: 0
+  handleRenderer: {fileID: 0}
+  handleA: {fileID: 0}
+  handleB: {fileID: 0}
 --- !u!65 &6758637866342324534
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1221,7 +1220,7 @@ GameObject:
   - component: {fileID: 5712061461332815701}
   - component: {fileID: 1193598710483107451}
   m_Layer: 0
-  m_Name: Diver
+  m_Name: oldDiver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1260,6 +1259,7 @@ MonoBehaviour:
   <PressureControl>k__BackingField: {fileID: 3100938204630243424}
   <TemperatureControl>k__BackingField: {fileID: 4469714681486813680}
   <OxygenControl>k__BackingField: {fileID: 0}
+  <WiperControl>k__BackingField: {fileID: 0}
   <Mouth>k__BackingField: {fileID: 8863153712082686803}
   parametersVariation: {fileID: 11400000, guid: 41566abda5469b64aa0394c9bf923d19, type: 2}
 --- !u!1 &7140518018512385599
@@ -1362,6 +1362,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1296842151452887778}
   - component: {fileID: 4733359052328093062}
+  - component: {fileID: 3834430518078023375}
   m_Layer: 0
   m_Name: Eye_Pupil
   m_TagString: Untagged
@@ -1439,6 +1440,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3834430518078023375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439436770339756427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f8a930c8e64b04982cb79e1eb75ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 0.08
+  clampDistance: {x: 0, y: 8}
+  offsset: {x: 0, y: -0.15, z: 0}
 --- !u!1 &8385059519720873022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,6 +1465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4655675391626420718}
   - component: {fileID: 726865873901485177}
+  - component: {fileID: 4653382050580818682}
   m_Layer: 0
   m_Name: Eye_Pupil
   m_TagString: Untagged
@@ -1526,6 +1543,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4653382050580818682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8385059519720873022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f8a930c8e64b04982cb79e1eb75ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 0.08
+  clampDistance: {x: 0, y: 8}
+  offsset: {x: 0, y: -0.15, z: 0}
 --- !u!1 &8390658923872200408
 GameObject:
   m_ObjectHideFlags: 0
