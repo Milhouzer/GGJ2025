@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6874a08ca66c443864c789d40deacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathParticle: {fileID: 6021471814804102566, guid: c06546551fa2b604ea5039c7625bd412, type: 3}
+  colorDeathParticle: {r: 0.3372549, g: 0.63529414, b: 0.8588236, a: 1}
   <Oxygen>k__BackingField: 100
   targetDirectionAngle: 0
   currentDirectionAngle: 0
