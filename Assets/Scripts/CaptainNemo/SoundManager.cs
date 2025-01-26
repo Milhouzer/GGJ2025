@@ -98,7 +98,7 @@ public class SoundManager : MonoBehaviour
 
     public static void PlayRandomSound(List<E_Sound> sounds)
     {
-        int randomIndex = UnityEngine.Random.Range(0, sounds.Count - 1);
+        int randomIndex = UnityEngine.Random.Range(0, sounds.Count);
 
         PlaySound(sounds[randomIndex]);
     }
