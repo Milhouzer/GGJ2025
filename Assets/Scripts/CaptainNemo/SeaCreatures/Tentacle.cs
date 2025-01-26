@@ -1,15 +1,19 @@
 using CaptainNemo.Controls;
 using DG.Tweening;
+using UnityEngine;
 
 namespace CaptainNemo.SeaCreature
 {
     public delegate void OnTentacleDeathEventHandler(Tentacle sender);
 
     public class Tentacle : ControlHandler
-    {   
-        private int _hp = 1;
+    {
+        [SerializeField] private float duration;
+
+		private int _hp = 1;
         private float _hitShakeStrength = 1;
-        public event OnTentacleDeathEventHandler OnTentacleDeath;
+
+		public event OnTentacleDeathEventHandler OnTentacleDeath;
         
 
         public void Initialize(int hp, float hitShakeStrength)
@@ -36,5 +40,7 @@ namespace CaptainNemo.SeaCreature
             }
         
         }
+
+        
     }
 }
