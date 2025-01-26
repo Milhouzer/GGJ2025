@@ -1,13 +1,22 @@
+using System;
 using System.Collections.Generic;
 using CaptainNemo.Controls;
+using CaptainNemo.Game;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace CaptainNemo.SeaCreature
 {
 	public class StarfishSpawner : MonoBehaviour
 	{
-		[SerializeField]private Transform starfishPrefab;
-		private Dictionary<Transform, ControlHandler> starfishToBlockedInteractible = new Dictionary<Transform, ControlHandler>();
+		[SerializeField] private Starfish starfishPrefab;
+		[SerializeField] private float spawnRate = 5f;
+		private float spawnTimer = 0f;
+		
+		/// <summary>
+		/// Spawnables handlers
+		/// </summary>
+		private List<IControlHandler> handlers = new List<IControlHandler>();
 
 		public static StarfishSpawner Instance { get; private set; }
 
@@ -23,21 +32,52 @@ namespace CaptainNemo.SeaCreature
 			}
 		}
 
-		public Starfish SpawnStarfish(ControlHandler toBlock)
+		private void Start()
 		{
-			Transform spawnedStarfishTransform = Instantiate(starfishPrefab, toBlock.transform.position, Quaternion.identity);
-			starfishToBlockedInteractible.Add(spawnedStarfishTransform, toBlock);
-			Starfish spawnedStarfish = spawnedStarfishTransform.GetComponent<Starfish>();
-			spawnedStarfish.onStarfishDeath += OnStarfishDeath;
-			toBlock.isBlockingControls = true;
-			return spawnedStarfish;
+			IControlHandler pressureControl = GameManager.GetPressureControl();
+			if (pressureControl != null)
+			{
+				handlers.Add(pressureControl);
+			};
+			IControlHandler temperatureControl = GameManager.GetTemperatureControl();
+			if (temperatureControl != null)
+			{
+				handlers.Add(temperatureControl);
+			};
+			
+			spawnTimer = spawnRate;
 		}
 
-		private void OnStarfishDeath(Starfish sender)
+		private void Update()
 		{
-			starfishToBlockedInteractible[sender.transform].isBlockingControls = false;
-			sender.onStarfishDeath -= OnStarfishDeath;
-			starfishToBlockedInteractible.Remove(sender.transform);
+			spawnTimer -= Time.deltaTime;
+			if (spawnTimer <= 0)
+			{
+				spawnTimer = spawnRate;
+				if (TrySpawnStarfish(out Starfish starfish))
+				{
+					Debug.Log($"[Starfish spawner] Spawned {starfish}.");
+				}
+			}
+		}
+
+		public bool TrySpawnStarfish(out Starfish spawned)
+		{
+			int index = Random.Range(0, handlers.Count);
+			IControlHandler spawnControl = handlers[index];
+			if (spawnControl.IsLocked())
+			{
+				Debug.Log("[Starfish spawner] Trying to spawn a starfish that is locked.");
+				spawned = null;
+				return false;
+			}
+
+			spawned = Instantiate(starfishPrefab, spawnControl.LockTransform());
+			spawned.OnStarfishDeath += sender =>
+			{
+				handlers[index].Unlock();
+			};
+			return true;
 		}
 	}
 }

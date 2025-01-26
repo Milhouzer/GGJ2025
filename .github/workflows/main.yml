@@ -3,8 +3,9 @@ name: Actions 😎
 on:
   push:
     branches:
-      - master 
-    
+      - master
+      - gamescene
+
 jobs:
   build:
     name: Build project ✨

@@ -1,4 +1,5 @@
 ﻿using CaptainNemo.Bubbles;
+using CaptainNemo.Game;
 using UnityEngine;
 
 namespace CaptainNemo.Controls.Logic
@@ -29,6 +30,7 @@ namespace CaptainNemo.Controls.Logic
         protected override void OnHandle()
         {
             base.OnHandle();
+            GameManager.AddOxygen(_oxygen);
             Release();
             BubblesManager.Instance.DestroyBubble(bubble);
         }

@@ -1,5 +1,6 @@
 using CaptainNemo.Player;
 using System.Collections.Generic;
+using CaptainNemo.Game;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -30,6 +31,11 @@ namespace CaptainNemo.Bubbles
 		
 		[SerializeField] public Vector2 spawnRange;
 		private float startWeightBubble = 0;
+
+		private void OnDrawGizmosSelected()
+		{
+			
+		}
 		
 		private void Awake()
 		{
@@ -95,6 +101,8 @@ namespace CaptainNemo.Bubbles
 				newBubble.gameObject.SetActive(true);
 
 				allBubbles.Add(newBubble);
+				badBubble.weight += newBubble.Oxygen >= 0 ? weightedIncrement : startWeightBubble;
+				newBubble.gameObject.SetActive(true);
 			}
 			else
 			{
@@ -138,26 +146,31 @@ namespace CaptainNemo.Bubbles
 			Pressure();
 		}
 
+		[field: SerializeField] public float CurrentTimeBetweenChangeTargetDirection { get; set; } = 0.5f;
+		[field: SerializeField] public float CurrentRotationSpeed { get; set; } = 0.03f;
+		[field: SerializeField] public Vector2 CurrentTargetRotationChangeRange { get; set; } = new Vector2(-30f, 30f);
+		[field: SerializeField] public float CurrentAmplitude { get; set; } = 0.5f;
+		
 		private void Temperature()
 		{
-			float temperature = diver.TemperatureLevel * 0.01f;
+			float temperature = diver.TemperatureParam.Value * 0.01f;
 
-			Bubble.CurrentTimeBetweenChangeTargetDirection = Mathf.Lerp(
+			CurrentTimeBetweenChangeTargetDirection = Mathf.Lerp(
 				bubbleMovementRanges.timeBetweenChangeTargetDirection.x,
 				bubbleMovementRanges.timeBetweenChangeTargetDirection.y,
 				temperature);
 
-			Bubble.CurrentRotationSpeed = Mathf.Lerp(
+			CurrentRotationSpeed = Mathf.Lerp(
 				bubbleMovementRanges.rotationSpeed.x,
 				bubbleMovementRanges.rotationSpeed.y,
 				temperature);
 
-			Bubble.CurrentAmplitude = Mathf.Lerp(
+			CurrentAmplitude = Mathf.Lerp(
 				bubbleMovementRanges.amplitude.x,
 				bubbleMovementRanges.amplitude.y,
 				temperature);
 
-			Bubble.CurrentTargetRotationChangeRange = Vector2.Lerp(
+			CurrentTargetRotationChangeRange = Vector2.Lerp(
 				bubbleMovementRanges.minTargetRotationChangeRange,
 				bubbleMovementRanges.maxTargetRotationChangeRange,
 				temperature);
@@ -187,7 +200,7 @@ namespace CaptainNemo.Bubbles
 		{
 			for (int i = allBubbles.Count - 1; i >= 0; i--)
 			{
-				if (100 - allBubbles[i].Oxygen < diver.PressureLevel)
+				if (100 - allBubbles[i].Oxygen < GameManager.GetPressure())
 					DivideBubble(allBubbles[i]);
 			}
 		}
