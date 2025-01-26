@@ -8,7 +8,9 @@ namespace CaptainNemo.SeaCreature
     public class Tentacle : ControlHandler
     {
         [SerializeField] private int tentacleHp;
-        private float _hitShakeStrength = 1;
+        [SerializeField] private Transform visual;
+        [SerializeField] private Transform deadVisual;
+        [SerializeField] private float _hitShakeStrength = .5f;
         public event OnTentacleDeathEventHandler OnDie;
 
         public override GlobalControlParam GetGlobalControlParam()
@@ -24,9 +26,9 @@ namespace CaptainNemo.SeaCreature
             {
                 OnDie?.Invoke(this);
                 Release();
-                Destroy(gameObject);
+                visual.gameObject.SetActive(false);
+                deadVisual.gameObject.SetActive(true);
             }
-        
         }
     }
 }

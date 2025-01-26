@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 namespace CaptainNemo.SeaCreature
@@ -11,6 +12,8 @@ namespace CaptainNemo.SeaCreature
     
         [SerializeField] private List<Tentacle> tentacles;
         [SerializeField] private float tentacleShakeStrength;
+        [SerializeField] private ParticleSystem hitParticle;
+        [SerializeField] private ParticleSystem bloodParticle;
 
         private int _tentaclesCount;
         
@@ -21,15 +24,22 @@ namespace CaptainNemo.SeaCreature
 
         private void Start()
         {
+            _tentaclesCount = tentacles.Count;
             tentacles.ForEach(t => t.OnDie += sender =>
             {
                 this._tentaclesCount--;
+
+                transform.DOShakePosition(0.3f, 0.5f, 30, 70f, false);
+                hitParticle.Play();
+                bloodParticle.Play();
+                
                 if (this._tentaclesCount <= 0)
                 {
                     Die();
                 }
             });
         }
+        
 
         private void Die()
         {
