@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using CaptainNemo.Controls;
 using CaptainNemo.Game;
@@ -10,8 +9,8 @@ namespace CaptainNemo.SeaCreatures
 	public class StarfishSpawner : MonoBehaviour
 	{
 		[SerializeField] private Starfish starfishPrefab;
-		[SerializeField] private float spawnRate = 5f;
-		private float spawnTimer = 0f;
+		private float spawnTimer;
+		[SerializeField] private Vector2 randomSpawn;
 		
 		/// <summary>
 		/// Spawnables handlers
@@ -45,7 +44,7 @@ namespace CaptainNemo.SeaCreatures
 				handlers.Add(temperatureControl);
 			};
 			
-			spawnTimer = spawnRate;
+			spawnTimer = Random.Range(randomSpawn.x, randomSpawn.y);
 		}
 
 		private void Update()
@@ -53,7 +52,7 @@ namespace CaptainNemo.SeaCreatures
 			spawnTimer -= Time.deltaTime;
 			if (spawnTimer <= 0)
 			{
-				spawnTimer = spawnRate;
+				spawnTimer = Random.Range(randomSpawn.x, randomSpawn.y);
 				if (TrySpawnStarfish(out Starfish starfish))
 				{
 					Debug.Log($"[Starfish spawner] Spawned {starfish}.");

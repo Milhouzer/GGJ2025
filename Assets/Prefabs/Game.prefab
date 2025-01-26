@@ -987,7 +987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inkSplatPrefab: {fileID: 1240062110598819974, guid: 5c493d54650c5f847a57c241078c1f60, type: 3}
-  spawnRate: 5
+  randomSpawn: {x: 15, y: 20}
 --- !u!1 &4539275741333741726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,7 +1033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starfishPrefab: {fileID: 2887387966809030739, guid: 8ae621ba8e5f3474e98c1748af7bdf41, type: 3}
-  spawnRate: 4
+  randomSpawn: {x: 10, y: 15}
 --- !u!1 &5324282708399687277
 GameObject:
   m_ObjectHideFlags: 0
