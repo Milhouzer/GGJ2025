@@ -23,6 +23,11 @@ namespace CaptainNemo.Controls.Logic
         /// </summary>
         [SerializeField] private GlobalControlParam globalParam = GlobalControlParam.Temperature;
 
+
+        [SerializeField] private SpriteRenderer handleRenderer;
+        [SerializeField] private Sprite handleA;
+        [SerializeField] private Sprite handleB;
+
         /// <summary>
         /// Processes control input by accumulating pressure.
         /// </summary>
@@ -30,6 +35,7 @@ namespace CaptainNemo.Controls.Logic
         protected override void OnControl(Vector2 value)
         {
             GameManager.AddTemperature(value.y * attenuation);
+            handleRenderer.sprite = handleRenderer.sprite == handleA ? handleB : handleA;
             _temperature = value.y * attenuation;
         }
         
