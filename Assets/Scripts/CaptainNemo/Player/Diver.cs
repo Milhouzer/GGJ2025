@@ -19,7 +19,8 @@ namespace CaptainNemo.Player
         [field: SerializeField] public PressureControl PressureControl { get; private set; }
         [field: SerializeField] public TemperatureControl TemperatureControl { get; private set; }
         [field: SerializeField] public OxygenControl OxygenControl { get; private set; }
-        
+        [field: SerializeField] public WiperControl WiperControl { get; private set; }
+
         [field: SerializeField] public DiverMouth Mouth { get; private set; }
 
         private bool IsDead;
@@ -76,9 +77,9 @@ namespace CaptainNemo.Player
             TemperatureParam.VariationRate = parameters.GetTemperatureIncreaseRate(elapsedTime) + TemperatureParam.InputVariationRate;
             PressureParam.VariationRate = parameters.GetPressureIncreaseRate(elapsedTime) + PressureParam.InputVariationRate;
             
-            OxygenParam.Value += OxygenParam.VariationRate * deltaTime;
-            TemperatureParam.Value += TemperatureParam.VariationRate * deltaTime;
-            PressureParam.Value += PressureParam.VariationRate * deltaTime;
+            OxygenParam.Value = Mathf.Clamp(OxygenParam.Value + OxygenParam.VariationRate * deltaTime, OxygenParam.Range.x, OxygenParam.Range.y);
+            TemperatureParam.Value = Mathf.Clamp(TemperatureParam.Value + TemperatureParam.VariationRate * deltaTime, TemperatureParam.Range.x, TemperatureParam.Range.y);
+            PressureParam.Value = Mathf.Clamp(PressureParam.Value + PressureParam.VariationRate * deltaTime, PressureParam.Range.x, PressureParam.Range.y);
 
             OxygenParam.InputVariationRate = 0;
             TemperatureParam.InputVariationRate = 0;

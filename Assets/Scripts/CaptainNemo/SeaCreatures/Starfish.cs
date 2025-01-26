@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-namespace CaptainNemo.SeaCreature
+namespace CaptainNemo.SeaCreatures
 {
     public delegate void OnStarfishDeathEventHandler(Starfish sender);
     public class Starfish : MonoBehaviour

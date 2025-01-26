@@ -5,7 +5,7 @@ using CaptainNemo.Game;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace CaptainNemo.SeaCreature
+namespace CaptainNemo.SeaCreatures
 {
 	public class StarfishSpawner : MonoBehaviour
 	{
@@ -77,6 +77,7 @@ namespace CaptainNemo.SeaCreature
 			{
 				handlers[index].Unlock();
 			};
+			spawnControl.Lock();
 			return true;
 		}
 	}

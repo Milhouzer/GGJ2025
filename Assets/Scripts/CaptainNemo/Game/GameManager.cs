@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Utils;
 using CaptainNemo.Player;
+using CaptainNemo.SeaCreatures;
 
 namespace CaptainNemo.Game
 {
@@ -30,6 +31,8 @@ namespace CaptainNemo.Game
         /// </summary>
         [SerializeField] private Camera playerCamera;
 
+        public LayerMask IgnoreLayerMask;
+        
         /// <summary>
         /// Current game object under mouse cursor/camera focus.
         /// </summary>
@@ -71,7 +74,7 @@ namespace CaptainNemo.Game
     
             Ray ray = playerCamera.ScreenPointToRay(UnityEngine.Input.mousePosition);
             // Does the ray intersect any objects excluding the player layer
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, ~IgnoreLayerMask))
             { 
                 Debug.DrawRay(ray.origin, Vector3.forward * hit.distance, Color.yellow); 
                 GameManager.TargetObject = hit.transform.gameObject;
@@ -85,6 +88,11 @@ namespace CaptainNemo.Game
                     // Debug.Log("New null target");
                 }
             }
+        }
+
+        public static Diver GetDiver()
+        {
+            return GameManager.Instance._diver;
         }
 
         public static void AddOxygen(float value)
@@ -127,6 +135,11 @@ namespace CaptainNemo.Game
             return GameManager.Instance._diver.TemperatureControl;
         }
 
+        public static WiperControl GetWiperControl()
+        {
+            return GameManager.Instance._diver.WiperControl;
+        }
+        
         public static float GetMaxOxygenValue()
         {
             return GameManager.Instance._diver.OxygenParam.Range.y;

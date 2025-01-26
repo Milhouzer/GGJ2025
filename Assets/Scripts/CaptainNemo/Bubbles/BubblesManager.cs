@@ -8,12 +8,11 @@ namespace CaptainNemo.Bubbles
 {
 	public class BubblesManager : MonoBehaviour
 	{
-		public const float BUBBLE_MOVE_RADIUS = 4.5f;
+		[SerializeField] public float bubbleMoveRadius = 4.5f;
 
 		[SerializeField] private Diver diver = default;
 		[SerializeField] private Bubble.BubbleMovementRanges bubbleMovementRanges = default;
 		[SerializeField] private float spawnChildrenDistanceFromCenter = 0.5f;
-		[SerializeField] private readonly float maxOxygenForOneBubble = 100f;
 		[Space(5)]
 		[SerializeField] private WeightedBubble badBubble;
 		[SerializeField] private WeightedBubble goodBubble;
@@ -31,11 +30,6 @@ namespace CaptainNemo.Bubbles
 		
 		[SerializeField] public Vector2 spawnRange;
 		private float startWeightBubble = 0;
-
-		private void OnDrawGizmosSelected()
-		{
-			
-		}
 		
 		private void Awake()
 		{
@@ -73,6 +67,25 @@ namespace CaptainNemo.Bubbles
 	        }
 
 	        TestChangeBubbleMovement();
+
+	        MoveBubbles();
+	        UpdateParameters();
+	    }
+
+	    private void MoveBubbles()
+	    {
+		    allBubbles.ForEach(bubble =>
+		    {
+			    bubble.transform.position += new Vector3(Mathf.Cos(bubble.currentDirectionAngle), Mathf.Sin(bubble.currentDirectionAngle)) * (CurrentAmplitude * Time.deltaTime);
+
+			    bubble.currentDirectionAngle = Mathf.MoveTowards(bubble.currentDirectionAngle, bubble.targetDirectionAngle, CurrentRotationSpeed);
+			    if (Vector3.Distance(bubble.transform.position, origin.position) > bubbleMoveRadius)
+			    {
+				    bubble.transform.position = origin.position + bubble.transform.position.normalized * bubbleMoveRadius;
+				    bubble.targetDirectionAngle = Mathf.Atan2(-bubble.transform.position.y, -bubble.transform.position.x);
+				    bubble.currentDirectionAngle = bubble.targetDirectionAngle;
+			    }
+		    });
 	    }
 
 	    private void SpawnBubble()
@@ -89,15 +102,17 @@ namespace CaptainNemo.Bubbles
 				Quaternion rotation = Quaternion.identity;
 
 				Bubble newBubble = Instantiate(ChoseBubble(), position, rotation, transform);
-
-				if (newBubble is BadBubble)
+				
+				if (newBubble.Oxygen <= 0)
 				{
-					newBubble.Oxygen = newBubble.Oxygen * -1;
+					newBubble.Oxygen = Random.Range(-10f, -Bubble.MaxBubbleOxygen);
 					badBubble.weight = weightedIncrement;
 				}
 				else
+				{
+					newBubble.Oxygen = Random.Range(10f, Bubble.MaxBubbleOxygen);
 					badBubble.weight += weightedIncrement;
-
+				}
 				newBubble.gameObject.SetActive(true);
 
 				allBubbles.Add(newBubble);
@@ -153,7 +168,7 @@ namespace CaptainNemo.Bubbles
 		
 		private void Temperature()
 		{
-			float temperature = diver.TemperatureParam.Value * 0.01f;
+			float temperature = GameManager.GetTemperature() * 0.01f;
 
 			CurrentTimeBetweenChangeTargetDirection = Mathf.Lerp(
 				bubbleMovementRanges.timeBetweenChangeTargetDirection.x,
@@ -175,6 +190,8 @@ namespace CaptainNemo.Bubbles
 				bubbleMovementRanges.maxTargetRotationChangeRange,
 				temperature);
 
+			// Parameters set
+			
 			//if (currentCalm != newCalm)
 			//{
 			//    if (newCalm)
@@ -207,6 +224,7 @@ namespace CaptainNemo.Bubbles
 
 		private void DivideBubble(Bubble bubble)
 		{
+            return;
 			Vector3 position = bubble.transform.position;
 
 			float random = Random.Range(0, 1);
@@ -216,7 +234,7 @@ namespace CaptainNemo.Bubbles
 			Bubble childBubble2 = Instantiate(bubble, position - direction * spawnChildrenDistanceFromCenter, Quaternion.identity, transform);
 
 			float newOxygenLevel = bubble.Oxygen / 2;
-			Vector3 scale = Vector3.one * Mathf.Abs(newOxygenLevel) * 0.01f;
+			Vector3 scale = Vector3.one * Mathf.Abs(newOxygenLevel);
 
 			childBubble1.Oxygen = newOxygenLevel;
 			childBubble2.Oxygen = newOxygenLevel;
@@ -236,7 +254,7 @@ namespace CaptainNemo.Bubbles
 
 		private void ChildBubble_OnTryMerge(Bubble sender, Bubble collidedBubble)
 		{
-			if (sender.Oxygen >= maxOxygenForOneBubble)
+			if (sender.Oxygen >= Bubble.MaxBubbleOxygen)
 				return;
 
 			Bubble parentBubble = Instantiate(sender, (sender.transform.position + collidedBubble.transform.position) / 2, Quaternion.identity, transform);
