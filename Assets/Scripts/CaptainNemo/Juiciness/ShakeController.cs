@@ -8,10 +8,12 @@ public class ShakeController : ShakeComponent
 {
 	[SerializeField] private ControlHandler controlerHandler;
 	[SerializeField] private float attenuation = 1;
+	[SerializeField] private bool dontStart = false;
 
 	private void Start()
 	{
-		Shake();
+		if (!dontStart)
+			Shake();
 	}
 
 	public override void Shake()
