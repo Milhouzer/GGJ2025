@@ -10,7 +10,6 @@ namespace CaptainNemo.Bubbles
 	{
 		[SerializeField] public float bubbleMoveRadius = 4.5f;
 
-		[SerializeField] private Diver diver = default;
 		[SerializeField] private Bubble.BubbleMovementRanges bubbleMovementRanges = default;
 		[SerializeField] private float spawnChildrenDistanceFromCenter = 0.5f;
 		[Space(5)]
