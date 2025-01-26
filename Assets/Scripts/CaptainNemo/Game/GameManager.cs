@@ -20,6 +20,9 @@ namespace CaptainNemo.Game
         /// </summary>
         [FormerlySerializedAs("input")] 
         [SerializeField] private InputReader inputReader;
+        
+        [SerializeField] private GameObject StartScreen;
+        [SerializeField] private GameObject EndScreen;
 
         /// <summary>
         /// Provides access to the current input reader.
@@ -210,6 +213,17 @@ namespace CaptainNemo.Game
         private void CancelInteract()
         {
             ControlsManager.ControlHandler?.Release();
+        }
+
+        public void EndGame()
+        {
+            _diver.gameObject.SetActive(false);
+            EndScreen.SetActive(true);
+        }
+
+        public void StartGame()
+        {
+            StartScreen.SetActive(false);
         }
     }
 }

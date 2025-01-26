@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace CaptainNemo.UI
@@ -14,9 +15,8 @@ namespace CaptainNemo.UI
 
         private void OnEndButtonClicked()
         {
-            //GameManager.Instance.EndGame();
             restartButton.onClick.RemoveListener(OnEndButtonClicked);
-            gameObject.SetActive(false);
+            SceneManager.LoadScene("Game");
         }
     }
 }
