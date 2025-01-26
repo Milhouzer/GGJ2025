@@ -21,6 +21,7 @@ namespace CaptainNemo.Controls.Logic
         
         [SerializeField] private float radiusThreshold = 10f;
         [SerializeField] private float angleThreshold = 15f;
+        [SerializeField] private Transform _pressureHandle;
         private Vector3 pivotPoint;
         private float lastRadius;
         private float lastAngle;
@@ -58,6 +59,7 @@ namespace CaptainNemo.Controls.Logic
             Vector3 currentOffset = (mousePos - pivotPoint).normalized;
             float angle = Vector3.SignedAngle(currentOffset, lastOffset, Vector3.forward);
             GameManager.AddPressure(angle * attenuation);
+            _pressureHandle.rotation *= Quaternion.AngleAxis(-angle * attenuation, Vector3.forward);
             lastValue = mousePos;
         }
         
