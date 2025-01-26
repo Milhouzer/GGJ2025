@@ -1,6 +1,6 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace CaptainNemo.Bubbles
 {
@@ -19,12 +19,13 @@ namespace CaptainNemo.Bubbles
         }
 
         private const string CHANGE_DIRECTION_COROUTINE_NAME = "ChangeDirection";
-        private const string TAG = "Bubble";
+        
+        
+        public const float MaxBubbleOxygen = 100f;
+        [field: SerializeField][Range(-MaxBubbleOxygen, MaxBubbleOxygen)] public float Oxygen { get; set; } = 100f;
 
-        public float Oxygen { get; set; } = 100f;
-
-        private float currentDirectionAngle;
-        private float targetDirectionAngle;
+        [HideInInspector] public float targetDirectionAngle;
+        [HideInInspector] public float currentDirectionAngle;
 
         // For test
         // [SerializeField] private float mouthSuckForce = 0.01f;
@@ -33,31 +34,12 @@ namespace CaptainNemo.Bubbles
 
         public void Awake()
         {
+            transform.localScale = Vector3.one * Mathf.Abs(Oxygen/MaxBubbleOxygen);
+            
             currentDirectionAngle = Random.Range(0, 360) * Mathf.Deg2Rad;
             targetDirectionAngle = Random.Range(0, 360) * Mathf.Deg2Rad;
 
             StartCoroutine(CHANGE_DIRECTION_COROUTINE_NAME);
-        }
-
-		virtual protected void Update()
-        {
-            transform.position += new Vector3(Mathf.Cos(currentDirectionAngle), Mathf.Sin(currentDirectionAngle)) * BubblesManager.Instance.CurrentAmplitude * Time.deltaTime;
-
-            currentDirectionAngle = Mathf.MoveTowards(currentDirectionAngle, targetDirectionAngle, BubblesManager.Instance.CurrentRotationSpeed);
-
-            if (transform.position.magnitude > BubblesManager.BUBBLE_MOVE_RADIUS)
-            {
-                transform.position = transform.position.normalized * BubblesManager.BUBBLE_MOVE_RADIUS;
-                targetDirectionAngle = Mathf.Atan2(-transform.position.y, -transform.position.x);
-                currentDirectionAngle = targetDirectionAngle;
-            }
-
-            //////////Test//////////
-
-            //if (UnityEngine.Input.GetKey(KeyCode.Mouse0))
-            //{
-            //    GetSucked((Camera.main.ScreenToWorldPoint(new Vector3(UnityEngine.Input.mousePosition.x, UnityEngine.Input.mousePosition.y, -Camera.main.transform.position.z)) - transform.position).normalized * mouthSuckForce);
-            //}
         }
 
         private IEnumerator ChangeDirection()
@@ -72,22 +54,20 @@ namespace CaptainNemo.Bubbles
             transform.position += suckForce;
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.attachedRigidbody.tag == TAG)
+            if (other.gameObject.layer == LayerMask.NameToLayer("Bubble"))
             {
-                Vector3 toTransform = (collision.attachedRigidbody.transform.position - transform.position).normalized;
+                Vector3 toTransform = (other.transform.position - transform.position).normalized;
 
                 targetDirectionAngle = Mathf.Atan2(-toTransform.y, -toTransform.x);
                 currentDirectionAngle = targetDirectionAngle;
 
-                Bubble otherBubble = collision.GetComponent<Bubble>();
 
-                if (Oxygen == otherBubble.Oxygen && 100 - (Oxygen * 2) >= 0f)
+                if (other.TryGetComponent<Bubble>(out Bubble otherBubble) && Mathf.Approximately(Oxygen, otherBubble.Oxygen) && 100 - (Oxygen * 2) >= 0f)
                     OnTryMerge?.Invoke(this, otherBubble);
             }
         }
-
         private void OnDestroy()
         {
             StopCoroutine(CHANGE_DIRECTION_COROUTINE_NAME);

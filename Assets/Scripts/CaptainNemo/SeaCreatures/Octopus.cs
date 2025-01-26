@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CaptainNemo.SeaCreature
+namespace CaptainNemo.SeaCreatures
 {
     public class Octopus : MonoBehaviour
     {

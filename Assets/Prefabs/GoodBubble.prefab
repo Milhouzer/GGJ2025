@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 70086977900603842}
   - component: {fileID: 1489628220778620507}
   - component: {fileID: 3830930120290809531}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GoodBubble
-  m_TagString: Untagged
+  m_TagString: Bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,6 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6874a08ca66c443864c789d40deacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Oxygen>k__BackingField: 100
+  targetDirectionAngle: 0
+  currentDirectionAngle: 0
 --- !u!135 &3830930120290809531
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -115,7 +118,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -132,7 +135,7 @@ GameObject:
   - component: {fileID: 1291192503228375765}
   - component: {fileID: 1161890319233672582}
   - component: {fileID: 3000984856216910264}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BubbleModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

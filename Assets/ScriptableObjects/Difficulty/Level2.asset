@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5ce8faab8bb93149a2629c161769919, type: 3}
-  m_Name: Level1
+  m_Name: Level2
   m_EditorClassIdentifier: 
-  timeToChangeDificulty: 2
-  timeToTriggerEvent: 3
-  dificultyVariationParameter: 0.7
-  weightBadBubble: 0.2
-  bubbleSpawnXSeoncds: 2
-  weightedIncrementBadBubble: 0.15
+  timeToChangeDificulty: 60
+  timeToTriggerEvent: 2
+  dificultyVariationParameter: 1
+  weightBadBubble: 0.3
+  bubbleSpawnXSeoncds: 3
+  weightedIncrementBadBubble: 0.2

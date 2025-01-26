@@ -1,6 +1,6 @@
 using CaptainNemo.Controls;
 using System.Collections.Generic;
-using CaptainNemo.SeaCreature;
+using CaptainNemo.SeaCreatures;
 using UnityEngine;
 
 namespace CaptainNemo.Game

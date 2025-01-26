@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5730943405995561750}
   - component: {fileID: 5333730904014246209}
   - component: {fileID: 8789703138768765797}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BadBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6874a08ca66c443864c789d40deacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Oxygen>k__BackingField: -10
+  targetDirectionAngle: 0
+  currentDirectionAngle: 0
 --- !u!135 &8789703138768765797
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -115,7 +118,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -132,7 +135,7 @@ GameObject:
   - component: {fileID: 3527177797864753428}
   - component: {fileID: 1763222891823623370}
   - component: {fileID: 7407374361773110616}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BubbleModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -78,13 +78,11 @@ namespace CaptainNemo.Controls
 
         public void Lock()
         {
-            Debug.Log($"[ControlHandler] Lock {this}");
             _isBlockingControls = true;
         }
 
         public void Unlock()
         {
-            Debug.Log($"[ControlHandler] Unlock {this}");
             _isBlockingControls = false;
         }
 

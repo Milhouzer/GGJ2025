@@ -21,9 +21,10 @@ namespace CaptainNemo.Controls.Logic
         
         [SerializeField] private float radiusThreshold = 10f;
         [SerializeField] private float angleThreshold = 15f;
-        private Vector2 pivotPoint;
+        private Vector3 pivotPoint;
         private float lastRadius;
         private float lastAngle;
+        private Vector3 lastValue;
 
         /// <summary>
         /// This component controls the pressure
@@ -45,31 +46,12 @@ namespace CaptainNemo.Controls.Logic
         /// <param name="value">Input control vector.</param>
         protected override void OnControl(Vector2 value)
         {
-            // Calculate vector from pivot to current mouse position
-            Vector2 centerOffset = value - pivotPoint;
-    
-            // Calculate current radius and angle
-            float currentRadius = centerOffset.magnitude;
-            float currentAngle = Mathf.Atan2(centerOffset.y, centerOffset.x);
-    
-            // Compare with previous measurements to detect circular motion
-            float radiusDelta = Mathf.Abs(currentRadius - lastRadius);
-            float angleDelta = Mathf.Abs(Mathf.DeltaAngle(lastAngle, currentAngle));
-    
-            // Threshold values can be adjusted based on precision needed
-            bool isCircularMotion = 
-                radiusDelta < radiusThreshold && 
-                angleDelta < angleThreshold;
-    
-            if (isCircularMotion)
-            {
-                GameManager.AddPressure(angleDelta * attenuation);
-                _pressure = angleDelta * attenuation;
-            }
-    
-            // Update last known state
-            lastRadius = currentRadius;
-            lastAngle = currentAngle;
+            Vector3 mousePos = UnityEngine.Input.mousePosition;
+            Vector3 lastOffset = (lastValue - pivotPoint).normalized;
+            Vector3 currentOffset = (mousePos - pivotPoint).normalized;
+            float angle = Vector3.SignedAngle(currentOffset, lastOffset, Vector3.forward);
+            GameManager.AddPressure(angle * attenuation);
+            lastValue = mousePos;
         }
         
         /// <summary>

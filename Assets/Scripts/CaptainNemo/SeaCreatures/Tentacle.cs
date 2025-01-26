@@ -1,7 +1,7 @@
 using CaptainNemo.Controls;
 using UnityEngine;
 
-namespace CaptainNemo.SeaCreature
+namespace CaptainNemo.SeaCreatures
 {
     public delegate void OnTentacleDeathEventHandler(Tentacle sender);
 
