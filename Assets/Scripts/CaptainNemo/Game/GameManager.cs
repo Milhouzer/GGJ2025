@@ -18,25 +18,35 @@ namespace CaptainNemo.Game
         /// <summary>
         /// Input reader for game interactions and controls.
         /// </summary>
-        [FormerlySerializedAs("input")] 
+        [FormerlySerializedAs("input")]
         [SerializeField] private InputReader inputReader;
         
         [SerializeField] private GameObject StartScreen;
         [SerializeField] private GameObject EndScreen;
         [SerializeField] private Texture2D texture;
 
+        [SerializeField] private GameObject StartScreen;
+        [SerializeField] private GameObject EndScreen;
+
+        [SerializeField] private Sprite idle;
+        [SerializeField] private Sprite hover;
+        [SerializeField] private Sprite grab;
+        [SerializeField] private Sprite clickIdle;
+
+        private Sprite currentCursorTexture;
+
         /// <summary>
         /// Provides access to the current input reader.
         /// </summary>
         public InputReader InputReader => inputReader;
-        
+
         /// <summary>
         /// Reference to the player's main camera.
         /// </summary>
         [SerializeField] private Camera playerCamera;
 
         public LayerMask IgnoreLayerMask;
-        
+
         /// <summary>
         /// Current game object under mouse cursor/camera focus.
         /// </summary>
@@ -46,13 +56,15 @@ namespace CaptainNemo.Game
         /// Player's diver instance for game interactions.
         /// </summary>
         [SerializeField] private Diver _diver;
-        
+
         /// <summary>
         /// Initializes game state, input handling, and diver.
         /// Sets up input event subscriptions.
         /// </summary>
         private void Start()
         {
+            Cursor.SetCursor(idle.texture, Vector2.zero, CursorMode.Auto);
+
             if (inputReader == null)
             {
                 Debug.LogError("Can not start game without input reader");
@@ -77,15 +89,42 @@ namespace CaptainNemo.Game
             if (!started) return;
             
             Move(inputReader.MoveInput);
-            if(!playerCamera) return;
-    
+            if (!playerCamera) return;
+
             Ray ray = playerCamera.ScreenPointToRay(UnityEngine.Input.mousePosition);
             // Does the ray intersect any objects excluding the player layer
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, ~IgnoreLayerMask))
-            { 
-                Debug.DrawRay(ray.origin, Vector3.forward * hit.distance, Color.yellow); 
+            {
+                Debug.DrawRay(ray.origin, Vector3.forward * hit.distance, Color.yellow);
                 GameManager.TargetObject = hit.transform.gameObject;
                 // Debug.Log($"New target: {GameManager.TargetObject.name}");
+
+                if (TargetObject.TryGetComponent(out ControlHandler component))
+                {
+                    if (UnityEngine.Input.GetKey(KeyCode.Mouse0))
+                    {
+                        if (currentCursorTexture != grab.texture)
+                            Cursor.SetCursor(grab.texture, Vector2.zero, CursorMode.Auto);
+                    }
+                    else
+                    {
+                        if (currentCursorTexture != hover.texture)
+                            Cursor.SetCursor(hover.texture, Vector2.zero, CursorMode.Auto);
+                    }
+                }
+                else
+                {
+                    if (UnityEngine.Input.GetKey(KeyCode.Mouse0))
+                    {
+                        if (currentCursorTexture != clickIdle.texture)
+                            Cursor.SetCursor(clickIdle.texture, Vector2.zero, CursorMode.Auto);
+                    }
+                    else
+                    {
+                        if (currentCursorTexture != idle.texture)
+                            Cursor.SetCursor(idle.texture, Vector2.zero, CursorMode.Auto);
+                    }
+                }
             }
             else
             {
@@ -93,6 +132,17 @@ namespace CaptainNemo.Game
                 {
                     GameManager.TargetObject = null;
                     // Debug.Log("New null target");
+                }
+
+                if (UnityEngine.Input.GetKey(KeyCode.Mouse0))
+                {
+                    if (currentCursorTexture != clickIdle.texture)
+                        Cursor.SetCursor(clickIdle.texture, Vector2.zero, CursorMode.Auto);
+                }
+                else
+                {
+                    if (currentCursorTexture != idle.texture)
+                        Cursor.SetCursor(idle.texture, Vector2.zero, CursorMode.Auto);
                 }
             }
         }
@@ -106,7 +156,7 @@ namespace CaptainNemo.Game
         {
             GameManager.Instance._diver.Oxygen(value);
         }
-        
+
         public static void AddTemperature(float value)
         {
             GameManager.Instance._diver.Temperature(value);
@@ -131,7 +181,7 @@ namespace CaptainNemo.Game
         {
             return GameManager.Instance._diver.TemperatureParam.Value;
         }
-        
+
         public static PressureControl GetPressureControl()
         {
             return GameManager.Instance._diver.PressureControl;
@@ -146,7 +196,7 @@ namespace CaptainNemo.Game
         {
             return GameManager.Instance._diver.WiperControl;
         }
-        
+
         public static float GetMaxOxygenValue()
         {
             return GameManager.Instance._diver.OxygenParam.Range.y;
@@ -166,12 +216,12 @@ namespace CaptainNemo.Game
         {
             return GameManager.Instance._diver.TemperatureParam.Range.x;
         }
-        
+
         public static float GetMaxPressureValue()
         {
             return GameManager.Instance._diver.PressureParam.Range.y;
         }
-        
+
         public static float GetMinPressureValue()
         {
             return GameManager.Instance._diver.PressureParam.Range.x;
@@ -184,10 +234,10 @@ namespace CaptainNemo.Game
         private void Interact()
         {
             if (TargetObject == null) return;
-            
+
             IControlHandler handler = TargetObject.GetComponent<IControlHandler>();
             if (handler == null || handler.GetGlobalControlParam() == GlobalControlParam.Oxygen) return;
-            
+
             handler.Handle();
         }
 
@@ -210,7 +260,7 @@ namespace CaptainNemo.Game
         {
             _diver.Mouth?.Move(value);
         }
-        
+
         /// <summary>
         /// Handles interaction cancellation by releasing current control handler.
         /// </summary>
