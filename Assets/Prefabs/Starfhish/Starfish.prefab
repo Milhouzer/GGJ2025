@@ -103,5 +103,5 @@ MonoBehaviour:
   tentaclePrefab: {fileID: 6184515109823277309, guid: 41a392c80890b544089a7b1225ea200b, type: 3}
   nTentacle: 5
   tentacleRadius: 1
-  tentacleHp: 1
+  tentacleHp: 3
   tentacleShakeStrength: 1

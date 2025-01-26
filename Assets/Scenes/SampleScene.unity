@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d993715a3bb4e5ebc217866ce9aa06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubblesManager: {fileID: 0}
+  bubblesManager: {fileID: 5845325493140665060}
   mouth: {fileID: 1687510868}
   moveSpeed: 0.4
   baseValueOxygen: 100
@@ -2480,6 +2480,7 @@ MonoBehaviour:
   weightedIncrement: 0
   rangeRandomAngle: {x: -10, y: 10}
   origin: {fileID: 1707674725}
+  allBubbles: []
   spawnRange: {x: 0.1, y: 0.4}
   newCalm: 1
 --- !u!114 &7610397984728107422
