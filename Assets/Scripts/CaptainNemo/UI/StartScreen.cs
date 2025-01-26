@@ -15,7 +15,7 @@ namespace CaptainNemo.UI
         private void StartGame()
         {
             //GameManager.Instance.StartGame();
-            StartButton.onClick.RemoveListener(StartGame);
+            SoundManager.PlaySound(E_Sound.PlayButton);
             gameObject.SetActive(false);
         }
     }

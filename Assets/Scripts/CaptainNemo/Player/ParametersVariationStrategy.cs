@@ -26,9 +26,9 @@ namespace CaptainNemo.Player
             return Mathf.Pow(currentTime, 0.25f) * Mathf.Log(currentTime + 1) + Mathf.PerlinNoise(currentTime, 0) * difficultyVariationParameter;
         }
         
-        public float GetOxygenDecreaseRate(float currentTime)
+        public float GetOxygenIncreaseRate(float currentTime)
         {
-            return Mathf.Pow(currentTime, 0.25f) * Mathf.Log(currentTime + 1);
+            return -Mathf.Pow(currentTime, 0.25f) * Mathf.Log(currentTime + 1);
         }
     }
 }

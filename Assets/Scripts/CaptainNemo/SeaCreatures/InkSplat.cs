@@ -13,6 +13,7 @@ namespace CaptainNemo.SeaCreatures
         public void Wipe(float amount)
         {
             wipeAmountRequired -= amount;
+            
             if (wipeAmountRequired <= 0)
             {
                 Destroy(gameObject);

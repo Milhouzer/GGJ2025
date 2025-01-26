@@ -63,8 +63,9 @@ namespace CaptainNemo.Game
             inputReader.CancelInteract += CancelInteract;
             inputReader.Look += Look;
             inputReader.Move += Move;
-            inputReader.Enable();
         }
+
+        private bool started;
         
         /// <summary>
         /// Updates target object based on mouse cursor raycast.
@@ -72,6 +73,8 @@ namespace CaptainNemo.Game
         /// </summary>
         private void Update()
         {
+            if (!started) return;
+            
             Move(inputReader.MoveInput);
             if(!playerCamera) return;
     
@@ -217,13 +220,31 @@ namespace CaptainNemo.Game
 
         public void EndGame()
         {
-            _diver.gameObject.SetActive(false);
+            Destroy(currentGame);
+            inputReader.Disable();
             EndScreen.SetActive(true);
+            currentGame = null;
+            _diver = null;
+            started = false;
         }
 
+        [SerializeField] private GameObject gamePrefab;
+        private GameObject currentGame;
+        
         public void StartGame()
         {
+            currentGame = Instantiate(gamePrefab);
+            _diver = GameObject.FindFirstObjectByType<Diver>();
+            if (_diver == null)
+            {
+                Debug.LogError("Can't find diver");
+                Destroy(currentGame);
+                currentGame = null;
+                return;
+            }
             StartScreen.SetActive(false);
+            inputReader.Enable();
+            started = true;
         }
     }
 }
