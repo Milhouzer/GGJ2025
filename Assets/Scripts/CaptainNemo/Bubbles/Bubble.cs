@@ -18,6 +18,9 @@ namespace CaptainNemo.Bubbles
             public Vector2 maxTargetRotationChangeRange;
         }
 
+        [SerializeField] private ParticleSystem deathParticle;
+        [SerializeField] private Color colorDeathParticle;
+
         private const string CHANGE_DIRECTION_COROUTINE_NAME = "ChangeDirection";
         private const string TAG = "Bubble";
 
@@ -88,8 +91,16 @@ namespace CaptainNemo.Bubbles
             }
         }
 
+        private void Destroy()
+        {
+			ParticleSystem.MainModule settings = deathParticle.main;
+			settings.startColor = colorDeathParticle;
+            deathParticle.Play();
+        }
+
         private void OnDestroy()
         {
+            Destroy();
             StopCoroutine(CHANGE_DIRECTION_COROUTINE_NAME);
         }
     }
