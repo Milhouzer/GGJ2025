@@ -74,10 +74,9 @@ namespace CaptainNemo.Bubbles
 
         private void Destroy()
         {
-			ParticleSystem.MainModule settings = deathParticle.main;
-			settings.startColor = colorDeathParticle;
-            deathParticle.Play();
-        }
+            ParticleSystem particleSystem = default;
+			particleSystem = Instantiate(deathParticle,transform.position,transform.rotation);
+		}
 
         private void OnDestroy()
         {
