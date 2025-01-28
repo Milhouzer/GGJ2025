@@ -36,6 +36,7 @@ jobs:
           targetPlatform: StandaloneWindows64
 
       # Output
+      # /!\ cache@v3 deprecated, utiliser v4 plutôt /!\
       - uses: actions/upload-artifact@v3
         with:
           name: Build
